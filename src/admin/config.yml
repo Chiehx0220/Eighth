@@ -1,0 +1,73 @@
+backend:
+  name: github
+  repo: Chiehx0220/Eighth
+  branch: main
+  base_url: https://YOUR-OAUTH-PROXY.workers.dev
+  auth_endpoint: auth
+
+# local_backend: true  # uncomment while testing locally with: npx decap-server
+
+media_folder: "src/assets/uploads"
+public_folder: "/assets/uploads"
+
+collections:
+  - name: "dining"
+    label: "餐飲資訊"
+    file: "src/_data/dining.yaml"
+    fields:
+      - { label: "餐廳列表", name: "list", widget: "list", allow_add: true, collapsed: true, fields:
+          - { label: "名稱", name: "name", widget: "string" }
+          - { label: "位置", name: "location", widget: "string" }
+          - { label: "營業時間", name: "hours", widget: "string" }
+          - { label: "品項", name: "items", widget: "list", allow_add: true, fields:
+              - { label: "名稱", name: "name", widget: "string" }
+              - { label: "價格", name: "price", widget: "number" }
+              - { label: "照片", name: "image", widget: "image", required: false }
+              - { label: "說明", name: "note", widget: "string", required: false }
+          }
+      }
+
+  - name: "wards"
+    label: "病房單位介紹"
+    file: "src/_data/wards.yaml"
+    fields:
+      - { label: "單位列表", name: "list", widget: "list", allow_add: true, collapsed: true, fields:
+          - { label: "代碼", name: "id", widget: "string" }
+          - { label: "單位名稱", name: "name", widget: "string" }
+          - { label: "床位數(滿床)", name: "total_beds", widget: "number" }
+          - { label: "護理長人數", name: "head_nurse_count", widget: "number" }
+          - { label: "副護理長人數", name: "deputy_head_nurse_count", widget: "number" }
+          - { label: "護理師人數", name: "staff_nurse_count", widget: "number" }
+          - { label: "白班上班人數", name: "shift_day_count", widget: "number" }
+          - { label: "小夜上班人數", name: "shift_evening_count", widget: "number" }
+          - { label: "大夜上班人數", name: "shift_night_count", widget: "number" }
+          - { label: "房型", name: "rooms", widget: "list", allow_add: true, fields:
+              - { label: "房型名稱", name: "type", widget: "string" }
+              - { label: "價格", name: "price", widget: "number" }
+              - { label: "單位", name: "unit", widget: "string", default: "日" }
+              - { label: "照片", name: "image", widget: "image", required: false }
+              - { label: "說明", name: "description", widget: "text" }
+              - label: "目前狀態"
+                name: "status"
+                widget: "select"
+                options: ["有空房", "剩 1 床", "剩 2 床", "客滿"]
+          }
+      }
+
+  - name: "selfpay"
+    label: "自費項目"
+    file: "src/_data/selfpay.yaml"
+    fields:
+      - { label: "項目列表", name: "list", widget: "list", allow_add: true, fields:
+          - { label: "項目名稱", name: "name", widget: "string" }
+          - { label: "價格", name: "price", widget: "string" }
+          - { label: "單位", name: "unit", widget: "string", required: false }
+          - { label: "說明", name: "note", widget: "text", required: false }
+      }
+
+  - name: "visiting"
+    label: "探病/會客規定"
+    file: "src/_data/visiting.yaml"
+    fields:
+      - { label: "會客時間", name: "hours", widget: "string" }
+      - { label: "規定條列", name: "rules", widget: "list" }

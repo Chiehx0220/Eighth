@@ -1,0 +1,29 @@
+list:
+  - name: "員工/病患自助餐廳"
+    location: "地下一樓"
+    hours: "07:00-19:00"
+    items:
+      - name: "自助餐(葷)"
+        price: 90
+        image: ""
+        note: "秤重計價,約 90 元起"
+      - name: "自助餐(素)"
+        price: 80
+        image: ""
+        note: "秤重計價,約 80 元起"
+      - name: "套餐"
+        price: 120
+        image: ""
+        note: "固定菜色,含湯"
+  - name: "美食街"
+    location: "一樓"
+    hours: "07:00-20:00"
+    items:
+      - name: "麵食類"
+        price: 100
+        image: ""
+        note: "牛肉麵、陽春麵等"
+      - name: "便當"
+        price: 95
+        image: ""
+        note: "多種菜色可選"

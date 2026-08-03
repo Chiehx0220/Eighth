@@ -1,0 +1,27 @@
+---
+layout: layouts/base.njk
+title: "餐飲資訊"
+permalink: /dining/
+---
+<h1>餐飲資訊</h1>
+
+{% for place in dining.list %}
+<div class="ward-block">
+  <h2>{{ place.name }}</h2>
+  <p>位置:{{ place.location }} ・ 營業時間:{{ place.hours }}</p>
+  <table class="price-table">
+    <thead>
+      <tr><th>品項</th><th>價格</th><th>說明</th></tr>
+    </thead>
+    <tbody>
+      {% for item in place.items %}
+      <tr>
+        <td>{{ item.name }}</td>
+        <td>NT$ {{ item.price }}</td>
+        <td>{{ item.note }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+{% endfor %}

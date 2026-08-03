@@ -1,0 +1,23 @@
+list:
+  - id: "aero8"
+    name: "航空醫學大樓 八病房"
+    total_beds: 44
+    head_nurse_count: 1
+    deputy_head_nurse_count: 1
+    staff_nurse_count: 17
+    shift_day_count: 5
+    shift_evening_count: 4
+    shift_night_count: 3
+    rooms:
+      - type: "單人房"
+        price: 3500
+        unit: "日"
+        image: ""
+        description: "獨立衛浴、備有陪病椅,健保不給付差額由病人自付。"
+        status: "有空房"
+      - type: "雙人房"
+        price: 1800
+        unit: "日"
+        image: ""
+        description: "共用衛浴、每床各附陪病椅,兩床以布簾區隔。"
+        status: "剩 1 床"

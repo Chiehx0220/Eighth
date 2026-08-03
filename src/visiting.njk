@@ -1,0 +1,24 @@
+---
+layout: layouts/base.njk
+title: "探病/會客"
+permalink: /visiting/
+---
+<h1>探病/會客規定</h1>
+<p>會客時間:{{ visiting.hours }}</p>
+<ul class="rules-list">
+  {% for rule in visiting.rules %}
+  <li>{{ rule }}</li>
+  {% endfor %}
+</ul>
+
+<dialog id="visitor-registration-dialog" class="m3-dialog">
+  <h2 class="m3-dialog__title">陪探病人員實名登記</h2>
+  <p class="m3-dialog__subtitle">依規定,陪病/探病人員需完成實名登記後才能入院陪探病。請點選下方按鈕前往登記系統填寫。</p>
+  <div class="m3-dialog__actions">
+    <button type="button" class="btn btn--text" id="visitor-registration-dismiss">稍後再說</button>
+    <a href="{{ site.visitor_registration_url }}" target="_blank" rel="noopener noreferrer" class="btn btn--filled" id="visitor-registration-link">
+      前往實名登記
+      <span class="material-symbols-outlined" aria-hidden="true">open_in_new</span>
+    </a>
+  </div>
+</dialog>

@@ -1,0 +1,69 @@
+---
+layout: layouts/base.njk
+title: "病房單位介紹"
+permalink: /wards/
+---
+<h1>病房單位介紹</h1>
+
+{% for ward in wards.list %}
+<div class="ward-block">
+  <h2>{{ ward.name }}</h2>
+  <p class="ward-block__beds">床位數:{{ ward.total_beds }} 床(滿床)</p>
+
+  <h3>病房成員組成</h3>
+  <div class="composition-card">
+    <div class="composition-card__item">
+      <span class="composition-card__icon material-symbols-outlined" aria-hidden="true">supervisor_account</span>
+      <div>
+        <p class="composition-card__label">護理長</p>
+        <p class="composition-card__value">{{ ward.head_nurse_count }} 位</p>
+      </div>
+    </div>
+    <div class="composition-card__divider"></div>
+    <div class="composition-card__item">
+      <span class="composition-card__icon material-symbols-outlined" aria-hidden="true">assignment_ind</span>
+      <div>
+        <p class="composition-card__label">副護理長</p>
+        <p class="composition-card__value">{{ ward.deputy_head_nurse_count }} 位</p>
+      </div>
+    </div>
+    <div class="composition-card__divider"></div>
+    <div class="composition-card__item">
+      <span class="composition-card__icon material-symbols-outlined" aria-hidden="true">medical_information</span>
+      <div>
+        <p class="composition-card__label">護理師</p>
+        <p class="composition-card__value">{{ ward.staff_nurse_count }} 位</p>
+      </div>
+    </div>
+  </div>
+  <p class="ward-block__note">副護理長亦排入班表,與護理師共同照護病患。</p>
+
+  <h3>三班人力與護病比</h3>
+  <div class="stat-grid">
+    <div class="stat-tile">
+      <span class="stat-tile__icon material-symbols-outlined" aria-hidden="true">light_mode</span>
+      <p class="stat-tile__label">白班</p>
+      <p class="stat-tile__value">{{ ward.shift_day_count }} 人</p>
+      <p class="stat-tile__sub">護病比 1 : {{ (ward.total_beds / ward.shift_day_count) | round }}</p>
+    </div>
+    <div class="stat-tile">
+      <span class="stat-tile__icon material-symbols-outlined" aria-hidden="true">wb_twilight</span>
+      <p class="stat-tile__label">小夜</p>
+      <p class="stat-tile__value">{{ ward.shift_evening_count }} 人</p>
+      <p class="stat-tile__sub">護病比 1 : {{ (ward.total_beds / ward.shift_evening_count) | round }}</p>
+    </div>
+    <div class="stat-tile">
+      <span class="stat-tile__icon material-symbols-outlined" aria-hidden="true">nights_stay</span>
+      <p class="stat-tile__label">大夜</p>
+      <p class="stat-tile__value">{{ ward.shift_night_count }} 人</p>
+      <p class="stat-tile__sub">護病比 1 : {{ (ward.total_beds / ward.shift_night_count) | round }}</p>
+    </div>
+  </div>
+  <p class="ward-block__note">護病比以床位數({{ ward.total_beds }} 床)÷各班上班人數估算,實際照護人數依當日住院狀況而定。</p>
+</div>
+{% endfor %}
+
+<a href="/rooms/" class="btn btn--filled">
+  查看單人房/雙人房
+  <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+</a>

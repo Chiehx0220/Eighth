@@ -1,0 +1,20 @@
+---
+layout: layouts/base.njk
+title: "自費項目"
+permalink: /self-pay/
+---
+<h1>自費項目</h1>
+<table class="price-table">
+  <thead>
+    <tr><th>項目</th><th>價格</th><th>說明</th></tr>
+  </thead>
+  <tbody>
+    {% for item in selfpay.list %}
+    <tr>
+      <td>{{ item.name }}</td>
+      <td>{% if item.unit %}NT$ {{ item.price }} / {{ item.unit }}{% else %}{{ item.price }}{% endif %}</td>
+      <td>{{ item.note }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>

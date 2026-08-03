@@ -1,0 +1,69 @@
+---
+layout: layouts/base.njk
+title: "單人房/雙人房"
+permalink: /rooms/
+---
+<h1>單人房/雙人房</h1>
+<p>以下房型來自各病房單位,顯示目前價格、照片與空床狀態。點選「申請」即可填寫資料。</p>
+
+<div class="room-grid">
+  {% for ward in wards.list %}
+    {% for room in ward.rooms %}
+    <div class="room-card" data-room-type="{{ room.type }}">
+      <div class="room-card__image">
+        {% if room.image %}<img src="{{ room.image }}" alt="{{ room.type }}照片" style="width:100%;height:100%;object-fit:cover;">{% else %}尚無照片{% endif %}
+      </div>
+      <div class="room-card__body">
+        <p class="room-card__ward">{{ ward.name }}</p>
+        <div class="room-card__title-row">
+          <span>{{ room.type }}</span>
+          <span>NT$ {{ room.price }} / {{ room.unit }}</span>
+        </div>
+        <p>{{ room.description }}</p>
+        {% if "客滿" in room.status %}
+          <span class="badge badge--full">{{ room.status }}</span>
+        {% elif "剩" in room.status %}
+          <span class="badge badge--low">{{ room.status }}</span>
+        {% else %}
+          <span class="badge badge--available">{{ room.status }}</span>
+        {% endif %}
+
+        {% if "客滿" in room.status %}
+        <button type="button" class="btn btn--outlined room-card__request-btn" disabled>目前客滿</button>
+        {% else %}
+        <button type="button" class="btn btn--tonal room-card__request-btn" data-room-type="{{ room.type }}" data-ward="{{ ward.name }}">
+          申請{{ room.type }}
+          <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+        </button>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  {% endfor %}
+</div>
+
+<dialog id="room-request-dialog" class="m3-dialog">
+  <form id="room-request-form" class="m3-dialog__form" novalidate>
+    <h2 class="m3-dialog__title">申請<span id="dialog-room-type"></span></h2>
+    <p class="m3-dialog__subtitle" id="dialog-ward"></p>
+
+    <div class="m3-field">
+      <label for="dialog-bed">床號</label>
+      <input type="text" id="dialog-bed" name="bed-number" class="m3-field__input" required>
+    </div>
+    <div class="m3-field">
+      <label for="dialog-name">病患姓名</label>
+      <input type="text" id="dialog-name" name="patient-name" class="m3-field__input" required>
+    </div>
+
+    <p class="m3-dialog__status" role="status" hidden></p>
+
+    <div class="m3-dialog__actions">
+      <button type="button" class="btn btn--text" id="dialog-cancel">取消</button>
+      <button type="submit" class="btn btn--filled">
+        送出申請
+        <span class="material-symbols-outlined" aria-hidden="true">send</span>
+      </button>
+    </div>
+  </form>
+</dialog>
