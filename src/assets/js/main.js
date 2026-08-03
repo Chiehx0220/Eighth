@@ -31,6 +31,33 @@
     });
   }
 
+  var themeToggle = document.getElementById("theme-toggle");
+  var themeIcon = document.getElementById("theme-toggle-icon");
+  var THEME_KEY = "theme";
+
+  function isDarkActive() {
+    var explicit = document.documentElement.getAttribute("data-theme");
+    if (explicit === "dark") return true;
+    if (explicit === "light") return false;
+    return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+  }
+
+  function updateThemeIcon() {
+    if (!themeIcon) return;
+    themeIcon.textContent = isDarkActive() ? "light_mode" : "dark_mode";
+  }
+
+  updateThemeIcon();
+
+  if (themeToggle) {
+    themeToggle.addEventListener("click", function () {
+      var next = isDarkActive() ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", next);
+      localStorage.setItem(THEME_KEY, next);
+      updateThemeIcon();
+    });
+  }
+
   var dialog = document.getElementById("room-request-dialog");
   if (dialog) {
     var dialogForm = document.getElementById("room-request-form");
