@@ -8,14 +8,14 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=block" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/style.css">
+  <link rel="stylesheet" href="{{ '/assets/css/style.css' | url }}">
 </head>
 <body>
   <a href="#main-content" class="skip-link">跳到主要內容</a>
 
   <header class="top-app-bar">
     <div class="top-app-bar__row">
-      <a href="/" class="brand">
+      <a href="{{ '/' | url }}" class="brand">
         <span class="brand__icon material-symbols-outlined" aria-hidden="true">local_hospital</span>
         <span class="brand__name">{{ site.site_title }}</span>
       </a>
@@ -41,32 +41,32 @@
   </footer>
 
   <nav class="nav-bar" aria-label="主選單">
-    <a href="/dining/" class="nav-bar__item {{ 'is-active' if '/dining/' in page.url }}">
+    <a href="{{ '/dining/' | url }}" class="nav-bar__item {{ 'is-active' if '/dining/' in page.url }}">
       <span class="nav-bar__icon-wrap"><span class="material-symbols-outlined" aria-hidden="true">restaurant</span></span>
       <span class="nav-bar__label">餐飲</span>
     </a>
-    <a href="/wards/" class="nav-bar__item {{ 'is-active' if '/wards/' in page.url }}">
+    <a href="{{ '/wards/' | url }}" class="nav-bar__item {{ 'is-active' if '/wards/' in page.url }}">
       <span class="nav-bar__icon-wrap"><span class="material-symbols-outlined" aria-hidden="true">apartment</span></span>
       <span class="nav-bar__label">病房單位</span>
     </a>
-    <a href="/rooms/" class="nav-bar__item {{ 'is-active' if '/rooms/' in page.url }}">
+    <a href="{{ '/rooms/' | url }}" class="nav-bar__item {{ 'is-active' if '/rooms/' in page.url }}">
       <span class="nav-bar__icon-wrap"><span class="material-symbols-outlined" aria-hidden="true">bed</span></span>
       <span class="nav-bar__label">房型</span>
     </a>
-    <a href="/self-pay/" class="nav-bar__item {{ 'is-active' if '/self-pay/' in page.url }}">
+    <a href="{{ '/self-pay/' | url }}" class="nav-bar__item {{ 'is-active' if '/self-pay/' in page.url }}">
       <span class="nav-bar__icon-wrap"><span class="material-symbols-outlined" aria-hidden="true">receipt_long</span></span>
       <span class="nav-bar__label">自費項目</span>
     </a>
-    <a href="/visiting/" class="nav-bar__item {{ 'is-active' if '/visiting/' in page.url }}">
+    <a href="{{ '/visiting/' | url }}" class="nav-bar__item {{ 'is-active' if '/visiting/' in page.url }}">
       <span class="nav-bar__icon-wrap"><span class="material-symbols-outlined" aria-hidden="true">groups</span></span>
       <span class="nav-bar__label">探病/會客</span>
     </a>
-    <a href="/suggest/" class="nav-bar__item {{ 'is-active' if '/suggest/' in page.url }}">
+    <a href="{{ '/suggest/' | url }}" class="nav-bar__item {{ 'is-active' if '/suggest/' in page.url }}">
       <span class="nav-bar__icon-wrap"><span class="material-symbols-outlined" aria-hidden="true">mail</span></span>
       <span class="nav-bar__label">意見信箱</span>
     </a>
   </nav>
 
-  <script src="/assets/js/main.js"></script>
+  <script src="{{ '/assets/js/main.js' | url }}"></script>
 </body>
 </html>
