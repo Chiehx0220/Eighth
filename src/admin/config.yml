@@ -133,13 +133,6 @@ collections:
         label: "出院須知"
         file: "src/_data/discharge.yaml"
         fields:
-          - label: "出院須知條列"
-            name: "discharge_rules"
-            widget: "list"
-            fields:
-              - { label: "圖示(Material Symbols 名稱)", name: "icon", widget: "string" }
-              - { label: "標題", name: "title", widget: "string" }
-              - { label: "說明", name: "desc", widget: "text" }
           - { label: "出院流程(依序列出)", name: "discharge_flow", widget: "list" }
           - label: "診斷證明書申請須知"
             name: "certificate_rules"

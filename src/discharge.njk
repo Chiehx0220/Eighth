@@ -4,17 +4,6 @@ title: "出院須知"
 permalink: /discharge/
 ---
 <h1>出院須知</h1>
-<div class="info-cards">
-  {% for rule in discharge.discharge_rules %}
-  <div class="info-card">
-    <span class="info-card__icon material-symbols-outlined" aria-hidden="true">{{ rule.icon }}</span>
-    <div class="info-card__body">
-      <p class="info-card__title">{{ rule.title }}</p>
-      <p class="info-card__desc">{{ rule.desc }}</p>
-    </div>
-  </div>
-  {% endfor %}
-</div>
 
 <h2>出院流程</h2>
 <ol class="process-stepper">
