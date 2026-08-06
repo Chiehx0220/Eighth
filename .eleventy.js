@@ -5,6 +5,10 @@ module.exports = function (eleventyConfig) {
   eleventyConfig.addPassthroughCopy("src/assets");
   eleventyConfig.addPassthroughCopy("src/admin");
 
+  eleventyConfig.addFilter("findByType", function (list, type) {
+    return (list || []).find((item) => item.type === type);
+  });
+
   return {
     dir: {
       input: "src",

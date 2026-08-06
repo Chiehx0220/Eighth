@@ -1,0 +1,13 @@
+list:
+  - type: "單人房"
+    self_pay_day1: 5400
+    self_pay_day2plus: 5200
+    insured: 4000
+  - type: "雙人房"
+    self_pay_day1: 3900
+    self_pay_day2plus: 3700
+    insured: 2500
+  - type: "四人房"
+    self_pay_day1: 1400
+    self_pay_day2plus: 1200
+    insured: 0
