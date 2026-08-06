@@ -1,29 +1,54 @@
 list:
-  - name: "員工/病患自助餐廳"
-    location: "地下一樓"
-    hours: "07:00-19:00"
-    items:
-      - name: "自助餐(葷)"
-        price: 90
-        image: ""
-        note: "秤重計價,約 90 元起"
-      - name: "自助餐(素)"
-        price: 80
-        image: ""
-        note: "秤重計價,約 80 元起"
-      - name: "套餐"
-        price: 120
-        image: ""
-        note: "固定菜色,含湯"
-  - name: "美食街"
-    location: "一樓"
-    hours: "07:00-20:00"
-    items:
-      - name: "麵食類"
-        price: 100
-        image: ""
-        note: "牛肉麵、陽春麵等"
-      - name: "便當"
-        price: 95
-        image: ""
-        note: "多種菜色可選"
+  - name: 院內餐
+    location: 病房供餐
+    hours: 07:00-19:00
+    note: "營養室工作人員會將伙食送至您的床邊桌上;若超過供餐時間仍未收到餐點,請通知護理人員。"
+    groups:
+      - name: 普通伙食
+        items:
+          - name: 早餐
+            time: 07:30-08:00
+            price: 60
+            image: ""
+            note: ""
+          - name: 午餐
+            time: 11:30-12:00
+            price: 105
+            image: ""
+            note: ""
+          - name: 晚餐
+            time: 16:30-17:00
+            price: 105
+            image: ""
+            note: ""
+      - name: 治療餐
+        items:
+          - name: 早餐
+            time: 07:30-08:00
+            price: 70
+            image: ""
+            note: ""
+          - name: 午餐
+            time: 11:30-12:00
+            price: 115
+            image: ""
+            note: ""
+          - name: 晚餐
+            time: 16:30-17:00
+            price: 115
+            image: ""
+            note: ""
+  - name: 美食街
+    location: 一樓
+    hours: 07:00-20:00
+    groups:
+      - name: ""
+        items:
+          - name: 麵食類
+            price: 100
+            image: ""
+            note: 牛肉麵、陽春麵等
+          - name: 便當
+            price: 95
+            image: ""
+            note: 多種菜色可選

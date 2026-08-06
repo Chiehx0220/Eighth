@@ -9,19 +9,30 @@ permalink: /dining/
 <div class="ward-block">
   <h2>{{ place.name }}</h2>
   <p>位置:{{ place.location }} ・ 營業時間:{{ place.hours }}</p>
+  {% if place.note %}<p class="ward-block__note">{{ place.note }}</p>{% endif %}
+  {% for group in place.groups %}
+  {% if group.name %}<h3>{{ group.name }}</h3>{% endif %}
+  {% set hasTime = group.items[0].time %}
   <table class="price-table">
     <thead>
-      <tr><th>品項</th><th>價格</th><th>說明</th></tr>
+      <tr>
+        <th>品項</th>
+        {% if hasTime %}<th>供餐時間</th>{% endif %}
+        <th>價格</th>
+        <th>說明</th>
+      </tr>
     </thead>
     <tbody>
-      {% for item in place.items %}
+      {% for item in group.items %}
       <tr>
         <td>{{ item.name }}</td>
+        {% if hasTime %}<td>{{ item.time }}</td>{% endif %}
         <td>NT$ {{ item.price }}</td>
         <td>{{ item.note }}</td>
       </tr>
       {% endfor %}
     </tbody>
   </table>
+  {% endfor %}
 </div>
 {% endfor %}
