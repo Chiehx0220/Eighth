@@ -17,18 +17,16 @@ permalink: /dining/
     <thead>
       <tr>
         <th>品項</th>
-        {% if hasTime %}<th>供餐時間</th>{% endif %}
+        {% if hasTime %}<th>供餐時間</th>{% else %}<th>說明</th>{% endif %}
         <th>價格</th>
-        <th>說明</th>
       </tr>
     </thead>
     <tbody>
       {% for item in group.items %}
       <tr>
         <td data-label="品項">{{ item.name }}</td>
-        {% if hasTime %}<td data-label="供餐時間">{{ item.time }}</td>{% endif %}
+        {% if hasTime %}<td data-label="供餐時間">{{ item.time }}</td>{% else %}<td data-label="說明">{{ item.note }}</td>{% endif %}
         <td data-label="價格">NT$ {{ item.price }}</td>
-        <td data-label="說明">{{ item.note }}</td>
       </tr>
       {% endfor %}
     </tbody>
