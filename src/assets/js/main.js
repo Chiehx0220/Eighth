@@ -1,4 +1,15 @@
 (function () {
+  var backBtn = document.getElementById("page-back");
+  if (backBtn) {
+    backBtn.addEventListener("click", function () {
+      if (window.history.length > 1) {
+        window.history.back();
+      } else {
+        window.location.href = backBtn.dataset.fallback || "/";
+      }
+    });
+  }
+
   var STORAGE_KEY = "font-scale";
   var MIN_SCALE = 1;
   var MAX_SCALE = 1.6;

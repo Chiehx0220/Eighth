@@ -23,11 +23,24 @@
 
   <header class="top-app-bar">
     <div class="top-app-bar__row">
+      {% if page.url != "/" %}
+      <button type="button" class="top-app-bar__back" id="page-back" data-fallback="{{ '/' | url }}" aria-label="返回上一頁">
+        <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span>
+      </button>
+      <span class="top-app-bar__title">{{ title }}</span>
+      {% else %}
       <a href="{{ '/' | url }}" class="brand">
         <span class="brand__icon material-symbols-outlined" aria-hidden="true">local_hospital</span>
         <span class="brand__name">{{ site.site_title }}</span>
       </a>
+      {% endif %}
+
       <div class="a11y-controls">
+        {% if page.url != "/" %}
+        <a href="{{ '/' | url }}" class="btn btn--outlined" aria-label="回首頁">
+          <span class="material-symbols-outlined" aria-hidden="true">home</span>
+        </a>
+        {% endif %}
         <button type="button" id="theme-toggle" class="btn btn--outlined" aria-label="切換日間/夜間模式">
           <span class="material-symbols-outlined" id="theme-toggle-icon" aria-hidden="true">dark_mode</span>
         </button>
@@ -50,33 +63,6 @@
   <footer class="site-footer">
     <p>如頁面資訊與現場公告不一致,請以護理站現場說明為準。</p>
   </footer>
-
-  <nav class="nav-bar" aria-label="主選單">
-    <a href="{{ '/dining/' | url }}" class="nav-bar__item {{ 'is-active' if '/dining/' in page.url }}">
-      <span class="nav-bar__icon-wrap"><span class="material-symbols-outlined" aria-hidden="true">restaurant</span></span>
-      <span class="nav-bar__label">餐飲</span>
-    </a>
-    <a href="{{ '/wards/' | url }}" class="nav-bar__item {{ 'is-active' if '/wards/' in page.url }}">
-      <span class="nav-bar__icon-wrap"><span class="material-symbols-outlined" aria-hidden="true">apartment</span></span>
-      <span class="nav-bar__label">病房單位</span>
-    </a>
-    <a href="{{ '/rooms/' | url }}" class="nav-bar__item {{ 'is-active' if '/rooms/' in page.url }}">
-      <span class="nav-bar__icon-wrap"><span class="material-symbols-outlined" aria-hidden="true">bed</span></span>
-      <span class="nav-bar__label">房型</span>
-    </a>
-    <a href="{{ '/self-pay/' | url }}" class="nav-bar__item {{ 'is-active' if '/self-pay/' in page.url }}">
-      <span class="nav-bar__icon-wrap"><span class="material-symbols-outlined" aria-hidden="true">receipt_long</span></span>
-      <span class="nav-bar__label">自費項目</span>
-    </a>
-    <a href="{{ '/visiting/' | url }}" class="nav-bar__item {{ 'is-active' if '/visiting/' in page.url }}">
-      <span class="nav-bar__icon-wrap"><span class="material-symbols-outlined" aria-hidden="true">groups</span></span>
-      <span class="nav-bar__label">探病/會客</span>
-    </a>
-    <a href="{{ '/suggest/' | url }}" class="nav-bar__item {{ 'is-active' if '/suggest/' in page.url }}">
-      <span class="nav-bar__icon-wrap"><span class="material-symbols-outlined" aria-hidden="true">mail</span></span>
-      <span class="nav-bar__label">意見信箱</span>
-    </a>
-  </nav>
 
   <script src="{{ '/assets/js/main.js' | url }}"></script>
 </body>
