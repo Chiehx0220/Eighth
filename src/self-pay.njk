@@ -11,9 +11,9 @@ permalink: /self-pay/
   <tbody>
     {% for item in selfpay.list %}
     <tr>
-      <td>{{ item.name }}</td>
-      <td>{% if item.unit %}NT$ {{ item.price }} / {{ item.unit }}{% else %}{{ item.price }}{% endif %}</td>
-      <td>{{ item.note }}</td>
+      <td data-label="項目">{{ item.name }}</td>
+      <td data-label="價格">{% if item.unit %}NT$ {{ item.price }} / {{ item.unit }}{% else %}{{ item.price }}{% endif %}</td>
+      <td data-label="說明">{{ item.note }}</td>
     </tr>
     {% endfor %}
   </tbody>

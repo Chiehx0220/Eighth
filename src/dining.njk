@@ -25,10 +25,10 @@ permalink: /dining/
     <tbody>
       {% for item in group.items %}
       <tr>
-        <td>{{ item.name }}</td>
-        {% if hasTime %}<td>{{ item.time }}</td>{% endif %}
-        <td>NT$ {{ item.price }}</td>
-        <td>{{ item.note }}</td>
+        <td data-label="品項">{{ item.name }}</td>
+        {% if hasTime %}<td data-label="供餐時間">{{ item.time }}</td>{% endif %}
+        <td data-label="價格">NT$ {{ item.price }}</td>
+        <td data-label="說明">{{ item.note }}</td>
       </tr>
       {% endfor %}
     </tbody>

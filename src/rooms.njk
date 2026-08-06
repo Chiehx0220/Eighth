@@ -57,10 +57,10 @@ permalink: /rooms/
   <tbody>
     {% for fee in room_fees.list %}
     <tr>
-      <td>{{ fee.type }}</td>
-      <td>NT$ {{ fee.self_pay_day1 }}</td>
-      <td>NT$ {{ fee.self_pay_day2plus }}</td>
-      <td>NT$ {{ fee.insured }}</td>
+      <td data-label="病房種類">{{ fee.type }}</td>
+      <td data-label="自費身分・第一日">NT$ {{ fee.self_pay_day1 }}</td>
+      <td data-label="自費身分・第二日以後">NT$ {{ fee.self_pay_day2plus }}</td>
+      <td data-label="健保身分">NT$ {{ fee.insured }}</td>
     </tr>
     {% endfor %}
   </tbody>
