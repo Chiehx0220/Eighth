@@ -5,7 +5,7 @@ backend:
   base_url: https://YOUR-OAUTH-PROXY.workers.dev
   auth_endpoint: auth
 
-# local_backend: true  # uncomment while testing locally with: npx decap-server
+local_backend: true
 
 media_folder: "src/assets/uploads"
 public_folder: "/assets/uploads"
@@ -13,61 +13,138 @@ public_folder: "/assets/uploads"
 collections:
   - name: "dining"
     label: "餐飲資訊"
-    file: "src/_data/dining.yaml"
-    fields:
-      - { label: "餐廳列表", name: "list", widget: "list", allow_add: true, collapsed: true, fields:
-          - { label: "名稱", name: "name", widget: "string" }
-          - { label: "位置", name: "location", widget: "string" }
-          - { label: "營業時間", name: "hours", widget: "string" }
-          - { label: "品項", name: "items", widget: "list", allow_add: true, fields:
+    files:
+      - name: "dining"
+        label: "餐飲資訊"
+        file: "src/_data/dining.yaml"
+        fields:
+          - label: "餐廳列表"
+            name: "list"
+            widget: "list"
+            allow_add: true
+            collapsed: true
+            fields:
               - { label: "名稱", name: "name", widget: "string" }
-              - { label: "價格", name: "price", widget: "number" }
-              - { label: "照片", name: "image", widget: "image", required: false }
-              - { label: "說明", name: "note", widget: "string", required: false }
-          }
-      }
+              - { label: "位置", name: "location", widget: "string" }
+              - { label: "營業時間", name: "hours", widget: "string" }
+              - { label: "說明文字(選填)", name: "note", widget: "text", required: false }
+              - label: "分類(可分多個 section,例如普通伙食/治療餐)"
+                name: "groups"
+                widget: "list"
+                allow_add: true
+                fields:
+                  - { label: "分類名稱(留空則不顯示標題)", name: "name", widget: "string", required: false }
+                  - label: "品項"
+                    name: "items"
+                    widget: "list"
+                    allow_add: true
+                    fields:
+                      - { label: "名稱", name: "name", widget: "string" }
+                      - { label: "供餐時間(選填)", name: "time", widget: "string", required: false }
+                      - { label: "價格", name: "price", widget: "number" }
+                      - { label: "照片", name: "image", widget: "image", required: false }
+                      - { label: "說明", name: "note", widget: "string", required: false }
 
   - name: "wards"
     label: "病房單位介紹"
-    file: "src/_data/wards.yaml"
-    fields:
-      - { label: "單位列表", name: "list", widget: "list", allow_add: true, collapsed: true, fields:
-          - { label: "代碼", name: "id", widget: "string" }
-          - { label: "單位名稱", name: "name", widget: "string" }
-          - { label: "床位數(滿床)", name: "total_beds", widget: "number" }
-          - { label: "護理長人數", name: "head_nurse_count", widget: "number" }
-          - { label: "副護理長人數", name: "deputy_head_nurse_count", widget: "number" }
-          - { label: "護理師人數", name: "staff_nurse_count", widget: "number" }
-          - { label: "白班上班人數", name: "shift_day_count", widget: "number" }
-          - { label: "小夜上班人數", name: "shift_evening_count", widget: "number" }
-          - { label: "大夜上班人數", name: "shift_night_count", widget: "number" }
-          - { label: "房型", name: "rooms", widget: "list", allow_add: true, fields:
-              - { label: "房型名稱", name: "type", widget: "string" }
-              - { label: "價格", name: "price", widget: "number" }
-              - { label: "單位", name: "unit", widget: "string", default: "日" }
-              - { label: "照片", name: "image", widget: "image", required: false }
-              - { label: "說明", name: "description", widget: "text" }
-              - label: "目前狀態"
-                name: "status"
-                widget: "select"
-                options: ["有空房", "剩 1 床", "剩 2 床", "客滿"]
-          }
-      }
+    files:
+      - name: "wards"
+        label: "病房單位介紹"
+        file: "src/_data/wards.yaml"
+        fields:
+          - label: "單位列表"
+            name: "list"
+            widget: "list"
+            allow_add: true
+            collapsed: true
+            fields:
+              - { label: "代碼", name: "id", widget: "string" }
+              - { label: "單位名稱", name: "name", widget: "string" }
+              - { label: "床位數(滿床)", name: "total_beds", widget: "number" }
+              - { label: "護理長人數", name: "head_nurse_count", widget: "number" }
+              - { label: "副護理長人數", name: "deputy_head_nurse_count", widget: "number" }
+              - { label: "護理師人數", name: "staff_nurse_count", widget: "number" }
+              - { label: "白班上班人數", name: "shift_day_count", widget: "number" }
+              - { label: "小夜上班人數", name: "shift_evening_count", widget: "number" }
+              - { label: "大夜上班人數", name: "shift_night_count", widget: "number" }
+              - label: "房型"
+                name: "rooms"
+                widget: "list"
+                allow_add: true
+                fields:
+                  - { label: "房型名稱", name: "type", widget: "string" }
+                  - { label: "照片", name: "image", widget: "image", required: false }
+                  - { label: "說明", name: "description", widget: "text" }
+                  - label: "目前狀態"
+                    name: "status"
+                    widget: "select"
+                    options: ["有空房", "剩 1 床", "剩 2 床", "客滿"]
+
+  - name: "room_fees"
+    label: "病房費用"
+    files:
+      - name: "room_fees"
+        label: "病房費用"
+        file: "src/_data/room_fees.yaml"
+        fields:
+          - label: "費用列表"
+            name: "list"
+            widget: "list"
+            allow_add: true
+            fields:
+              - { label: "病房種類", name: "type", widget: "string" }
+              - { label: "自費身分・第一日", name: "self_pay_day1", widget: "number" }
+              - { label: "自費身分・第二日以後", name: "self_pay_day2plus", widget: "number" }
+              - { label: "健保身分", name: "insured", widget: "number" }
 
   - name: "selfpay"
     label: "自費項目"
-    file: "src/_data/selfpay.yaml"
-    fields:
-      - { label: "項目列表", name: "list", widget: "list", allow_add: true, fields:
-          - { label: "項目名稱", name: "name", widget: "string" }
-          - { label: "價格", name: "price", widget: "string" }
-          - { label: "單位", name: "unit", widget: "string", required: false }
-          - { label: "說明", name: "note", widget: "text", required: false }
-      }
+    files:
+      - name: "selfpay"
+        label: "自費項目"
+        file: "src/_data/selfpay.yaml"
+        fields:
+          - label: "項目列表"
+            name: "list"
+            widget: "list"
+            allow_add: true
+            fields:
+              - { label: "項目名稱", name: "name", widget: "string" }
+              - { label: "價格", name: "price", widget: "string" }
+              - { label: "單位", name: "unit", widget: "string", required: false }
+              - { label: "說明", name: "note", widget: "text", required: false }
 
   - name: "visiting"
     label: "探病/會客規定"
-    file: "src/_data/visiting.yaml"
-    fields:
-      - { label: "會客時間", name: "hours", widget: "string" }
-      - { label: "規定條列", name: "rules", widget: "list" }
+    files:
+      - name: "visiting"
+        label: "探病/會客規定"
+        file: "src/_data/visiting.yaml"
+        fields:
+          - { label: "會客時間", name: "hours", widget: "string" }
+          - { label: "規定條列", name: "rules", widget: "list" }
+          - { label: "請假規定・前言", name: "leave_intro", widget: "string" }
+          - { label: "請假規定條列", name: "leave_rules", widget: "list" }
+
+  - name: "discharge"
+    label: "出院須知"
+    files:
+      - name: "discharge"
+        label: "出院須知"
+        file: "src/_data/discharge.yaml"
+        fields:
+          - label: "出院須知條列"
+            name: "discharge_rules"
+            widget: "list"
+            fields:
+              - { label: "圖示(Material Symbols 名稱)", name: "icon", widget: "string" }
+              - { label: "標題", name: "title", widget: "string" }
+              - { label: "說明", name: "desc", widget: "text" }
+          - { label: "出院流程(依序列出)", name: "discharge_flow", widget: "list" }
+          - label: "診斷證明書申請須知"
+            name: "certificate_rules"
+            widget: "list"
+            fields:
+              - { label: "圖示(Material Symbols 名稱)", name: "icon", widget: "string" }
+              - { label: "標題", name: "title", widget: "string" }
+              - { label: "說明", name: "desc", widget: "text" }
