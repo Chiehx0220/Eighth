@@ -38,11 +38,11 @@ permalink: /beds/
           {% if cat.beds.length == 0 %}
           <span class="m3-chip m3-chip--secondary">尚無床位資料</span>
           {% elif available == 0 %}
-          <span class="m3-chip m3-chip--error">客滿</span>
+          <span class="m3-chip m3-chip--error">客滿(0/{{ cat.beds.length }})</span>
           {% elif available <= 2 %}
-          <span class="m3-chip m3-chip--warning">剩 {{ available }} 床</span>
+          <span class="m3-chip m3-chip--warning">剩 {{ available }}/{{ cat.beds.length }} 床</span>
           {% else %}
-          <span class="m3-chip m3-chip--success">有空房</span>
+          <span class="m3-chip m3-chip--success">剩 {{ available }}/{{ cat.beds.length }} 床</span>
           {% endif %}
         </td>
       </tr>
