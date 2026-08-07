@@ -65,21 +65,31 @@ collections:
               - { label: "白班上班人數", name: "shift_day_count", widget: "number" }
               - { label: "小夜上班人數", name: "shift_evening_count", widget: "number" }
               - { label: "大夜上班人數", name: "shift_night_count", widget: "number" }
-              - label: "房型"
-                name: "rooms"
+
+  - name: "rooms"
+    label: "房型"
+    files:
+      - name: "rooms"
+        label: "房型"
+        file: "src/_data/rooms.yaml"
+        fields:
+          - label: "房型列表"
+            name: "list"
+            widget: "list"
+            allow_add: true
+            collapsed: true
+            fields:
+              - { label: "所屬病房單位", name: "ward", widget: "string" }
+              - { label: "房型名稱", name: "type", widget: "string" }
+              - { label: "照片", name: "image", widget: "image", required: false }
+              - { label: "說明", name: "description", widget: "text" }
+              - label: "床位列表"
+                name: "beds"
                 widget: "list"
                 allow_add: true
                 fields:
-                  - { label: "房型名稱", name: "type", widget: "string" }
-                  - { label: "照片", name: "image", widget: "image", required: false }
-                  - { label: "說明", name: "description", widget: "text" }
-                  - label: "床位列表"
-                    name: "beds"
-                    widget: "list"
-                    allow_add: true
-                    fields:
-                      - { label: "床號", name: "label", widget: "string" }
-                      - { label: "已占用", name: "occupied", widget: "boolean", default: false }
+                  - { label: "床號", name: "label", widget: "string" }
+                  - { label: "已占用", name: "occupied", widget: "boolean", default: false }
 
   - name: "room_fees"
     label: "病房費用"

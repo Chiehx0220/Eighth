@@ -7,41 +7,39 @@ permalink: /rooms/
 <p>以下房型來自各病房單位,顯示目前價格、照片與空床狀態。點選「申請」即可填寫資料。</p>
 
 <div class="room-grid">
-  {% for ward in wards.list %}
-    {% for room in ward.rooms %}
-    {% set fee = room_fees.list | findByType(room.type) %}
-    {% set available = room.beds | availableBeds %}
-    <div class="room-card" data-room-type="{{ room.type }}">
-      <div class="room-card__image">
-        {% if room.image %}<img src="{{ room.image }}" alt="{{ room.type }}照片" style="width:100%;height:100%;object-fit:cover;">{% else %}尚無照片{% endif %}
-      </div>
-      <div class="room-card__body">
-        <p class="room-card__ward">{{ ward.name }}</p>
-        <div class="room-card__title-row">
-          <span>{{ room.type }}</span>
-          <span>NT$ {{ fee.insured }} / 日</span>
-        </div>
-        <p class="room-card__fee-note">自費身分:第一日 NT$ {{ fee.self_pay_day1 }}・第二日以後 NT$ {{ fee.self_pay_day2plus }}</p>
-        <p>{{ room.description }}</p>
-        {% if available == 0 %}
-          <span class="m3-chip m3-chip--error room-card__status">客滿</span>
-        {% elif available <= 2 %}
-          <span class="m3-chip m3-chip--warning room-card__status">剩 {{ available }} 床</span>
-        {% else %}
-          <span class="m3-chip m3-chip--success room-card__status">有空房</span>
-        {% endif %}
-
-        {% if available == 0 %}
-        <button type="button" class="btn btn--outlined room-card__request-btn" disabled>目前客滿</button>
-        {% else %}
-        <button type="button" class="btn btn--tonal room-card__request-btn" data-room-type="{{ room.type }}" data-ward="{{ ward.name }}">
-          申請{{ room.type }}
-          <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
-        </button>
-        {% endif %}
-      </div>
+  {% for room in rooms.list %}
+  {% set fee = room_fees.list | findByType(room.type) %}
+  {% set available = room.beds | availableBeds %}
+  <div class="room-card" data-room-type="{{ room.type }}">
+    <div class="room-card__image">
+      {% if room.image %}<img src="{{ room.image }}" alt="{{ room.type }}照片" style="width:100%;height:100%;object-fit:cover;">{% else %}尚無照片{% endif %}
     </div>
-    {% endfor %}
+    <div class="room-card__body">
+      <p class="room-card__ward">{{ room.ward }}</p>
+      <div class="room-card__title-row">
+        <span>{{ room.type }}</span>
+        <span>NT$ {{ fee.insured }} / 日</span>
+      </div>
+      <p class="room-card__fee-note">自費身分:第一日 NT$ {{ fee.self_pay_day1 }}・第二日以後 NT$ {{ fee.self_pay_day2plus }}</p>
+      <p>{{ room.description }}</p>
+      {% if available == 0 %}
+        <span class="m3-chip m3-chip--error room-card__status">客滿</span>
+      {% elif available <= 2 %}
+        <span class="m3-chip m3-chip--warning room-card__status">剩 {{ available }} 床</span>
+      {% else %}
+        <span class="m3-chip m3-chip--success room-card__status">有空房</span>
+      {% endif %}
+
+      {% if available == 0 %}
+      <button type="button" class="btn btn--outlined room-card__request-btn" disabled>目前客滿</button>
+      {% else %}
+      <button type="button" class="btn btn--tonal room-card__request-btn" data-room-type="{{ room.type }}" data-ward="{{ room.ward }}">
+        申請{{ room.type }}
+        <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+      </button>
+      {% endif %}
+    </div>
+  </div>
   {% endfor %}
 </div>
 
