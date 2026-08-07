@@ -7,9 +7,9 @@ photos:
     description: 共用衛浴、每床各附陪病椅,兩床以布簾區隔。
 single_room_beds:
   - label: "0811"
-    occupied: false
+    occupied: true
   - label: "0812"
-    occupied: false
+    occupied: true
   - label: "0813"
     occupied: true
   - label: "0815"
