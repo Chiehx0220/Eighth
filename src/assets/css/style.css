@@ -1018,6 +1018,10 @@ a {
   justify-content: center;
 }
 
+.vacant-beds__unset {
+  color: var(--md-sys-color-warning);
+}
+
 .m3-dialog__status {
   padding: 10px 14px;
   border-radius: var(--md-sys-shape-corner-medium);

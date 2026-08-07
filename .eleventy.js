@@ -17,6 +17,14 @@ module.exports = function (eleventyConfig) {
     return (beds || []).filter((bed) => !bed.occupied).map((bed) => bed.label).join("、");
   });
 
+  eleventyConfig.addFilter("vacantBedLabelsByGender", function (beds, gender) {
+    return (beds || []).filter((bed) => !bed.occupied && bed.gender === gender).map((bed) => bed.label).join("、");
+  });
+
+  eleventyConfig.addFilter("vacantBedLabelsNoGender", function (beds) {
+    return (beds || []).filter((bed) => !bed.occupied && !bed.gender).map((bed) => bed.label).join("、");
+  });
+
   return {
     dir: {
       input: "src",
