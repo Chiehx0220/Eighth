@@ -94,46 +94,44 @@ collections:
             widget: "list"
             allow_add: true
             collapsed: true
+            summary: "{{fields.room}}"
             fields:
               - { label: "房號", name: "room", widget: "string" }
               - { label: "性別(整間房統一;完全空床的房間不用選)", name: "gender", widget: "select", options: ["男", "女"], required: false }
-              - label: "床位列表"
-                name: "beds"
-                widget: "list"
-                allow_add: true
-                fields:
-                  - { label: "床號", name: "label", widget: "string" }
-                  - { label: "已占用", name: "occupied", widget: "boolean", default: false }
+              - { label: "床位1 - 床號", name: "bed1_label", widget: "string" }
+              - { label: "床位1 - 已占用", name: "bed1_occupied", widget: "boolean", default: false }
+              - { label: "床位2 - 床號", name: "bed2_label", widget: "string" }
+              - { label: "床位2 - 已占用", name: "bed2_occupied", widget: "boolean", default: false }
           - label: "健保四人房床位"
             name: "insured_quad_room_beds"
             widget: "list"
             allow_add: true
             collapsed: true
+            summary: "{{fields.room}}"
             fields:
               - { label: "房號", name: "room", widget: "string" }
               - { label: "性別(整間房統一;完全空床的房間不用選)", name: "gender", widget: "select", options: ["男", "女"], required: false }
-              - label: "床位列表"
-                name: "beds"
-                widget: "list"
-                allow_add: true
-                fields:
-                  - { label: "床號", name: "label", widget: "string" }
-                  - { label: "已占用", name: "occupied", widget: "boolean", default: false }
+              - { label: "床位1 - 床號", name: "bed1_label", widget: "string" }
+              - { label: "床位1 - 已占用", name: "bed1_occupied", widget: "boolean", default: false }
+              - { label: "床位2 - 床號", name: "bed2_label", widget: "string" }
+              - { label: "床位2 - 已占用", name: "bed2_occupied", widget: "boolean", default: false }
+              - { label: "床位3 - 床號", name: "bed3_label", widget: "string" }
+              - { label: "床位3 - 已占用", name: "bed3_occupied", widget: "boolean", default: false }
+              - { label: "床位4 - 床號", name: "bed4_label", widget: "string" }
+              - { label: "床位4 - 已占用", name: "bed4_occupied", widget: "boolean", default: false }
           - label: "健保雙人房床位"
             name: "insured_double_room_beds"
             widget: "list"
             allow_add: true
             collapsed: true
+            summary: "{{fields.room}}"
             fields:
               - { label: "房號", name: "room", widget: "string" }
               - { label: "性別(整間房統一;完全空床的房間不用選)", name: "gender", widget: "select", options: ["男", "女"], required: false }
-              - label: "床位列表"
-                name: "beds"
-                widget: "list"
-                allow_add: true
-                fields:
-                  - { label: "床號", name: "label", widget: "string" }
-                  - { label: "已占用", name: "occupied", widget: "boolean", default: false }
+              - { label: "床位1 - 床號", name: "bed1_label", widget: "string" }
+              - { label: "床位1 - 已占用", name: "bed1_occupied", widget: "boolean", default: false }
+              - { label: "床位2 - 床號", name: "bed2_label", widget: "string" }
+              - { label: "床位2 - 已占用", name: "bed2_occupied", widget: "boolean", default: false }
 
   - name: "room_fees"
     label: "病房費用"
