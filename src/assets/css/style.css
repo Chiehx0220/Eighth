@@ -1234,6 +1234,12 @@ table.price-table tbody tr:hover {
   }
 }
 
+.staff-content__edit-btn {
+  display: flex;
+  margin: 20px auto 0;
+  width: fit-content;
+}
+
 /* ---- rules list ---- */
 ul.rules-list {
   padding-left: 0;
