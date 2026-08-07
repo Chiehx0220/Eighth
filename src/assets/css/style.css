@@ -967,6 +967,16 @@ a {
   font-size: var(--md-sys-typescale-body-medium-size);
 }
 
+.staff-gate {
+  max-width: 360px;
+}
+
+.staff-gate__error {
+  color: var(--md-sys-color-error);
+  font-size: var(--md-sys-typescale-body-medium-size);
+  margin: -10px 0 16px;
+}
+
 .m3-dialog__status {
   padding: 10px 14px;
   border-radius: var(--md-sys-shape-corner-medium);

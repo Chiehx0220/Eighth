@@ -32,7 +32,7 @@
       </button>
       <span class="top-app-bar__title">{{ title }}</span>
       {% else %}
-      <a href="{{ '/' | url }}" class="brand">
+      <a href="{{ '/' | url }}" class="brand" data-staff-url="{{ '/beds/' | url }}">
         <span class="brand__icon material-symbols-outlined" aria-hidden="true">local_hospital</span>
         <span class="brand__name">{{ site.site_title }}</span>
       </a>

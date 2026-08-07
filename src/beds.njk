@@ -1,0 +1,47 @@
+---
+layout: layouts/base.njk
+title: "床位系統"
+permalink: /beds/
+---
+<h1>床位系統</h1>
+
+<div class="staff-gate" id="staff-gate" data-codes="{{ site.staff_access_codes | join(',') }}">
+  <p>請輸入員工號以查看目前床位狀態。</p>
+  <div class="m3-field">
+    <label for="staff-gate-input">員工號</label>
+    <input type="text" id="staff-gate-input" class="m3-field__input" inputmode="numeric" autocomplete="off">
+  </div>
+  <p class="staff-gate__error" id="staff-gate-error" hidden>員工號錯誤,請重新輸入。</p>
+  <button type="button" class="btn btn--filled" id="staff-gate-submit">確認</button>
+</div>
+
+<div id="staff-content" hidden>
+  <table class="price-table">
+    <thead>
+      <tr>
+        <th>病房單位</th>
+        <th>房型</th>
+        <th>狀態</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for ward in wards.list %}
+      {% for room in ward.rooms %}
+      <tr>
+        <td data-label="病房單位">{{ ward.name }}</td>
+        <td data-label="房型">{{ room.type }}</td>
+        <td data-label="狀態">
+          {% if "客滿" in room.status %}
+          <span class="m3-chip m3-chip--error">{{ room.status }}</span>
+          {% elif "剩" in room.status %}
+          <span class="m3-chip m3-chip--warning">{{ room.status }}</span>
+          {% else %}
+          <span class="m3-chip m3-chip--success">{{ room.status }}</span>
+          {% endif %}
+        </td>
+      </tr>
+      {% endfor %}
+      {% endfor %}
+    </tbody>
+  </table>
+</div>

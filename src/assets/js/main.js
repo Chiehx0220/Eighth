@@ -142,6 +142,55 @@
     });
   }
 
+  var brandLogo = document.querySelector(".brand[data-staff-url]");
+  if (brandLogo) {
+    var brandTapCount = 0;
+    var brandTapTimer = null;
+
+    brandLogo.addEventListener("click", function (e) {
+      e.preventDefault();
+      brandTapCount++;
+      clearTimeout(brandTapTimer);
+
+      if (brandTapCount >= 3) {
+        brandTapCount = 0;
+        window.location.href = brandLogo.dataset.staffUrl;
+        return;
+      }
+
+      brandTapTimer = setTimeout(function () {
+        brandTapCount = 0;
+      }, 1500);
+    });
+  }
+
+  var staffGate = document.getElementById("staff-gate");
+  if (staffGate) {
+    var staffInput = document.getElementById("staff-gate-input");
+    var staffError = document.getElementById("staff-gate-error");
+    var staffSubmit = document.getElementById("staff-gate-submit");
+    var staffContent = document.getElementById("staff-content");
+
+    var staffCodes = staffGate.dataset.codes.split(",");
+
+    function trySubmitStaffCode() {
+      if (staffCodes.indexOf(staffInput.value.trim()) !== -1) {
+        staffGate.hidden = true;
+        staffContent.hidden = false;
+      } else {
+        staffError.hidden = false;
+      }
+    }
+
+    staffSubmit.addEventListener("click", trySubmitStaffCode);
+    staffInput.addEventListener("keydown", function (e) {
+      if (e.key === "Enter") trySubmitStaffCode();
+    });
+    staffInput.addEventListener("input", function () {
+      staffError.hidden = true;
+    });
+  }
+
   var visitorDialog = document.getElementById("visitor-registration-dialog");
   if (visitorDialog) {
     var visitorDismiss = document.getElementById("visitor-registration-dismiss");
