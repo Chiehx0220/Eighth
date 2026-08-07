@@ -19,7 +19,6 @@ permalink: /beds/
   <table class="price-table">
     <thead>
       <tr>
-        <th>病房單位</th>
         <th>房型</th>
         <th>狀態</th>
       </tr>
@@ -28,7 +27,6 @@ permalink: /beds/
       {% for room in rooms.list %}
       {% set available = room.beds | availableBeds %}
       <tr>
-        <td data-label="病房單位">{{ room.ward }}</td>
         <td data-label="房型">{{ room.type }}</td>
         <td data-label="狀態">
           {% if available == 0 %}

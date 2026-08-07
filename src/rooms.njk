@@ -15,7 +15,6 @@ permalink: /rooms/
       {% if room.image %}<img src="{{ room.image }}" alt="{{ room.type }}照片" style="width:100%;height:100%;object-fit:cover;">{% else %}尚無照片{% endif %}
     </div>
     <div class="room-card__body">
-      <p class="room-card__ward">{{ room.ward }}</p>
       <div class="room-card__title-row">
         <span>{{ room.type }}</span>
         <span>NT$ {{ fee.insured }} / 日</span>
@@ -33,7 +32,7 @@ permalink: /rooms/
       {% if available == 0 %}
       <button type="button" class="btn btn--outlined room-card__request-btn" disabled>目前客滿</button>
       {% else %}
-      <button type="button" class="btn btn--tonal room-card__request-btn" data-room-type="{{ room.type }}" data-ward="{{ room.ward }}">
+      <button type="button" class="btn btn--tonal room-card__request-btn" data-room-type="{{ room.type }}">
         申請{{ room.type }}
         <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
       </button>
@@ -68,7 +67,6 @@ permalink: /rooms/
 <dialog id="room-request-dialog" class="m3-dialog">
   <form id="room-request-form" class="m3-dialog__form" novalidate>
     <h2 class="m3-dialog__title">申請<span id="dialog-room-type"></span></h2>
-    <p class="m3-dialog__subtitle" id="dialog-ward"></p>
 
     <div class="m3-field">
       <label for="dialog-bed">床號</label>

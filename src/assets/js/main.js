@@ -73,7 +73,6 @@
   if (dialog) {
     var dialogForm = document.getElementById("room-request-form");
     var dialogRoomType = document.getElementById("dialog-room-type");
-    var dialogWard = document.getElementById("dialog-ward");
     var dialogStatus = dialogForm.querySelector(".m3-dialog__status");
     var dialogFields = dialogForm.querySelectorAll(".m3-field__input");
     var dialogCancel = document.getElementById("dialog-cancel");
@@ -88,9 +87,7 @@
       btn.addEventListener("click", function () {
         resetDialog();
         dialogRoomType.textContent = btn.getAttribute("data-room-type");
-        dialogWard.textContent = btn.getAttribute("data-ward");
         dialogForm.dataset.roomType = btn.getAttribute("data-room-type");
-        dialogForm.dataset.ward = btn.getAttribute("data-ward");
         dialog.showModal();
         dialogFields[0].focus();
       });

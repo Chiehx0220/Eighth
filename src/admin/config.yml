@@ -79,7 +79,6 @@ collections:
             allow_add: true
             collapsed: true
             fields:
-              - { label: "所屬病房單位", name: "ward", widget: "string" }
               - { label: "房型名稱", name: "type", widget: "string" }
               - { label: "照片", name: "image", widget: "image", required: false }
               - { label: "說明", name: "description", widget: "text" }

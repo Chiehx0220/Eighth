@@ -873,12 +873,6 @@ a {
   margin-top: 16px;
 }
 
-.room-card__ward {
-  font-size: var(--md-sys-typescale-body-medium-size);
-  color: var(--md-sys-color-on-surface-variant);
-  margin: 0 0 4px;
-}
-
 .room-card__request-btn {
   display: flex;
   width: 100%;
