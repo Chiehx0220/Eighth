@@ -20,109 +20,109 @@ single_room_beds:
     occupied: true
 double_room_beds:
   - room: "0801"
-    gender: "男"
-    bed1_label: "0801-1"
+    gender: 女
+    bed1_label: 0801-1
     bed1_occupied: true
-    bed2_label: "0801-2"
+    bed2_label: 0801-2
     bed2_occupied: true
   - room: "0802"
-    gender: "男"
-    bed1_label: "0802-1"
+    gender: 男
+    bed1_label: 0802-1
     bed1_occupied: true
-    bed2_label: "0802-2"
+    bed2_label: 0802-2
     bed2_occupied: true
   - room: "0803"
-    gender: "男"
-    bed1_label: "0803-1"
+    gender: 女
+    bed1_label: 0803-1
     bed1_occupied: true
-    bed2_label: "0803-2"
+    bed2_label: 0803-2
     bed2_occupied: true
   - room: "0805"
-    gender: "男"
-    bed1_label: "0805-1"
+    gender: 男
+    bed1_label: 0805-1
     bed1_occupied: true
-    bed2_label: "0805-2"
+    bed2_label: 0805-2
     bed2_occupied: true
   - room: "0825"
-    gender: "男"
-    bed1_label: "0825-1"
+    gender: 女
+    bed1_label: 0825-1
     bed1_occupied: true
-    bed2_label: "0825-2"
+    bed2_label: 0825-2
     bed2_occupied: true
 insured_quad_room_beds:
-  - room: "0806"
-    gender: "男"
-    bed1_label: "0806-1"
-    bed1_occupied: true
-    bed2_label: "0806-2"
-    bed2_occupied: true
-    bed3_label: "0806-3"
-    bed3_occupied: true
-    bed4_label: "0806-5"
+  - gender: 男
+    bed1_label: 0806-1
+    bed2_label: 0806-2
+    bed3_label: 0806-3
+    bed4_label: 0806-5
     bed4_occupied: false
-  - room: "0807"
-    gender: "男"
-    bed1_label: "0807-1"
+    bed3_occupied: true
+    bed2_occupied: true
+    bed1_occupied: true
+    room: "0806"
+  - gender: 男
+    bed1_label: 0807-1
+    bed2_label: 0807-2
+    bed3_label: 0807-3
+    bed4_label: 0807-5
+    bed4_occupied: true
+    bed3_occupied: true
+    bed2_occupied: true
     bed1_occupied: false
-    bed2_label: "0807-2"
-    bed2_occupied: true
-    bed3_label: "0807-3"
-    bed3_occupied: true
-    bed4_label: "0807-5"
+    room: "0807"
+  - gender: 男
+    bed1_label: 0808-1
+    bed2_label: 0808-2
+    bed3_label: 0808-3
+    bed4_label: 0808-5
     bed4_occupied: true
-  - room: "0808"
-    gender: "男"
-    bed1_label: "0808-1"
+    bed3_occupied: true
+    bed2_occupied: true
     bed1_occupied: true
-    bed2_label: "0808-2"
-    bed2_occupied: true
-    bed3_label: "0808-3"
-    bed3_occupied: true
-    bed4_label: "0808-5"
+    room: "0808"
+  - gender: 男
+    bed1_label: 0809-1
+    bed2_label: 0809-2
+    bed3_label: 0809-3
+    bed4_label: 0809-5
     bed4_occupied: true
-  - room: "0809"
-    gender: "男"
-    bed1_label: "0809-1"
+    bed3_occupied: true
+    bed2_occupied: true
     bed1_occupied: true
-    bed2_label: "0809-2"
-    bed2_occupied: true
-    bed3_label: "0809-3"
-    bed3_occupied: true
-    bed4_label: "0809-5"
+    room: "0809"
+  - gender: 男
+    bed1_label: 0810-1
+    bed2_label: 0810-2
+    bed3_label: 0810-3
+    bed4_label: 0810-5
     bed4_occupied: true
-  - room: "0810"
-    gender: "男"
-    bed1_label: "0810-1"
+    bed3_occupied: true
+    bed2_occupied: true
     bed1_occupied: true
-    bed2_label: "0810-2"
-    bed2_occupied: true
-    bed3_label: "0810-3"
-    bed3_occupied: true
-    bed4_label: "0810-5"
+    room: "0810"
+  - gender: 男
+    bed1_label: 0818-1
+    bed2_label: 0818-2
+    bed3_label: 0818-3
+    bed4_label: 0818-5
     bed4_occupied: true
-  - room: "0818"
-    gender: "男"
-    bed1_label: "0818-1"
+    bed3_occupied: true
+    bed2_occupied: true
     bed1_occupied: true
-    bed2_label: "0818-2"
-    bed2_occupied: true
-    bed3_label: "0818-3"
-    bed3_occupied: true
-    bed4_label: "0818-5"
-    bed4_occupied: true
+    room: "0818"
 insured_double_room_beds:
   - room: "0819"
-    bed1_label: "0819-1"
+    bed1_label: 0819-1
     bed1_occupied: false
-    bed2_label: "0819-2"
+    bed2_label: 0819-2
     bed2_occupied: false
   - room: "0820"
-    bed1_label: "0820-1"
+    bed1_label: 0820-1
     bed1_occupied: false
-    bed2_label: "0820-2"
+    bed2_label: 0820-2
     bed2_occupied: false
   - room: "0821"
-    bed1_label: "0821-1"
+    bed1_label: 0821-1
     bed1_occupied: false
-    bed2_label: "0821-2"
+    bed2_label: 0821-2
     bed2_occupied: false
