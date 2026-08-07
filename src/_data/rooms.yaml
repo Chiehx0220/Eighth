@@ -19,81 +19,82 @@ single_room_beds:
   - label: "0817"
     occupied: true
 double_room_beds:
-  - label: 0801-1
-    occupied: true
-  - label: 0801-2
-    occupied: true
-  - label: 0802-1
-    occupied: true
-  - label: 0802-2
-    occupied: true
-  - label: 0803-1
-    occupied: true
-  - label: 0803-2
-    occupied: true
-  - label: 0805-1
-    occupied: true
-  - label: 0805-2
-    occupied: true
-  - label: 0825-1
-    occupied: true
-  - label: 0825-2
-    occupied: true
+  - room: "0801"
+    gender: "男"
+    beds:
+      - { label: "0801-1", occupied: true }
+      - { label: "0801-2", occupied: true }
+  - room: "0802"
+    gender: "男"
+    beds:
+      - { label: "0802-1", occupied: true }
+      - { label: "0802-2", occupied: true }
+  - room: "0803"
+    gender: "男"
+    beds:
+      - { label: "0803-1", occupied: true }
+      - { label: "0803-2", occupied: true }
+  - room: "0805"
+    gender: "男"
+    beds:
+      - { label: "0805-1", occupied: true }
+      - { label: "0805-2", occupied: true }
+  - room: "0825"
+    gender: "男"
+    beds:
+      - { label: "0825-1", occupied: true }
+      - { label: "0825-2", occupied: true }
 insured_quad_room_beds:
-  - label: 0806-1
-    occupied: true
-  - label: 0806-2
-    occupied: true
-  - label: 0806-3
-    occupied: true
-  - label: 0806-5
-    occupied: false
-  - label: 0807-1
-    occupied: false
-  - label: 0807-2
-    occupied: true
-  - label: 0807-3
-    occupied: true
-  - label: 0807-5
-    occupied: true
-  - label: 0808-1
-    occupied: true
-  - label: 0808-2
-    occupied: true
-  - label: 0808-3
-    occupied: true
-  - label: 0808-5
-    occupied: true
-  - label: 0809-1
-    occupied: true
-  - label: 0809-2
-    occupied: true
-  - label: 0809-3
-    occupied: true
-  - label: 0809-5
-    occupied: true
-  - label: 0810-1
-    occupied: true
-  - label: 0810-2
-    occupied: true
-  - label: 0810-3
-    occupied: true
-  - label: 0810-5
-    occupied: true
-  - label: 0818-1
-    occupied: true
-  - label: 0818-2
-    occupied: true
-  - label: 0818-3
-    occupied: true
-  - label: 0818-5
-    occupied: true
+  - room: "0806"
+    gender: "男"
+    beds:
+      - { label: "0806-1", occupied: true }
+      - { label: "0806-2", occupied: true }
+      - { label: "0806-3", occupied: true }
+      - { label: "0806-5", occupied: false }
+  - room: "0807"
+    gender: "男"
+    beds:
+      - { label: "0807-1", occupied: false }
+      - { label: "0807-2", occupied: true }
+      - { label: "0807-3", occupied: true }
+      - { label: "0807-5", occupied: true }
+  - room: "0808"
+    gender: "男"
+    beds:
+      - { label: "0808-1", occupied: true }
+      - { label: "0808-2", occupied: true }
+      - { label: "0808-3", occupied: true }
+      - { label: "0808-5", occupied: true }
+  - room: "0809"
+    gender: "男"
+    beds:
+      - { label: "0809-1", occupied: true }
+      - { label: "0809-2", occupied: true }
+      - { label: "0809-3", occupied: true }
+      - { label: "0809-5", occupied: true }
+  - room: "0810"
+    gender: "男"
+    beds:
+      - { label: "0810-1", occupied: true }
+      - { label: "0810-2", occupied: true }
+      - { label: "0810-3", occupied: true }
+      - { label: "0810-5", occupied: true }
+  - room: "0818"
+    gender: "男"
+    beds:
+      - { label: "0818-1", occupied: true }
+      - { label: "0818-2", occupied: true }
+      - { label: "0818-3", occupied: true }
+      - { label: "0818-5", occupied: true }
 insured_double_room_beds:
-  - occupied: false
-    label: 0819-1
-  - occupied: false
-    label: 0819-2
-  - occupied: false
-    label: 0820-1
-  - occupied: false
-    label: 0820-2
+  - room: "0819"
+    gender: "男"
+    beds:
+      - { label: "0819-1", occupied: false }
+      - { label: "0819-2", occupied: false }
+  - room: "0820"
+    gender: "男"
+    beds:
+      - { label: "0820-1", occupied: false }
+      - { label: "0820-2", occupied: false }

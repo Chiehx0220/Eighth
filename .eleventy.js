@@ -17,12 +17,22 @@ module.exports = function (eleventyConfig) {
     return (beds || []).filter((bed) => !bed.occupied).map((bed) => bed.label).join("、");
   });
 
-  eleventyConfig.addFilter("vacantBedLabelsByGender", function (beds, gender) {
-    return (beds || []).filter((bed) => !bed.occupied && bed.gender === gender).map((bed) => bed.label).join("、");
+  eleventyConfig.addFilter("flattenRoomBeds", function (rooms) {
+    return (rooms || []).flatMap((room) => room.beds || []);
   });
 
-  eleventyConfig.addFilter("vacantBedLabelsNoGender", function (beds) {
-    return (beds || []).filter((bed) => !bed.occupied && !bed.gender).map((bed) => bed.label).join("、");
+  eleventyConfig.addFilter("vacantBedLabelsByRoomGender", function (rooms, gender) {
+    return (rooms || [])
+      .filter((room) => room.gender === gender)
+      .flatMap((room) => (room.beds || []).filter((bed) => !bed.occupied).map((bed) => bed.label))
+      .join("、");
+  });
+
+  eleventyConfig.addFilter("vacantBedLabelsRoomsNoGender", function (rooms) {
+    return (rooms || [])
+      .filter((room) => !room.gender)
+      .flatMap((room) => (room.beds || []).filter((bed) => !bed.occupied).map((bed) => bed.label))
+      .join("、");
   });
 
   return {

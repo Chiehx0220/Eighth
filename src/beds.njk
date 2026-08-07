@@ -32,30 +32,31 @@ permalink: /beds/
     <tbody>
       {% set categories = [
         { label: "單人房", beds: rooms.single_room_beds, hasGender: false },
-        { label: "差價雙人房", beds: rooms.double_room_beds, hasGender: true },
-        { label: "健保四人房", beds: rooms.insured_quad_room_beds, hasGender: true },
-        { label: "健保雙人房", beds: rooms.insured_double_room_beds, hasGender: true }
+        { label: "差價雙人房", rooms: rooms.double_room_beds, hasGender: true },
+        { label: "健保四人房", rooms: rooms.insured_quad_room_beds, hasGender: true },
+        { label: "健保雙人房", rooms: rooms.insured_double_room_beds, hasGender: true }
       ] %}
       {% for cat in categories %}
-      {% set available = cat.beds | availableBeds %}
+      {% if cat.hasGender %}{% set beds = cat.rooms | flattenRoomBeds %}{% else %}{% set beds = cat.beds %}{% endif %}
+      {% set available = beds | availableBeds %}
       <tr>
         <td data-label="房型">{{ cat.label }}</td>
         <td data-label="狀態">
-          {% if cat.beds.length == 0 %}
+          {% if beds.length == 0 %}
           <span class="m3-chip m3-chip--secondary">尚無床位資料</span>
           {% elif available == 0 %}
-          <span class="m3-chip m3-chip--error">客滿(0/{{ cat.beds.length }})</span>
+          <span class="m3-chip m3-chip--error">客滿(0/{{ beds.length }})</span>
           {% elif available <= 2 %}
-          <span class="m3-chip m3-chip--warning">剩 {{ available }}/{{ cat.beds.length }} 床</span>
+          <span class="m3-chip m3-chip--warning">剩 {{ available }}/{{ beds.length }} 床</span>
           {% else %}
-          <span class="m3-chip m3-chip--success">剩 {{ available }}/{{ cat.beds.length }} 床</span>
+          <span class="m3-chip m3-chip--success">剩 {{ available }}/{{ beds.length }} 床</span>
           {% endif %}
         </td>
         <td data-label="空床號" class="price-table__cell--wrap">
           {% if cat.hasGender %}
-            {% set maleVacant = cat.beds | vacantBedLabelsByGender("男") %}
-            {% set femaleVacant = cat.beds | vacantBedLabelsByGender("女") %}
-            {% set unsetVacant = cat.beds | vacantBedLabelsNoGender %}
+            {% set maleVacant = cat.rooms | vacantBedLabelsByRoomGender("男") %}
+            {% set femaleVacant = cat.rooms | vacantBedLabelsByRoomGender("女") %}
+            {% set unsetVacant = cat.rooms | vacantBedLabelsRoomsNoGender %}
             {% if not maleVacant and not femaleVacant and not unsetVacant %}
             -
             {% else %}
@@ -64,7 +65,7 @@ permalink: /beds/
               {% if unsetVacant %}<div class="vacant-beds__unset">未設性別:{{ unsetVacant }}</div>{% endif %}
             {% endif %}
           {% else %}
-            {{ cat.beds | vacantBedLabels or "-" }}
+            {{ beds | vacantBedLabels or "-" }}
           {% endif %}
         </td>
       </tr>
