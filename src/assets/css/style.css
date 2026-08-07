@@ -1022,6 +1022,10 @@ a {
   color: var(--md-sys-color-warning);
 }
 
+.vacant-beds__empty {
+  color: var(--md-sys-color-on-surface-variant);
+}
+
 .m3-dialog__status {
   padding: 10px 14px;
   border-radius: var(--md-sys-shape-corner-medium);

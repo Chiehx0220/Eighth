@@ -56,13 +56,15 @@ permalink: /beds/
           {% if cat.hasGender %}
             {% set maleVacant = cat.rooms | vacantBedLabelsByRoomGender("男") %}
             {% set femaleVacant = cat.rooms | vacantBedLabelsByRoomGender("女") %}
-            {% set unsetVacant = cat.rooms | vacantBedLabelsRoomsNoGender %}
-            {% if not maleVacant and not femaleVacant and not unsetVacant %}
+            {% set unsetOccupiedVacant = cat.rooms | vacantBedLabelsRoomsNoGenderOccupied %}
+            {% set emptyVacant = cat.rooms | vacantBedLabelsRoomsEmpty %}
+            {% if not maleVacant and not femaleVacant and not unsetOccupiedVacant and not emptyVacant %}
             -
             {% else %}
               {% if maleVacant %}<div>男:{{ maleVacant }}</div>{% endif %}
               {% if femaleVacant %}<div>女:{{ femaleVacant }}</div>{% endif %}
-              {% if unsetVacant %}<div class="vacant-beds__unset">未設性別:{{ unsetVacant }}</div>{% endif %}
+              {% if unsetOccupiedVacant %}<div class="vacant-beds__unset">未設性別:{{ unsetOccupiedVacant }}</div>{% endif %}
+              {% if emptyVacant %}<div class="vacant-beds__empty">尚未收治(不限性別):{{ emptyVacant }}</div>{% endif %}
             {% endif %}
           {% else %}
             {{ beds | vacantBedLabels or "-" }}

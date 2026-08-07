@@ -96,7 +96,7 @@ collections:
             collapsed: true
             fields:
               - { label: "房號", name: "room", widget: "string" }
-              - { label: "性別(整間房統一,一床占用即整房鎖定該性別)", name: "gender", widget: "select", options: ["男", "女"], required: true }
+              - { label: "性別(整間房統一;完全空床的房間不用選)", name: "gender", widget: "select", options: ["男", "女"], required: false }
               - label: "床位列表"
                 name: "beds"
                 widget: "list"
@@ -111,7 +111,7 @@ collections:
             collapsed: true
             fields:
               - { label: "房號", name: "room", widget: "string" }
-              - { label: "性別(整間房統一,一床占用即整房鎖定該性別)", name: "gender", widget: "select", options: ["男", "女"], required: true }
+              - { label: "性別(整間房統一;完全空床的房間不用選)", name: "gender", widget: "select", options: ["男", "女"], required: false }
               - label: "床位列表"
                 name: "beds"
                 widget: "list"
@@ -126,7 +126,7 @@ collections:
             collapsed: true
             fields:
               - { label: "房號", name: "room", widget: "string" }
-              - { label: "性別(整間房統一,一床占用即整房鎖定該性別)", name: "gender", widget: "select", options: ["男", "女"], required: true }
+              - { label: "性別(整間房統一;完全空床的房間不用選)", name: "gender", widget: "select", options: ["男", "女"], required: false }
               - label: "床位列表"
                 name: "beds"
                 widget: "list"

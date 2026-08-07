@@ -89,12 +89,14 @@ insured_quad_room_beds:
       - { label: "0818-5", occupied: true }
 insured_double_room_beds:
   - room: "0819"
-    gender: "男"
     beds:
       - { label: "0819-1", occupied: false }
       - { label: "0819-2", occupied: false }
   - room: "0820"
-    gender: "男"
     beds:
       - { label: "0820-1", occupied: false }
       - { label: "0820-2", occupied: false }
+  - room: "0821"
+    beds:
+      - { label: "0821-1", occupied: false }
+      - { label: "0821-2", occupied: false }

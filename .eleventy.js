@@ -28,10 +28,17 @@ module.exports = function (eleventyConfig) {
       .join("、");
   });
 
-  eleventyConfig.addFilter("vacantBedLabelsRoomsNoGender", function (rooms) {
+  eleventyConfig.addFilter("vacantBedLabelsRoomsNoGenderOccupied", function (rooms) {
     return (rooms || [])
-      .filter((room) => !room.gender)
+      .filter((room) => !room.gender && (room.beds || []).some((bed) => bed.occupied))
       .flatMap((room) => (room.beds || []).filter((bed) => !bed.occupied).map((bed) => bed.label))
+      .join("、");
+  });
+
+  eleventyConfig.addFilter("vacantBedLabelsRoomsEmpty", function (rooms) {
+    return (rooms || [])
+      .filter((room) => !room.gender && !(room.beds || []).some((bed) => bed.occupied))
+      .flatMap((room) => (room.beds || []).map((bed) => bed.label))
       .join("、");
   });
 
