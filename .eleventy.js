@@ -13,6 +13,10 @@ module.exports = function (eleventyConfig) {
     return (beds || []).filter((bed) => !bed.occupied).length;
   });
 
+  eleventyConfig.addFilter("vacantBedLabels", function (beds) {
+    return (beds || []).filter((bed) => !bed.occupied).map((bed) => bed.label).join("、");
+  });
+
   return {
     dir: {
       input: "src",

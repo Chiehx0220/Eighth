@@ -21,6 +21,7 @@ permalink: /beds/
       <tr>
         <th>房型</th>
         <th>狀態</th>
+        <th>空床號</th>
       </tr>
     </thead>
     <tbody>
@@ -45,6 +46,7 @@ permalink: /beds/
           <span class="m3-chip m3-chip--success">剩 {{ available }}/{{ cat.beds.length }} 床</span>
           {% endif %}
         </td>
+        <td data-label="空床號">{{ cat.beds | vacantBedLabels or "-" }}</td>
       </tr>
       {% endfor %}
     </tbody>
