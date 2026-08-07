@@ -8,7 +8,7 @@ permalink: /dining/
 {% for place in dining.list %}
 <div class="ward-block">
   <h2>{{ place.name }}</h2>
-  <p>位置:{{ place.location }} ・ 營業時間:{{ place.hours }}</p>
+  <p>位置:{{ place.location }}</p>
   {% if place.note %}<p class="ward-block__note">{{ place.note }}</p>{% endif %}
   {% for group in place.groups %}
   {% if group.name %}<h3>{{ group.name }}</h3>{% endif %}
@@ -16,7 +16,7 @@ permalink: /dining/
   <table class="price-table">
     <thead>
       <tr>
-        <th>品項</th>
+        <th></th>
         {% if hasTime %}<th>供餐時間</th>{% else %}<th>說明</th>{% endif %}
         <th>價格</th>
       </tr>
@@ -24,7 +24,7 @@ permalink: /dining/
     <tbody>
       {% for item in group.items %}
       <tr>
-        <td data-label="品項">{{ item.name }}</td>
+        <td data-label="">{{ item.name }}</td>
         {% if hasTime %}<td data-label="供餐時間">{{ item.time }}</td>{% else %}<td data-label="說明">{{ item.note }}</td>{% endif %}
         <td data-label="價格">NT$ {{ item.price }}</td>
       </tr>
