@@ -55,12 +55,12 @@ insured_quad_room_beds:
     bed2_label: 0806-2
     bed3_label: 0806-3
     bed4_label: 0806-5
-    bed4_occupied: false
+    bed4_occupied: true
     bed3_occupied: true
     bed2_occupied: true
     bed1_occupied: true
     room: "0806"
-  - gender: 男
+  - gender: 女
     bed1_label: 0807-1
     bed2_label: 0807-2
     bed3_label: 0807-3
@@ -68,9 +68,9 @@ insured_quad_room_beds:
     bed4_occupied: true
     bed3_occupied: true
     bed2_occupied: true
-    bed1_occupied: false
+    bed1_occupied: true
     room: "0807"
-  - gender: 男
+  - gender: 女
     bed1_label: 0808-1
     bed2_label: 0808-2
     bed3_label: 0808-3
@@ -118,9 +118,10 @@ insured_double_room_beds:
     bed2_occupied: false
   - room: "0820"
     bed1_label: 0820-1
-    bed1_occupied: false
+    bed1_occupied: true
     bed2_label: 0820-2
-    bed2_occupied: false
+    bed2_occupied: true
+    gender: 男
   - room: "0821"
     bed1_label: 0821-1
     bed1_occupied: false
