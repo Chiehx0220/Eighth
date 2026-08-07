@@ -40,30 +40,54 @@ double_room_beds:
   - label: 0825-2
     occupied: true
 insured_quad_room_beds:
-  - { label: "0806-1", occupied: true }
-  - { label: "0806-2", occupied: true }
-  - { label: "0806-3", occupied: true }
-  - { label: "0806-5", occupied: true }
-  - { label: "0807-1", occupied: true }
-  - { label: "0807-2", occupied: true }
-  - { label: "0807-3", occupied: true }
-  - { label: "0807-5", occupied: true }
-  - { label: "0808-1", occupied: true }
-  - { label: "0808-2", occupied: true }
-  - { label: "0808-3", occupied: true }
-  - { label: "0808-5", occupied: true }
-  - { label: "0809-1", occupied: true }
-  - { label: "0809-2", occupied: true }
-  - { label: "0809-3", occupied: true }
-  - { label: "0809-5", occupied: true }
-  - { label: "0810-1", occupied: true }
-  - { label: "0810-2", occupied: true }
-  - { label: "0810-3", occupied: true }
-  - { label: "0810-5", occupied: true }
-  - { label: "0818-1", occupied: true }
-  - { label: "0818-2", occupied: true }
-  - { label: "0818-3", occupied: true }
-  - { label: "0818-5", occupied: true }
+  - label: 0806-1
+    occupied: true
+  - label: 0806-2
+    occupied: true
+  - label: 0806-3
+    occupied: true
+  - label: 0806-5
+    occupied: false
+  - label: 0807-1
+    occupied: false
+  - label: 0807-2
+    occupied: true
+  - label: 0807-3
+    occupied: true
+  - label: 0807-5
+    occupied: true
+  - label: 0808-1
+    occupied: true
+  - label: 0808-2
+    occupied: true
+  - label: 0808-3
+    occupied: true
+  - label: 0808-5
+    occupied: true
+  - label: 0809-1
+    occupied: true
+  - label: 0809-2
+    occupied: true
+  - label: 0809-3
+    occupied: true
+  - label: 0809-5
+    occupied: true
+  - label: 0810-1
+    occupied: true
+  - label: 0810-2
+    occupied: true
+  - label: 0810-3
+    occupied: true
+  - label: 0810-5
+    occupied: true
+  - label: 0818-1
+    occupied: true
+  - label: 0818-2
+    occupied: true
+  - label: 0818-3
+    occupied: true
+  - label: 0818-5
+    occupied: true
 insured_double_room_beds:
   - occupied: false
     label: 0819-1
