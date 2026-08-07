@@ -464,11 +464,24 @@ a {
   text-decoration: none;
   color: var(--md-sys-color-on-surface);
   background: var(--md-sys-color-surface-container-low);
-  transition: background-color 0.2s var(--md-sys-motion-easing-standard);
+  box-shadow: none;
+  transform: translateY(0) scale(1);
+  transition:
+    background-color 0.2s var(--md-sys-motion-easing-standard),
+    box-shadow 0.2s var(--md-sys-motion-easing-standard),
+    transform 0.2s var(--md-sys-motion-easing-standard);
 }
 
 .m3-card:hover {
   background: var(--md-sys-color-surface-container);
+  box-shadow: var(--md-sys-elevation-level2);
+  transform: translateY(-3px);
+}
+
+.m3-card:active {
+  transform: translateY(-1px) scale(0.98);
+  box-shadow: none;
+  transition-duration: 0.1s;
 }
 
 .m3-card:focus-visible {
@@ -483,6 +496,25 @@ a {
   display: flex;
   align-items: center;
   justify-content: center;
+  transition: transform 0.2s var(--md-sys-motion-easing-standard);
+}
+
+.m3-card:hover .m3-card__icon {
+  transform: scale(1.08) rotate(-4deg);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .m3-card,
+  .m3-card__icon {
+    transition: none;
+  }
+  .m3-card:hover,
+  .m3-card:active {
+    transform: none;
+  }
+  .m3-card:hover .m3-card__icon {
+    transform: none;
+  }
 }
 
 .m3-card--primary .m3-card__icon { background: var(--md-sys-color-primary-container); color: var(--md-sys-color-on-primary-container); }
