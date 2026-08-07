@@ -1167,6 +1167,71 @@ table.price-table tbody tr:hover {
     align-items: flex-start;
     gap: 2px;
   }
+
+  /* /beds/ staff table: render each room type as its own MD3 card
+     instead of a flat divided list, for clearer scanability */
+  table.price-table--beds {
+    border: none;
+    background: transparent;
+    border-radius: 0;
+  }
+
+  table.price-table--beds tbody {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  table.price-table--beds tr {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    background: var(--md-sys-color-surface-container-low);
+    border: 1px solid var(--md-sys-color-outline-variant);
+    border-radius: var(--md-sys-shape-corner-medium);
+    padding: 14px 16px;
+  }
+
+  table.price-table--beds tr:not(:last-child) {
+    border-bottom: 1px solid var(--md-sys-color-outline-variant);
+  }
+
+  table.price-table--beds td {
+    padding: 0;
+  }
+
+  table.price-table--beds td:nth-of-type(1) {
+    order: 1;
+    flex: 1 1 auto;
+    font: var(--md-sys-typescale-title-medium);
+    color: var(--md-sys-color-on-surface);
+  }
+
+  table.price-table--beds td:nth-of-type(1)::before {
+    display: none;
+  }
+
+  table.price-table--beds td:nth-of-type(2) {
+    order: 2;
+    flex: 0 0 auto;
+  }
+
+  table.price-table--beds td:nth-of-type(2)::before {
+    display: none;
+  }
+
+  table.price-table--beds td:nth-of-type(3) {
+    order: 3;
+    flex: 1 1 100%;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid var(--md-sys-color-outline-variant);
+  }
+
+  table.price-table--beds td:nth-of-type(3):empty,
+  table.price-table--beds td:nth-of-type(3):has(> :only-child:empty) {
+    display: none;
+  }
 }
 
 /* ---- rules list ---- */
