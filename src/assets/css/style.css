@@ -323,10 +323,6 @@ a {
   text-decoration: none;
 }
 
-.btn--text:hover {
-  background: var(--md-sys-color-surface-container);
-}
-
 .font-toggle {
   display: flex;
   gap: 4px;
