@@ -1,0 +1,6 @@
+name = "eighth-cms-oauth"
+main = "src/index.js"
+compatibility_date = "2026-08-01"
+
+[vars]
+OAUTH_SCOPES = "repo,user"
