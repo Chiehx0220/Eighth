@@ -2,7 +2,7 @@ list:
   - name: 院內餐
     location: 病房供餐
     hours: 07:00-19:00
-    note: "營養室工作人員會將伙食送至您的床邊桌上;若超過供餐時間仍未收到餐點,請通知護理人員。"
+    note: 營養室工作人員會將伙食送至您的床邊桌上;若超過供餐時間仍未收到餐點,請通知護理人員。
     groups:
       - name: 普通伙食
         items:
@@ -32,15 +32,12 @@ list:
             time: 16:30-17:00
             price: 115
             note: ""
-  - name: 美食街
+  - name: 院內其他商店
     location: 一樓
     hours: 07:00-20:00
     groups:
       - name: ""
         items:
-          - name: 麵食類
-            price: 100
-            note: 牛肉麵、陽春麵等
           - name: 便當
-            price: 95
+            price: 106
             note: 多種菜色可選
