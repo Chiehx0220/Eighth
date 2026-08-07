@@ -25,7 +25,7 @@ permalink: /beds/
     </thead>
     <tbody>
       {% for room in rooms.list %}
-      {% set available = room.beds | availableBeds %}
+      {% set available = room.bed_maintenance.beds | availableBeds %}
       <tr>
         <td data-label="房型">{{ room.type }}</td>
         <td data-label="狀態">

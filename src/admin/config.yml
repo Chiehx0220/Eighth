@@ -80,15 +80,23 @@ collections:
             collapsed: true
             fields:
               - { label: "房型名稱", name: "type", widget: "string" }
-              - { label: "照片", name: "image", widget: "image", required: false }
-              - { label: "說明", name: "description", widget: "text" }
-              - label: "床位列表"
-                name: "beds"
-                widget: "list"
-                allow_add: true
+              - label: "照片與說明"
+                name: "photo"
+                widget: "object"
                 fields:
-                  - { label: "床號", name: "label", widget: "string" }
-                  - { label: "已占用", name: "occupied", widget: "boolean", default: false }
+                  - { label: "照片", name: "image", widget: "image", required: false }
+                  - { label: "說明", name: "description", widget: "text" }
+              - label: "床位維護"
+                name: "bed_maintenance"
+                widget: "object"
+                fields:
+                  - label: "床位列表"
+                    name: "beds"
+                    widget: "list"
+                    allow_add: true
+                    fields:
+                      - { label: "床號", name: "label", widget: "string" }
+                      - { label: "已占用", name: "occupied", widget: "boolean", default: false }
 
   - name: "room_fees"
     label: "病房費用"
