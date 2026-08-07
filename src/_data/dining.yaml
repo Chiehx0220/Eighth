@@ -9,34 +9,28 @@ list:
           - name: 早餐
             time: 07:30-08:00
             price: 60
-            image: ""
             note: ""
           - name: 午餐
             time: 11:30-12:00
             price: 105
-            image: ""
             note: ""
           - name: 晚餐
             time: 16:30-17:00
             price: 105
-            image: ""
             note: ""
       - name: 治療餐
         items:
           - name: 早餐
             time: 07:30-08:00
             price: 70
-            image: ""
             note: ""
           - name: 午餐
             time: 11:30-12:00
             price: 115
-            image: ""
             note: ""
           - name: 晚餐
             time: 16:30-17:00
             price: 115
-            image: ""
             note: ""
   - name: 美食街
     location: 一樓
@@ -46,9 +40,7 @@ list:
         items:
           - name: 麵食類
             price: 100
-            image: ""
             note: 牛肉麵、陽春麵等
           - name: 便當
             price: 95
-            image: ""
             note: 多種菜色可選

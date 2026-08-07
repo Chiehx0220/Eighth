@@ -42,7 +42,6 @@ collections:
                       - { label: "名稱", name: "name", widget: "string" }
                       - { label: "供餐時間(選填)", name: "time", widget: "string", required: false }
                       - { label: "價格", name: "price", widget: "number" }
-                      - { label: "照片", name: "image", widget: "image", required: false }
                       - { label: "說明", name: "note", widget: "string", required: false }
 
   - name: "wards"
@@ -58,7 +57,6 @@ collections:
             allow_add: true
             collapsed: true
             fields:
-              - { label: "代碼", name: "id", widget: "string" }
               - { label: "單位名稱", name: "name", widget: "string" }
               - { label: "床位數(滿床)", name: "total_beds", widget: "number" }
               - { label: "護理長人數", name: "head_nurse_count", widget: "number" }
