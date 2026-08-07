@@ -24,12 +24,20 @@ permalink: /beds/
       </tr>
     </thead>
     <tbody>
-      {% for room in rooms.list %}
-      {% set available = room.bed_maintenance.beds | availableBeds %}
+      {% set categories = [
+        { label: "單人房", beds: rooms.single_room_beds },
+        { label: "雙人房", beds: rooms.double_room_beds },
+        { label: "健保四人房", beds: rooms.insured_quad_room_beds },
+        { label: "健保雙人房", beds: rooms.insured_double_room_beds }
+      ] %}
+      {% for cat in categories %}
+      {% set available = cat.beds | availableBeds %}
       <tr>
-        <td data-label="房型">{{ room.type }}</td>
+        <td data-label="房型">{{ cat.label }}</td>
         <td data-label="狀態">
-          {% if available == 0 %}
+          {% if cat.beds.length == 0 %}
+          <span class="m3-chip m3-chip--secondary">尚無床位資料</span>
+          {% elif available == 0 %}
           <span class="m3-chip m3-chip--error">客滿</span>
           {% elif available <= 2 %}
           <span class="m3-chip m3-chip--warning">剩 {{ available }} 床</span>

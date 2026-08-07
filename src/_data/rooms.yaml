@@ -1,29 +1,43 @@
-list:
+photos:
   - type: 單人房
-    photo:
-      image: /assets/uploads/pxl_20260803_231630501.jpg
-      description: 獨立衛浴、備有陪病椅,健保不給付差額由病人自付。
-    bed_maintenance:
-      beds:
-        - { label: "08-11", occupied: true }
-        - { label: "08-12", occupied: true }
-        - { label: "08-13", occupied: true }
-        - { label: "08-15", occupied: true }
-        - { label: "08-16", occupied: true }
-        - { label: "08-17", occupied: true }
+    image: /assets/uploads/pxl_20260803_231630501.jpg
+    description: 獨立衛浴、備有陪病椅,健保不給付差額由病人自付。
   - type: 雙人房
-    photo:
-      image: /assets/uploads/file_00000000dc80820680345bea9050e0d9.jpg
-      description: 共用衛浴、每床各附陪病椅,兩床以布簾區隔。
-    bed_maintenance:
-      beds:
-        - { label: "08-011", occupied: true }
-        - { label: "08-012", occupied: true }
-        - { label: "08-021", occupied: true }
-        - { label: "08-022", occupied: true }
-        - { label: "08-031", occupied: true }
-        - { label: "08-032", occupied: true }
-        - { label: "08-051", occupied: true }
-        - { label: "08-052", occupied: true }
-        - { label: "08-251", occupied: true }
-        - { label: "08-252", occupied: true }
+    image: /assets/uploads/file_00000000dc80820680345bea9050e0d9.jpg
+    description: 共用衛浴、每床各附陪病椅,兩床以布簾區隔。
+single_room_beds:
+  - label: 08-11
+    occupied: false
+  - label: 08-12
+    occupied: false
+  - label: 08-13
+    occupied: true
+  - label: 08-15
+    occupied: true
+  - label: 08-16
+    occupied: true
+  - label: 08-17
+    occupied: true
+double_room_beds:
+  - label: 08-011
+    occupied: true
+  - label: 08-012
+    occupied: true
+  - label: 08-021
+    occupied: true
+  - label: 08-022
+    occupied: true
+  - label: 08-031
+    occupied: true
+  - label: 08-032
+    occupied: true
+  - label: 08-051
+    occupied: true
+  - label: 08-052
+    occupied: true
+  - label: 08-251
+    occupied: true
+  - label: 08-252
+    occupied: true
+insured_quad_room_beds: []
+insured_double_room_beds: []
