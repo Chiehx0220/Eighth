@@ -9,6 +9,10 @@ module.exports = function (eleventyConfig) {
     return (list || []).find((item) => item.type === type);
   });
 
+  eleventyConfig.addFilter("availableBeds", function (beds) {
+    return (beds || []).filter((bed) => !bed.occupied).length;
+  });
+
   return {
     dir: {
       input: "src",

@@ -27,16 +27,17 @@ permalink: /beds/
     <tbody>
       {% for ward in wards.list %}
       {% for room in ward.rooms %}
+      {% set available = room.beds | availableBeds %}
       <tr>
         <td data-label="病房單位">{{ ward.name }}</td>
         <td data-label="房型">{{ room.type }}</td>
         <td data-label="狀態">
-          {% if "客滿" in room.status %}
-          <span class="m3-chip m3-chip--error">{{ room.status }}</span>
-          {% elif "剩" in room.status %}
-          <span class="m3-chip m3-chip--warning">{{ room.status }}</span>
+          {% if available == 0 %}
+          <span class="m3-chip m3-chip--error">客滿</span>
+          {% elif available <= 2 %}
+          <span class="m3-chip m3-chip--warning">剩 {{ available }} 床</span>
           {% else %}
-          <span class="m3-chip m3-chip--success">{{ room.status }}</span>
+          <span class="m3-chip m3-chip--success">有空房</span>
           {% endif %}
         </td>
       </tr>

@@ -73,10 +73,13 @@ collections:
                   - { label: "房型名稱", name: "type", widget: "string" }
                   - { label: "照片", name: "image", widget: "image", required: false }
                   - { label: "說明", name: "description", widget: "text" }
-                  - label: "目前狀態"
-                    name: "status"
-                    widget: "select"
-                    options: ["有空房", "剩 1 床", "剩 2 床", "客滿"]
+                  - label: "床位列表"
+                    name: "beds"
+                    widget: "list"
+                    allow_add: true
+                    fields:
+                      - { label: "床號", name: "label", widget: "string" }
+                      - { label: "已占用", name: "occupied", widget: "boolean", default: false }
 
   - name: "room_fees"
     label: "病房費用"
