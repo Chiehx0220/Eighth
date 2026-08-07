@@ -557,14 +557,23 @@ a {
   margin-bottom: 20px;
 }
 
-.leave-notice__tag {
-  background: var(--md-sys-color-secondary-container);
-  color: var(--md-sys-color-on-secondary-container);
+/* ---- MD3 chip (shared pill component: status badges, tag chips) ---- */
+.m3-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 32px;
+  padding: 0 16px;
   border-radius: var(--md-sys-shape-corner-full);
-  padding: 8px 18px;
   font-size: var(--md-sys-typescale-label-large-size);
   font-weight: 500;
+  white-space: nowrap;
 }
+
+.m3-chip--secondary { background: var(--md-sys-color-secondary-container); color: var(--md-sys-color-on-secondary-container); }
+.m3-chip--success { background: var(--md-sys-color-success-container); color: var(--md-sys-color-on-success-container); }
+.m3-chip--warning { background: var(--md-sys-color-warning-container); color: var(--md-sys-color-on-warning-container); }
+.m3-chip--error { background: var(--md-sys-color-error-container); color: var(--md-sys-color-on-error-container); }
 
 .leave-notice__body {
   font-size: var(--md-sys-typescale-body-large-size);
@@ -891,29 +900,8 @@ a {
   margin: 2px 0 10px;
 }
 
-/* ---- badges (MD3 assist-chip style, using container/on-container pairs) ---- */
-.badge {
-  display: inline-block;
+.room-card__status {
   margin-top: 12px;
-  font-size: var(--md-sys-typescale-body-medium-size);
-  font-weight: 500;
-  padding: 5px 14px;
-  border-radius: var(--md-sys-shape-corner-full);
-}
-
-.badge--available {
-  background: var(--md-sys-color-success-container);
-  color: var(--md-sys-color-on-success-container);
-}
-
-.badge--low {
-  background: var(--md-sys-color-warning-container);
-  color: var(--md-sys-color-on-warning-container);
-}
-
-.badge--full {
-  background: var(--md-sys-color-error-container);
-  color: var(--md-sys-color-on-error-container);
 }
 
 /* ---- MD3 basic dialog ---- */

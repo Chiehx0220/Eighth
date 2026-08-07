@@ -23,11 +23,11 @@ permalink: /rooms/
         <p class="room-card__fee-note">自費身分:第一日 NT$ {{ fee.self_pay_day1 }}・第二日以後 NT$ {{ fee.self_pay_day2plus }}</p>
         <p>{{ room.description }}</p>
         {% if "客滿" in room.status %}
-          <span class="badge badge--full">{{ room.status }}</span>
+          <span class="m3-chip m3-chip--error room-card__status">{{ room.status }}</span>
         {% elif "剩" in room.status %}
-          <span class="badge badge--low">{{ room.status }}</span>
+          <span class="m3-chip m3-chip--warning room-card__status">{{ room.status }}</span>
         {% else %}
-          <span class="badge badge--available">{{ room.status }}</span>
+          <span class="m3-chip m3-chip--success room-card__status">{{ room.status }}</span>
         {% endif %}
 
         {% if "客滿" in room.status %}
