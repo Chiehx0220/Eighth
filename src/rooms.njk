@@ -9,7 +9,7 @@ permalink: /rooms/
 <div class="room-grid">
   {% for photo in rooms.photos %}
   {% if photo.type == "單人房" %}{% set beds = rooms.single_room_beds %}{% endif %}
-  {% if photo.type == "雙人房" %}{% set beds = rooms.double_room_beds %}{% endif %}
+  {% if photo.type == "差價雙人房" %}{% set beds = rooms.double_room_beds %}{% endif %}
   {% set fee = room_fees.list | findByType(photo.type) %}
   {% set available = beds | availableBeds %}
   <div class="room-card" data-room-type="{{ photo.type }}">

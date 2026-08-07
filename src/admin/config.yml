@@ -89,7 +89,7 @@ collections:
             fields:
               - { label: "床號", name: "label", widget: "string" }
               - { label: "已占用", name: "occupied", widget: "boolean", default: false }
-          - label: "雙人房床位"
+          - label: "差價雙人房床位"
             name: "double_room_beds"
             widget: "list"
             allow_add: true
