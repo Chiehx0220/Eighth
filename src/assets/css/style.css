@@ -60,13 +60,26 @@
   --md-sys-shape-corner-full: 999px;
 
   /* ---- typescale (rem, relative to root font which carries --font-scale) ---- */
+  --md-sys-typescale-display-large-size: 3.2rem;
+  --md-sys-typescale-display-medium-size: 2.6rem;
   --md-sys-typescale-display-small-size: 2.1rem;
+  --md-sys-typescale-headline-large-size: 2rem;
+  --md-sys-typescale-headline-medium-size: 1.75rem;
   --md-sys-typescale-headline-small-size: 1.5rem;
   --md-sys-typescale-title-large-size: 1.3rem;
   --md-sys-typescale-title-medium-size: 1.1rem;
+  --md-sys-typescale-title-small-size: 0.98rem;
   --md-sys-typescale-body-large-size: 1rem;
   --md-sys-typescale-body-medium-size: 0.92rem;
+  --md-sys-typescale-body-small-size: 0.8rem;
   --md-sys-typescale-label-large-size: 0.95rem;
+  --md-sys-typescale-label-medium-size: 0.82rem;
+  --md-sys-typescale-label-small-size: 0.75rem;
+
+  /* ---- elevation (tonal surfaces are the primary depth cue; shadows are only
+     for overlays like dialogs that need separation from busy content) ---- */
+  --md-sys-elevation-level2: 0 1px 3px rgba(0,0,0,0.08), 0 2px 6px rgba(0,0,0,0.1);
+  --md-sys-elevation-level3: 0 1px 3px rgba(0,0,0,0.1), 0 4px 8px rgba(0,0,0,0.14);
 
   --md-sys-motion-easing-standard: cubic-bezier(0.2, 0, 0, 1);
 }
@@ -121,6 +134,9 @@
 
     --md-sys-color-outline: #8b99ad;
     --md-sys-color-outline-variant: #3f4c5e;
+
+    --md-sys-elevation-level2: 0 1px 3px rgba(0,0,0,0.3), 0 2px 6px rgba(0,0,0,0.34);
+    --md-sys-elevation-level3: 0 1px 3px rgba(0,0,0,0.34), 0 4px 8px rgba(0,0,0,0.4);
   }
 }
 
@@ -173,6 +189,9 @@
 
   --md-sys-color-outline: #8b99ad;
   --md-sys-color-outline-variant: #3f4c5e;
+
+  --md-sys-elevation-level2: 0 1px 3px rgba(0,0,0,0.3), 0 2px 6px rgba(0,0,0,0.34);
+  --md-sys-elevation-level3: 0 1px 3px rgba(0,0,0,0.34), 0 4px 8px rgba(0,0,0,0.4);
 }
 
 * {
@@ -905,7 +924,7 @@ a {
   color: var(--md-sys-color-on-surface);
   padding: 28px 28px 24px;
   width: min(420px, calc(100vw - 48px));
-  box-shadow: 0 4px 8px rgba(0,0,0,0.12), 0 1px 3px rgba(0,0,0,0.08);
+  box-shadow: var(--md-sys-elevation-level3);
 }
 
 .m3-dialog::backdrop {
@@ -956,7 +975,7 @@ a {
   display: block;
   color: var(--md-sys-color-on-surface-variant);
   font-weight: 500;
-  font-size: 0.95rem;
+  font-size: var(--md-sys-typescale-label-large-size);
   margin-bottom: 6px;
 }
 
@@ -964,7 +983,7 @@ a {
   width: 100%;
   min-height: 48px;
   padding: 12px 14px;
-  font-size: 1rem;
+  font-size: var(--md-sys-typescale-body-large-size);
   font-family: inherit;
   color: var(--md-sys-color-on-surface);
   background: var(--md-sys-color-surface-container-lowest);
