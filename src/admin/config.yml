@@ -2,7 +2,7 @@ backend:
   name: github
   repo: Chiehx0220/Eighth
   branch: main
-  base_url: https://YOUR-OAUTH-PROXY.workers.dev
+  base_url: https://eighth-cms-oauth.oauth-worker.workers.dev
   auth_endpoint: auth
 
 local_backend: true
