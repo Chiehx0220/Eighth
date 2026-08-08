@@ -11,7 +11,7 @@ single_room_beds:
   - label: "0812"
     occupied: true
   - label: "0813"
-    occupied: true
+    occupied: false
   - label: "0815"
     occupied: true
   - label: "0816"
