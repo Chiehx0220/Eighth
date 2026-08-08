@@ -377,7 +377,7 @@ a {
   border-radius: var(--md-sys-shape-corner-medium);
   background: var(--md-sys-color-primary-container);
   color: var(--md-sys-color-on-primary-container);
-  display: flex;
+  display: flex !important;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
@@ -500,7 +500,7 @@ a {
   width: 52px;
   height: 52px;
   border-radius: var(--md-sys-shape-corner-medium);
-  display: flex;
+  display: flex !important;
   align-items: center;
   justify-content: center;
   transition: transform 0.2s var(--md-sys-motion-easing-standard);
@@ -571,7 +571,7 @@ a {
   border-radius: var(--md-sys-shape-corner-large);
   background: var(--md-sys-color-primary-container);
   color: var(--md-sys-color-on-primary-container);
-  display: inline-flex;
+  display: inline-flex !important;
   align-items: center;
   justify-content: center;
   font-size: 32px;
@@ -677,7 +677,7 @@ a {
   border-radius: var(--md-sys-shape-corner-full);
   background: var(--md-sys-color-secondary-container);
   color: var(--md-sys-color-on-secondary-container);
-  display: flex;
+  display: flex !important;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
@@ -721,7 +721,7 @@ a {
   border-radius: var(--md-sys-shape-corner-full);
   background: var(--md-sys-color-secondary-container);
   color: var(--md-sys-color-on-secondary-container);
-  display: flex;
+  display: flex !important;
   align-items: center;
   justify-content: center;
   margin-bottom: 10px;
@@ -775,7 +775,7 @@ a {
   border-radius: var(--md-sys-shape-corner-full);
   background: var(--md-sys-color-secondary-container);
   color: var(--md-sys-color-on-secondary-container);
-  display: flex;
+  display: flex !important;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
@@ -983,7 +983,7 @@ a {
   border-radius: var(--md-sys-shape-corner-large);
   background: var(--md-sys-color-primary-container);
   color: var(--md-sys-color-on-primary-container);
-  display: inline-flex;
+  display: inline-flex !important;
   align-items: center;
   justify-content: center;
   font-size: 32px;
