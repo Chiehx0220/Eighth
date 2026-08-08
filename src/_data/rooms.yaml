@@ -24,7 +24,7 @@ double_room_beds:
     bed1_label: 0801-1
     bed1_occupied: true
     bed2_label: 0801-2
-    bed2_occupied: true
+    bed2_occupied: false
   - room: "0802"
     gender: 男
     bed1_label: 0802-1
@@ -68,7 +68,7 @@ insured_quad_room_beds:
     bed4_occupied: true
     bed3_occupied: true
     bed2_occupied: true
-    bed1_occupied: true
+    bed1_occupied: false
     room: "0807"
   - gender: 女
     bed1_label: 0808-1
@@ -88,7 +88,7 @@ insured_quad_room_beds:
     bed4_occupied: true
     bed3_occupied: true
     bed2_occupied: true
-    bed1_occupied: true
+    bed1_occupied: false
     room: "0809"
   - gender: 男
     bed1_label: 0810-1
