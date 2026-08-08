@@ -1,9 +1,49 @@
 const yaml = require("js-yaml");
+const fs = require("fs");
+const path = require("path");
+const CleanCSS = require("clean-css");
+const { minify: minifyJs } = require("terser");
+const { minify: minifyHtml } = require("html-minifier-terser");
+
+const isBuild = process.env.ELEVENTY_RUN_MODE === "build";
 
 module.exports = function (eleventyConfig) {
   eleventyConfig.addDataExtension("yaml", (contents) => yaml.load(contents));
   eleventyConfig.addPassthroughCopy("src/assets");
   eleventyConfig.addPassthroughCopy("src/admin");
+
+  if (isBuild) {
+    eleventyConfig.addTransform("htmlmin", async function (content) {
+      if (!this.page.outputPath || !this.page.outputPath.endsWith(".html")) {
+        return content;
+      }
+      return minifyHtml(content, {
+        collapseWhitespace: true,
+        removeComments: true,
+        collapseBooleanAttributes: true,
+        removeRedundantAttributes: true,
+        removeScriptTypeAttributes: true,
+        removeStyleLinkTypeAttributes: true,
+        useShortDoctype: true,
+        minifyCSS: true,
+        minifyJS: true
+      });
+    });
+
+    eleventyConfig.on("eleventy.after", async ({ dir }) => {
+      const cssPath = path.join(dir.output, "assets/css/style.css");
+      if (fs.existsSync(cssPath)) {
+        const output = new CleanCSS().minify(fs.readFileSync(cssPath, "utf8"));
+        fs.writeFileSync(cssPath, output.styles);
+      }
+
+      const jsPath = path.join(dir.output, "assets/js/main.js");
+      if (fs.existsSync(jsPath)) {
+        const result = await minifyJs(fs.readFileSync(jsPath, "utf8"));
+        fs.writeFileSync(jsPath, result.code);
+      }
+    });
+  }
 
   eleventyConfig.addFilter("findByType", function (list, type) {
     return (list || []).find((item) => item.type === type);
