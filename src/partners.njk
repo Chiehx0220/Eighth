@@ -1,0 +1,45 @@
+---
+layout: layouts/base.njk
+title: "合作廠商"
+permalink: /partners/
+---
+<h1>合作廠商</h1>
+<p>以下為與本病房合作之廠商,如有需要可直接聯繫。</p>
+
+{% if partners.list.length %}
+<div class="vendor-grid">
+  {% for partner in partners.list %}
+  <div class="vendor-card">
+    <div class="vendor-card__header">
+      {% if partner.logo %}
+      <img src="{{ partner.logo }}" alt="{{ partner.name }}標誌" class="vendor-card__logo" loading="lazy" decoding="async">
+      {% else %}
+      <span class="vendor-card__icon material-symbols-outlined" aria-hidden="true">{{ partner.icon or "storefront" }}</span>
+      {% endif %}
+      <div class="vendor-card__heading">
+        <p class="vendor-card__name">{{ partner.name }}</p>
+        {% if partner.category %}<span class="m3-chip m3-chip--secondary">{{ partner.category }}</span>{% endif %}
+      </div>
+    </div>
+
+    {% if partner.note %}<p class="vendor-card__note">{{ partner.note }}</p>{% endif %}
+
+    {% if partner.address %}
+    <p class="vendor-card__address">
+      <span class="material-symbols-outlined" aria-hidden="true">location_on</span>
+      {{ partner.address }}
+    </p>
+    {% endif %}
+
+    {% if partner.phone %}
+    <a href="tel:{{ partner.phone }}" class="btn btn--tonal vendor-card__call">
+      <span class="material-symbols-outlined" aria-hidden="true">call</span>
+      {{ partner.phone }}
+    </a>
+    {% endif %}
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<p>目前尚無合作廠商資料。</p>
+{% endif %}
