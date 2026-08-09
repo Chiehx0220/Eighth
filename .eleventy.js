@@ -57,11 +57,18 @@ module.exports = function (eleventyConfig) {
     return (beds || []).filter((bed) => !bed.occupied).map((bed) => bed.label).join("、");
   });
 
+  // Bed numbers skip 4 (unlucky number convention): a room's 4th bed is
+  // labeled "-5", not "-4". Bed labels are derived from the room number
+  // instead of being entered manually in the CMS.
+  function bedNumber(i) {
+    return i >= 4 ? i + 1 : i;
+  }
+
   function roomBeds(room) {
     const beds = [];
     let i = 1;
-    while (room[`bed${i}_label`] !== undefined) {
-      beds.push({ label: room[`bed${i}_label`], occupied: !!room[`bed${i}_occupied`] });
+    while (room[`bed${i}_occupied`] !== undefined) {
+      beds.push({ label: `${room.room}-${bedNumber(i)}`, occupied: !!room[`bed${i}_occupied`] });
       i++;
     }
     return beds;
