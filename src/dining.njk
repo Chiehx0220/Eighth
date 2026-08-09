@@ -5,23 +5,11 @@ permalink: /dining/
 ---
 <h1>餐飲資訊</h1>
 
-{% for place in dining.list %}
+{% for place in dining.mealService %}
 <div class="ward-block">
   <h2>{{ place.name }}</h2>
   <p>位置:{{ place.location }}</p>
   {% if place.note %}<p class="ward-block__note">{{ place.note }}</p>{% endif %}
-
-  {% if place.shops.length %}
-  <ul class="shop-list">
-    {% for shop in place.shops %}
-    <li class="shop-list__item">
-      <p class="shop-list__name">{{ shop.name }}</p>
-      <p class="shop-list__sells">{{ shop.sells }}</p>
-    </li>
-    {% endfor %}
-  </ul>
-  {% endif %}
-
   {% for group in place.groups %}
   {% if group.name %}<h3>{{ group.name }}</h3>{% endif %}
   {% set hasTime = group.items[0].time %}
@@ -30,7 +18,7 @@ permalink: /dining/
       <tr>
         <th></th>
         {% if hasTime %}<th>供餐時間</th>{% else %}<th>說明</th>{% endif %}
-        {% if not place.hidePrice %}<th>價格</th>{% endif %}
+        <th>價格</th>
       </tr>
     </thead>
     <tbody>
@@ -38,7 +26,7 @@ permalink: /dining/
       <tr>
         <td data-label="">{{ item.name }}</td>
         {% if hasTime %}<td data-label="供餐時間">{{ item.time }}</td>{% else %}<td data-label="說明">{{ item.note }}</td>{% endif %}
-        {% if not place.hidePrice %}<td data-label="價格">NT$ {{ item.price }}</td>{% endif %}
+        <td data-label="價格">NT$ {{ item.price }}</td>
       </tr>
       {% endfor %}
     </tbody>
@@ -46,3 +34,18 @@ permalink: /dining/
   {% endfor %}
 </div>
 {% endfor %}
+
+{% if dining.otherShops.list.length %}
+<div class="ward-block">
+  <h2>{{ dining.otherShops.name }}</h2>
+  <p>位置:{{ dining.otherShops.location }}</p>
+  <ul class="shop-list">
+    {% for shop in dining.otherShops.list %}
+    <li class="shop-list__item">
+      <p class="shop-list__name">{{ shop.name }}</p>
+      <p class="shop-list__sells">{{ shop.sells }}</p>
+    </li>
+    {% endfor %}
+  </ul>
+</div>
+{% endif %}

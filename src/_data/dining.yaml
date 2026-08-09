@@ -1,4 +1,4 @@
-list:
+mealService:
   - name: 院內餐
     location: 病房供餐
     hours: 07:00-19:00
@@ -32,9 +32,11 @@ list:
             time: 16:30-17:00
             price: 115
             note: ""
-  - name: 院內其他商店
-    location: 一樓
-    hours: 07:00-20:00
-    shops:
-      - name: 便當
-        sells: 多種菜色可選
+
+otherShops:
+  name: 院內其他商店
+  location: 一樓
+  hours: 07:00-20:00
+  list:
+    - name: 便當
+      sells: 多種菜色可選
