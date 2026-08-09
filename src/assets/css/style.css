@@ -933,67 +933,102 @@ a {
   margin-top: 12px;
 }
 
-/* ---- Partner vendor cards ---- */
+/* ---- Partner vendor cards (styled like a business card: colored side panel + content) ---- */
 .vendor-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 16px;
   margin-top: 12px;
 }
 
 .vendor-card {
+  display: grid;
+  grid-template-columns: 84px 1fr;
   background: var(--md-sys-color-surface-container-low);
   border: 1px solid var(--md-sys-color-outline-variant);
-  border-radius: var(--md-sys-shape-corner-medium);
-  padding: 18px 20px;
+  border-radius: var(--md-sys-shape-corner-large);
+  overflow: hidden;
+  transition:
+    box-shadow 0.2s var(--md-sys-motion-easing-standard),
+    transform 0.2s var(--md-sys-motion-easing-standard);
 }
 
-.vendor-card__header {
-  display: flex;
-  align-items: center;
-  gap: 14px;
+.vendor-card:hover {
+  box-shadow: var(--md-sys-elevation-level2);
+  transform: translateY(-3px);
 }
 
-.vendor-card__logo {
-  width: 52px;
-  height: 52px;
-  border-radius: var(--md-sys-shape-corner-medium);
-  object-fit: contain;
-  background: var(--md-sys-color-surface-container-highest);
-  flex-shrink: 0;
+@media (prefers-reduced-motion: reduce) {
+  .vendor-card { transition: none; }
+  .vendor-card:hover { transform: none; }
 }
 
-.vendor-card__icon {
-  width: 52px;
-  height: 52px;
-  border-radius: var(--md-sys-shape-corner-medium);
-  background: var(--md-sys-color-tertiary-container);
-  color: var(--md-sys-color-on-tertiary-container);
+@media (max-width: 480px) {
+  .vendor-card {
+    grid-template-columns: 1fr;
+  }
+}
+
+.vendor-card__accent {
   display: flex !important;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
+  padding: 16px 8px;
 }
 
-.vendor-card__heading {
+.vendor-card--primary .vendor-card__accent { background: var(--md-sys-color-primary-container); }
+.vendor-card--tertiary .vendor-card__accent { background: var(--md-sys-color-tertiary-container); }
+.vendor-card--warning .vendor-card__accent { background: var(--md-sys-color-warning-container); }
+.vendor-card--secondary .vendor-card__accent { background: var(--md-sys-color-purple-container); }
+.vendor-card--success .vendor-card__accent { background: var(--md-sys-color-success-container); }
+
+.vendor-card__logo {
+  width: 56px;
+  height: 56px;
+  border-radius: var(--md-sys-shape-corner-full);
+  object-fit: contain;
+  background: var(--md-sys-color-surface);
+}
+
+.vendor-card__icon {
+  font-size: 30px !important;
+}
+
+.vendor-card--primary .vendor-card__icon { color: var(--md-sys-color-on-primary-container); }
+.vendor-card--tertiary .vendor-card__icon { color: var(--md-sys-color-on-tertiary-container); }
+.vendor-card--warning .vendor-card__icon { color: var(--md-sys-color-on-warning-container); }
+.vendor-card--secondary .vendor-card__icon { color: var(--md-sys-color-on-purple-container); }
+.vendor-card--success .vendor-card__icon { color: var(--md-sys-color-on-success-container); }
+
+.vendor-card__content {
   min-width: 0;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-  align-items: flex-start;
+  padding: 18px 20px;
 }
 
 .vendor-card__name {
-  font-size: var(--md-sys-typescale-title-medium-size);
+  font: var(--md-sys-typescale-title-large);
   font-weight: 700;
   margin: 0;
   color: var(--md-sys-color-on-surface);
 }
 
+.vendor-card__category {
+  font-size: var(--md-sys-typescale-label-large-size);
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  margin: 2px 0 0;
+}
+
+.vendor-card--primary .vendor-card__category { color: var(--md-sys-color-primary); }
+.vendor-card--tertiary .vendor-card__category { color: var(--md-sys-color-tertiary); }
+.vendor-card--warning .vendor-card__category { color: var(--md-sys-color-warning); }
+.vendor-card--secondary .vendor-card__category { color: var(--md-sys-color-purple); }
+.vendor-card--success .vendor-card__category { color: var(--md-sys-color-success); }
+
 .vendor-card__note {
   font-size: var(--md-sys-typescale-body-medium-size);
   color: var(--md-sys-color-on-surface-variant);
-  margin: 14px 0 0;
+  margin: 12px 0 0;
 }
 
 .vendor-card__address {
