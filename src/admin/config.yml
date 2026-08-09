@@ -11,6 +11,22 @@ media_folder: "src/assets/uploads"
 public_folder: "/assets/uploads"
 
 collections:
+  - name: "site"
+    label: "網站設定"
+    files:
+      - name: "site"
+        label: "網站設定"
+        file: "src/_data/site.yaml"
+        fields:
+          - { label: "網站名稱", name: "site_title", widget: "string" }
+          - { label: "首頁標語", name: "tagline", widget: "string" }
+          - { label: "意見信箱連結", name: "suggest_box_url", widget: "string" }
+          - { label: "訪客登記表單連結", name: "visitor_registration_url", widget: "string" }
+          - label: "員工號(用於登入 /beds/ 床位系統)"
+            name: "staff_access_codes"
+            widget: "list"
+            allow_add: true
+
   - name: "dining"
     label: "餐飲資訊"
     files:
