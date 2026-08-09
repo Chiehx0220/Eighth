@@ -116,12 +116,12 @@ collections:
             collapsed: true
             summary: "{{fields.room}}"
             fields:
-              - { label: "房號", name: "room", widget: "string", hint: "床號會自動用「房號-序號」產生(例如房號 0806 會自動變成床號 0806-1、0806-2、0806-3、0806-5),不用另外輸入床號。第4床固定跳號用「-5」(習慣避開4這個數字)。" }
+              - { label: "房號", name: "room", widget: "string" }
               - { label: "性別(整間房統一;完全空床的房間不用選)", name: "gender", widget: "select", options: ["男", "女"], required: false }
               - { label: "床位1 已占用", name: "bed1_occupied", widget: "boolean", default: false }
               - { label: "床位2 已占用", name: "bed2_occupied", widget: "boolean", default: false }
               - { label: "床位3 已占用", name: "bed3_occupied", widget: "boolean", default: false }
-              - { label: "床位4(床號自動編為 -5)已占用", name: "bed4_occupied", widget: "boolean", default: false }
+              - { label: "床位5 已占用", name: "bed4_occupied", widget: "boolean", default: false }
           - label: "健保雙人房床位"
             name: "insured_double_room_beds"
             widget: "list"
