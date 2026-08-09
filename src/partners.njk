@@ -31,11 +31,21 @@ permalink: /partners/
     </p>
     {% endif %}
 
-    {% if partner.phone %}
-    <a href="tel:{{ partner.phone }}" class="btn btn--tonal vendor-card__call">
-      <span class="material-symbols-outlined" aria-hidden="true">call</span>
-      {{ partner.phone }}
-    </a>
+    {% if partner.phone or partner.email %}
+    <div class="vendor-card__actions">
+      {% if partner.phone %}
+      <a href="tel:{{ partner.phone }}" class="btn btn--tonal">
+        <span class="material-symbols-outlined" aria-hidden="true">call</span>
+        {{ partner.phone }}
+      </a>
+      {% endif %}
+      {% if partner.email %}
+      <a href="mailto:{{ partner.email }}" class="btn btn--outlined">
+        <span class="material-symbols-outlined" aria-hidden="true">mail</span>
+        {{ partner.email }}
+      </a>
+      {% endif %}
+    </div>
     {% endif %}
   </div>
   {% endfor %}

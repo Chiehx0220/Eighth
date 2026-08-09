@@ -1010,9 +1010,10 @@ a {
   flex-shrink: 0;
 }
 
-.vendor-card__call {
-  display: flex !important;
-  width: fit-content;
+.vendor-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
   margin-top: 14px;
 }
 

@@ -198,6 +198,7 @@ collections:
               - { label: "標誌圖片(選填,未上傳則顯示預設圖示)", name: "logo", widget: "image", required: false }
               - { label: "圖示(未上傳標誌時使用,Material Symbols 名稱)", name: "icon", widget: "string", required: false, default: "storefront" }
               - { label: "電話", name: "phone", widget: "string", required: false }
+              - { label: "Email", name: "email", widget: "string", required: false }
               - { label: "地址", name: "address", widget: "string", required: false }
               - { label: "說明", name: "note", widget: "text", required: false }
 
