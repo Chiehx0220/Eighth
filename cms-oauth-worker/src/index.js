@@ -1,3 +1,10 @@
+const ROOM_TYPES = ["單人房", "差價雙人房"];
+const CORS_HEADERS = {
+  "Access-Control-Allow-Origin": "*",
+  "Access-Control-Allow-Methods": "GET,POST,DELETE,OPTIONS",
+  "Access-Control-Allow-Headers": "Content-Type",
+};
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
@@ -8,9 +15,92 @@ export default {
     if (url.pathname === "/callback") {
       return handleCallback(url, env);
     }
-    return new Response("Not found", { status: 404 });
+
+    if (url.pathname === "/applications") {
+      if (request.method === "OPTIONS") {
+        return new Response(null, { headers: CORS_HEADERS });
+      }
+      if (request.method === "POST") {
+        return handleCreateApplication(request, env);
+      }
+      if (request.method === "GET") {
+        return handleListApplications(env);
+      }
+    }
+
+    var deleteMatch = url.pathname.match(/^\/applications\/([^/]+)$/);
+    if (deleteMatch) {
+      if (request.method === "OPTIONS") {
+        return new Response(null, { headers: CORS_HEADERS });
+      }
+      if (request.method === "DELETE") {
+        return handleDeleteApplication(deleteMatch[1], env);
+      }
+    }
+
+    return new Response("Not found", { status: 404, headers: CORS_HEADERS });
   },
 };
+
+function jsonResponse(data, status) {
+  return new Response(JSON.stringify(data), {
+    status: status || 200,
+    headers: { "Content-Type": "application/json", ...CORS_HEADERS },
+  });
+}
+
+const APPLICATIONS_KEY = "applications";
+
+async function readApplications(env) {
+  const raw = await env.APPLICATIONS.get(APPLICATIONS_KEY);
+  return raw ? JSON.parse(raw) : [];
+}
+
+async function writeApplications(env, applications) {
+  await env.APPLICATIONS.put(APPLICATIONS_KEY, JSON.stringify(applications));
+}
+
+async function handleCreateApplication(request, env) {
+  let body;
+  try {
+    body = await request.json();
+  } catch (e) {
+    return jsonResponse({ error: "Invalid JSON" }, 400);
+  }
+
+  const roomType = typeof body.roomType === "string" ? body.roomType.trim() : "";
+  const bedNumber = typeof body.bedNumber === "string" ? body.bedNumber.trim().slice(0, 50) : "";
+  const patientName = typeof body.patientName === "string" ? body.patientName.trim().slice(0, 50) : "";
+
+  if (!ROOM_TYPES.includes(roomType) || !bedNumber || !patientName) {
+    return jsonResponse({ error: "Missing or invalid fields" }, 400);
+  }
+
+  const entry = {
+    id: crypto.randomUUID(),
+    roomType,
+    bedNumber,
+    patientName,
+    submittedAt: new Date().toISOString(),
+  };
+
+  const applications = await readApplications(env);
+  applications.push(entry);
+  await writeApplications(env, applications);
+  return jsonResponse(entry, 201);
+}
+
+async function handleListApplications(env) {
+  const applications = await readApplications(env);
+  return jsonResponse({ applications });
+}
+
+async function handleDeleteApplication(id, env) {
+  const applications = await readApplications(env);
+  const remaining = applications.filter((app) => app.id !== id);
+  await writeApplications(env, remaining);
+  return jsonResponse({ ok: true });
+}
 
 function handleAuth(url, env) {
   const authUrl = new URL("https://github.com/login/oauth/authorize");

@@ -31,14 +31,10 @@ permalink: /rooms/
         <span class="m3-chip m3-chip--success room-card__status">有空房</span>
       {% endif %}
 
-      {% if available == 0 %}
-      <button type="button" class="btn btn--outlined room-card__request-btn" disabled>目前客滿</button>
-      {% else %}
-      <button type="button" class="btn btn--tonal room-card__request-btn" data-room-type="{{ photo.type }}">
+      <button type="button" class="btn btn--tonal room-card__request-btn" data-room-type="{{ photo.type }}" data-beds="{{ rooms | bedLabelsExcluding(photo.type) | dump }}">
         申請{{ photo.type }}
         <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
       </button>
-      {% endif %}
     </div>
   </div>
   {% endfor %}
@@ -71,8 +67,8 @@ permalink: /rooms/
     <h2 class="m3-dialog__title">申請<span id="dialog-room-type"></span></h2>
 
     <div class="m3-field">
-      <label for="dialog-bed">床號</label>
-      <input type="text" id="dialog-bed" name="bed-number" class="m3-field__input" required>
+      <label for="dialog-bed">目前床號</label>
+      <select id="dialog-bed" name="bed-number" class="m3-field__input" required></select>
     </div>
     <div class="m3-field">
       <label for="dialog-name">病患姓名</label>

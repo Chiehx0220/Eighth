@@ -78,6 +78,18 @@ module.exports = function (eleventyConfig) {
     return (rooms || []).flatMap((room) => roomBeds(room));
   });
 
+  // Room-upgrade applications ask for the patient's *current* bed, so the
+  // picker excludes beds belonging to the room type being applied for.
+  eleventyConfig.addFilter("bedLabelsExcluding", function (roomsData, excludeType) {
+    const groups = [
+      { type: "單人房", beds: (roomsData.single_room_beds || []).map((bed) => bed.label) },
+      { type: "差價雙人房", beds: (roomsData.double_room_beds || []).flatMap((room) => roomBeds(room)).map((bed) => bed.label) },
+      { type: "健保四人房", beds: (roomsData.insured_quad_room_beds || []).flatMap((room) => roomBeds(room)).map((bed) => bed.label) },
+      { type: "健保雙人房", beds: (roomsData.insured_double_room_beds || []).flatMap((room) => roomBeds(room)).map((bed) => bed.label) },
+    ];
+    return groups.filter((group) => group.type !== excludeType).flatMap((group) => group.beds);
+  });
+
   eleventyConfig.addFilter("vacantBedLabelsByRoomGender", function (rooms, gender) {
     return (rooms || [])
       .filter((room) => room.gender === gender)

@@ -4,3 +4,7 @@ compatibility_date = "2026-08-01"
 
 [vars]
 OAUTH_SCOPES = "repo,user"
+
+[[kv_namespaces]]
+binding = "APPLICATIONS"
+id = "88c13cdc60734559b7dee55530081fa1"
