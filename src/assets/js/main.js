@@ -198,7 +198,7 @@
 
   var roomCards = document.querySelectorAll(".room-card[data-room-type]");
   if (roomCards.length) {
-    var STATUS_KEY_BY_TYPE = { "單人房": "single_room_beds", "差價雙人房": "double_room_beds" };
+    var STATUS_KEY_BY_TYPE = { "單人房": "single_room_beds", "雙人房": "double_room_beds" };
 
     var computeVacancy = function (status, key) {
       var group = status[key];
@@ -280,7 +280,7 @@
       if (applications.length === 0) {
         var empty = document.createElement("p");
         empty.className = "applications-list__status";
-        empty.textContent = "目前沒有候補申請。";
+        empty.textContent = "目前沒有待排。";
         applicationsList.appendChild(empty);
         return;
       }
@@ -305,7 +305,7 @@
         var doneBtn = document.createElement("button");
         doneBtn.type = "button";
         doneBtn.className = "btn btn--text";
-        doneBtn.textContent = "標記已處理";
+        doneBtn.textContent = "已給床";
         doneBtn.addEventListener("click", function () {
           openMarkDoneDialog(app);
         });
@@ -330,14 +330,14 @@
           applicationsList.innerHTML = "";
           var errEl = document.createElement("p");
           errEl.className = "applications-list__status";
-          errEl.textContent = "候補申請載入失敗,請重新整理再試。";
+          errEl.textContent = "待排清單載入失敗,請重新整理再試。";
           applicationsList.appendChild(errEl);
         });
     }
 
     var BED_CATEGORIES = [
       { key: "single_room_beds", label: "單人房", kind: "flat", icon: "bed" },
-      { key: "double_room_beds", label: "差價雙人房", kind: "grouped", bedCount: 2, suffixes: [1, 2], icon: "group" },
+      { key: "double_room_beds", label: "雙人房", kind: "grouped", bedCount: 2, suffixes: [1, 2], icon: "group" },
       { key: "insured_quad_room_beds", label: "健保四人房", kind: "grouped", bedCount: 4, suffixes: [1, 2, 3, 5], icon: "groups" },
       { key: "insured_double_room_beds", label: "健保雙人房", kind: "grouped", bedCount: 2, suffixes: [1, 2], icon: "group" }
     ];
@@ -659,7 +659,7 @@
 
       var openMarkDoneDialog = function (app) {
         pendingApp = app;
-        markDoneSummary.textContent = "確定要將「" + app.roomType + "・" + app.bedNumber + "・" + app.patientName + "」標記為已處理嗎?請輸入員工號確認。";
+        markDoneSummary.textContent = "確定要將「" + app.roomType + "・" + app.bedNumber + "・" + app.patientName + "」標記為已給床嗎?請輸入員工號確認。";
         markDoneError.hidden = true;
         markDoneInput.value = "";
         markDoneDialog.showModal();

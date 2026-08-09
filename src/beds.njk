@@ -30,6 +30,11 @@ permalink: /beds/
     }
   </script>
 
+  <h2>待排單/雙人</h2>
+  <div id="applications-list" class="applications-list" aria-live="polite">
+    <p class="applications-list__status">載入中…</p>
+  </div>
+
   <div class="bed-status-toolbar">
     <h2>床位狀態</h2>
     <div class="bed-status-toolbar__actions">
@@ -48,16 +53,11 @@ permalink: /beds/
   <div id="bed-status-sections" class="bed-status-sections">
     <p class="applications-list__status">載入中…</p>
   </div>
-
-  <h2>候補申請</h2>
-  <div id="applications-list" class="applications-list" aria-live="polite">
-    <p class="applications-list__status">載入中…</p>
-  </div>
 </div>
 
 <dialog id="mark-done-dialog" class="m3-dialog">
   <form id="mark-done-form" class="m3-dialog__form" novalidate>
-    <h2 class="m3-dialog__title">確認標記已處理</h2>
+    <h2 class="m3-dialog__title">確認已給床</h2>
     <p class="m3-dialog__subtitle" id="mark-done-summary"></p>
 
     <div class="m3-field">

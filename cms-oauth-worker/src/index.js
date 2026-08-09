@@ -1,4 +1,4 @@
-const ROOM_TYPES = ["單人房", "差價雙人房"];
+const ROOM_TYPES = ["單人房", "雙人房"];
 const CORS_HEADERS = {
   "Access-Control-Allow-Origin": "*",
   "Access-Control-Allow-Methods": "GET,POST,PUT,DELETE,OPTIONS",

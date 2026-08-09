@@ -114,7 +114,7 @@ collections:
             hint: "這裡只新增/移除床位號碼。目前占用狀態請到 /beds/ 頁面編輯。"
             fields:
               - { label: "床號", name: "label", widget: "string" }
-          - label: "差價雙人房床位"
+          - label: "雙人房床位"
             name: "double_room_beds"
             widget: "list"
             allow_add: true
