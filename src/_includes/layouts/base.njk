@@ -62,7 +62,12 @@
             <span class="material-symbols-outlined" aria-hidden="true">text_increase</span>
           </button>
         </div>
-        <select id="lang-select" class="btn btn--outlined lang-select" aria-label="語言" data-i18n-aria="language"></select>
+        <div class="lang-menu-wrap">
+          <button type="button" id="lang-toggle" class="btn btn--outlined" aria-label="語言" aria-haspopup="true" aria-expanded="false" data-i18n-aria="language">
+            <span class="material-symbols-outlined" aria-hidden="true">language</span>
+          </button>
+          <ul class="lang-menu" id="lang-menu" role="menu" hidden></ul>
+        </div>
       </div>
     </div>
   </header>

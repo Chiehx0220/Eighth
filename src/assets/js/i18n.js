@@ -119,6 +119,8 @@
 
   var LANG_NAMES = { zh: "中文", en: "English", id: "Bahasa Indonesia", vi: "Tiếng Việt" };
 
+  var menuItemEls = {};
+
   function applyLang(lang) {
     var dict = TRANSLATIONS[lang] || TRANSLATIONS[DEFAULT_LANG];
 
@@ -139,26 +141,68 @@
 
     document.documentElement.setAttribute("lang", lang === "zh" ? "zh-Hant" : lang);
 
-    var select = document.getElementById("lang-select");
-    if (select && select.value !== lang) select.value = lang;
+    Object.keys(menuItemEls).forEach(function (code) {
+      menuItemEls[code].setAttribute("aria-current", code === lang ? "true" : "false");
+    });
   }
 
   var saved = localStorage.getItem(STORAGE_KEY) || DEFAULT_LANG;
   applyLang(saved);
 
-  var select = document.getElementById("lang-select");
-  if (select) {
-    Object.keys(LANG_NAMES).forEach(function (code) {
-      var opt = document.createElement("option");
-      opt.value = code;
-      opt.textContent = LANG_NAMES[code];
-      select.appendChild(opt);
-    });
-    select.value = saved;
+  var toggle = document.getElementById("lang-toggle");
+  var menu = document.getElementById("lang-menu");
 
-    select.addEventListener("change", function () {
-      localStorage.setItem(STORAGE_KEY, select.value);
-      applyLang(select.value);
+  if (toggle && menu) {
+    Object.keys(LANG_NAMES).forEach(function (code) {
+      var li = document.createElement("li");
+      var item = document.createElement("button");
+      item.type = "button";
+      item.className = "lang-menu__item";
+      item.setAttribute("role", "menuitem");
+      item.setAttribute("lang", code === "zh" ? "zh-Hant" : code);
+      item.textContent = LANG_NAMES[code];
+      item.addEventListener("click", function () {
+        localStorage.setItem(STORAGE_KEY, code);
+        applyLang(code);
+        closeMenu();
+        toggle.focus();
+      });
+      menuItemEls[code] = item;
+      li.appendChild(item);
+      menu.appendChild(li);
+    });
+
+    applyLang(saved);
+
+    function openMenu() {
+      menu.hidden = false;
+      toggle.setAttribute("aria-expanded", "true");
+    }
+
+    function closeMenu() {
+      menu.hidden = true;
+      toggle.setAttribute("aria-expanded", "false");
+    }
+
+    toggle.addEventListener("click", function () {
+      if (menu.hidden) {
+        openMenu();
+      } else {
+        closeMenu();
+      }
+    });
+
+    document.addEventListener("click", function (e) {
+      if (!menu.hidden && e.target !== toggle && !menu.contains(e.target) && !toggle.contains(e.target)) {
+        closeMenu();
+      }
+    });
+
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && !menu.hidden) {
+        closeMenu();
+        toggle.focus();
+      }
     });
   }
 })();
