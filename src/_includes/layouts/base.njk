@@ -27,13 +27,13 @@
   </script>
 </head>
 <body>
-  <a href="#main-content" class="skip-link">跳到主要內容</a>
+  <a href="#main-content" class="skip-link" data-i18n="skip">跳到主要內容</a>
 
   <header class="top-app-bar">
     <div class="top-app-bar__row">
       {% if page.url != "/" %}
       <div class="top-app-bar__leading">
-        <button type="button" class="top-app-bar__back" id="page-back" data-fallback="{{ '/' | url }}" aria-label="返回上一頁">
+        <button type="button" class="top-app-bar__back" id="page-back" data-fallback="{{ '/' | url }}" aria-label="返回上一頁" data-i18n-aria="back">
           <span class="material-symbols-outlined" aria-hidden="true">arrow_back</span>
         </button>
         <span class="top-app-bar__title">{{ title }}</span>
@@ -47,21 +47,22 @@
 
       <div class="a11y-controls">
         {% if page.url != "/" %}
-        <a href="{{ '/' | url }}" class="btn btn--tonal" aria-label="回首頁">
+        <a href="{{ '/' | url }}" class="btn btn--tonal" aria-label="回首頁" data-i18n-aria="home">
           <span class="material-symbols-outlined" aria-hidden="true">home</span>
         </a>
         {% endif %}
-        <button type="button" id="theme-toggle" class="btn btn--outlined" aria-label="切換日間/夜間模式">
+        <button type="button" id="theme-toggle" class="btn btn--outlined" aria-label="切換日間/夜間模式" data-i18n-aria="theme">
           <span class="material-symbols-outlined" id="theme-toggle-icon" aria-hidden="true">dark_mode</span>
         </button>
-        <div class="font-toggle" role="group" aria-label="字體大小">
-          <button type="button" id="font-smaller" class="btn btn--outlined" aria-label="縮小字體">
+        <div class="font-toggle" role="group" aria-label="字體大小" data-i18n-aria="fontGroup">
+          <button type="button" id="font-smaller" class="btn btn--outlined" aria-label="縮小字體" data-i18n-aria="fontSmaller">
             <span class="material-symbols-outlined" aria-hidden="true">text_decrease</span>
           </button>
-          <button type="button" id="font-larger" class="btn btn--outlined" aria-label="放大字體">
+          <button type="button" id="font-larger" class="btn btn--outlined" aria-label="放大字體" data-i18n-aria="fontLarger">
             <span class="material-symbols-outlined" aria-hidden="true">text_increase</span>
           </button>
         </div>
+        <select id="lang-select" class="btn btn--outlined lang-select" aria-label="語言" data-i18n-aria="language"></select>
       </div>
     </div>
   </header>
@@ -71,9 +72,10 @@
   </main>
 
   <footer class="site-footer">
-    <p>如頁面資訊與現場公告不一致,請以護理站現場說明為準。</p>
+    <p data-i18n="footerDisclaimer">如頁面資訊與現場公告不一致,請以護理站現場說明為準。</p>
   </footer>
 
   <script src="{{ '/assets/js/main.js' | url }}"></script>
+  <script src="{{ '/assets/js/i18n.js' | url }}"></script>
 </body>
 </html>

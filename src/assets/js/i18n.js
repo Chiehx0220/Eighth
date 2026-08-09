@@ -1,0 +1,159 @@
+(function () {
+  var STORAGE_KEY = "lang";
+  var DEFAULT_LANG = "zh";
+
+  var TRANSLATIONS = {
+    zh: {
+      skip: "跳到主要內容",
+      back: "返回上一頁",
+      home: "回首頁",
+      theme: "切換日間/夜間模式",
+      fontGroup: "字體大小",
+      fontSmaller: "縮小字體",
+      fontLarger: "放大字體",
+      language: "語言",
+      tagline: "8樓住院期間的好幫手,免洽護理站,常見問題一次查",
+      footerDisclaimer: "如頁面資訊與現場公告不一致,請以護理站現場說明為準。",
+      "nav.dining.title": "餐飲資訊",
+      "nav.dining.desc": "員工餐廳/美食街菜單與價格",
+      "nav.wards.title": "病房單位介紹",
+      "nav.wards.desc": "各單位護理人員配置與護病比",
+      "nav.rooms.title": "單人房/雙人房",
+      "nav.rooms.desc": "房型照片、價格與空床狀態",
+      "nav.selfpay.title": "自費項目",
+      "nav.selfpay.desc": "常見自費項目價格說明",
+      "nav.visiting.title": "探病/會客",
+      "nav.visiting.desc": "會客時間與人數規定",
+      "nav.discharge.title": "出院須知",
+      "nav.discharge.desc": "出院流程與診斷證明申請",
+      "nav.suggest.title": "意見信箱",
+      "nav.suggest.desc": "投訴、感謝函都能在這裡反映",
+      "nav.partners.title": "合作廠商",
+      "nav.partners.desc": "救護車、醫療器材等合作廠商資訊"
+    },
+    en: {
+      skip: "Skip to main content",
+      back: "Back",
+      home: "Home",
+      theme: "Toggle light/dark mode",
+      fontGroup: "Font size",
+      fontSmaller: "Decrease font size",
+      fontLarger: "Increase font size",
+      language: "Language",
+      tagline: "Your helper during your stay on Ward 8 — find common answers without asking the nursing station",
+      footerDisclaimer: "If the information on this page differs from on-site notices, please follow the nursing station's explanation.",
+      "nav.dining.title": "Dining Info",
+      "nav.dining.desc": "Staff cafeteria & food court menu and prices",
+      "nav.wards.title": "Ward Overview",
+      "nav.wards.desc": "Nursing staff assignment and nurse-to-patient ratio by unit",
+      "nav.rooms.title": "Private/Double Rooms",
+      "nav.rooms.desc": "Room photos, prices, and bed availability",
+      "nav.selfpay.title": "Self-pay Items",
+      "nav.selfpay.desc": "Common self-pay item prices",
+      "nav.visiting.title": "Visiting",
+      "nav.visiting.desc": "Visiting hours and visitor number rules",
+      "nav.discharge.title": "Discharge Info",
+      "nav.discharge.desc": "Discharge process and medical certificate requests",
+      "nav.suggest.title": "Feedback",
+      "nav.suggest.desc": "Submit complaints or thank-you notes here",
+      "nav.partners.title": "Partner Vendors",
+      "nav.partners.desc": "Ambulance, medical equipment, and other partner services"
+    },
+    id: {
+      skip: "Lompat ke konten utama",
+      back: "Kembali",
+      home: "Beranda",
+      theme: "Ganti mode terang/gelap",
+      fontGroup: "Ukuran huruf",
+      fontSmaller: "Perkecil huruf",
+      fontLarger: "Perbesar huruf",
+      language: "Bahasa",
+      tagline: "Bantuan Anda selama dirawat di Bangsal 8 — temukan jawaban tanpa perlu bertanya ke pos perawat",
+      footerDisclaimer: "Jika informasi di halaman ini berbeda dengan pengumuman di lokasi, silakan mengikuti penjelasan dari pos perawat.",
+      "nav.dining.title": "Info Makanan",
+      "nav.dining.desc": "Menu dan harga kantin karyawan & food court",
+      "nav.wards.title": "Info Bangsal",
+      "nav.wards.desc": "Penempatan staf perawat dan rasio perawat-pasien per unit",
+      "nav.rooms.title": "Kamar Single/Double",
+      "nav.rooms.desc": "Foto kamar, harga, dan ketersediaan tempat tidur",
+      "nav.selfpay.title": "Item Berbayar Mandiri",
+      "nav.selfpay.desc": "Daftar harga item yang dibayar sendiri",
+      "nav.visiting.title": "Kunjungan",
+      "nav.visiting.desc": "Jam kunjungan dan aturan jumlah pengunjung",
+      "nav.discharge.title": "Info Pulang",
+      "nav.discharge.desc": "Proses pemulangan dan permohonan surat keterangan medis",
+      "nav.suggest.title": "Kotak Saran",
+      "nav.suggest.desc": "Sampaikan keluhan atau ucapan terima kasih di sini",
+      "nav.partners.title": "Mitra Layanan",
+      "nav.partners.desc": "Ambulans, alat medis, dan mitra layanan lainnya"
+    },
+    vi: {
+      skip: "Chuyển đến nội dung chính",
+      back: "Quay lại",
+      home: "Trang chủ",
+      theme: "Chuyển chế độ sáng/tối",
+      fontGroup: "Cỡ chữ",
+      fontSmaller: "Giảm cỡ chữ",
+      fontLarger: "Tăng cỡ chữ",
+      language: "Ngôn ngữ",
+      tagline: "Trợ thủ của bạn trong thời gian nằm viện tại khoa 8 — tra cứu các câu hỏi thường gặp mà không cần hỏi trạm điều dưỡng",
+      footerDisclaimer: "Nếu thông tin trên trang này khác với thông báo tại chỗ, vui lòng theo hướng dẫn của trạm điều dưỡng.",
+      "nav.dining.title": "Thông tin ăn uống",
+      "nav.dining.desc": "Thực đơn và giá căng tin nhân viên & khu ẩm thực",
+      "nav.wards.title": "Giới thiệu khoa phòng",
+      "nav.wards.desc": "Bố trí nhân viên điều dưỡng và tỷ lệ điều dưỡng-bệnh nhân từng đơn vị",
+      "nav.rooms.title": "Phòng đơn/đôi",
+      "nav.rooms.desc": "Hình ảnh phòng, giá và tình trạng giường trống",
+      "nav.selfpay.title": "Mục tự chi trả",
+      "nav.selfpay.desc": "Bảng giá các mục tự chi trả phổ biến",
+      "nav.visiting.title": "Thăm bệnh",
+      "nav.visiting.desc": "Giờ thăm và quy định số lượng người thăm",
+      "nav.discharge.title": "Thông tin xuất viện",
+      "nav.discharge.desc": "Quy trình xuất viện và xin giấy chứng nhận y tế",
+      "nav.suggest.title": "Hộp góp ý",
+      "nav.suggest.desc": "Gửi khiếu nại hoặc lời cảm ơn tại đây",
+      "nav.partners.title": "Đối tác dịch vụ",
+      "nav.partners.desc": "Xe cứu thương, thiết bị y tế và các đối tác khác"
+    }
+  };
+
+  var LANG_NAMES = { zh: "中文", en: "English", id: "Bahasa Indonesia", vi: "Tiếng Việt" };
+
+  function applyLang(lang) {
+    var dict = TRANSLATIONS[lang] || TRANSLATIONS[DEFAULT_LANG];
+
+    document.querySelectorAll("[data-i18n]").forEach(function (el) {
+      var key = el.getAttribute("data-i18n");
+      if (dict[key] !== undefined) el.textContent = dict[key];
+    });
+
+    document.querySelectorAll("[data-i18n-aria]").forEach(function (el) {
+      var key = el.getAttribute("data-i18n-aria");
+      if (dict[key] !== undefined) el.setAttribute("aria-label", dict[key]);
+    });
+
+    document.documentElement.setAttribute("lang", lang === "zh" ? "zh-Hant" : lang);
+
+    var select = document.getElementById("lang-select");
+    if (select && select.value !== lang) select.value = lang;
+  }
+
+  var saved = localStorage.getItem(STORAGE_KEY) || DEFAULT_LANG;
+  applyLang(saved);
+
+  var select = document.getElementById("lang-select");
+  if (select) {
+    Object.keys(LANG_NAMES).forEach(function (code) {
+      var opt = document.createElement("option");
+      opt.value = code;
+      opt.textContent = LANG_NAMES[code];
+      select.appendChild(opt);
+    });
+    select.value = saved;
+
+    select.addEventListener("change", function () {
+      localStorage.setItem(STORAGE_KEY, select.value);
+      applyLang(select.value);
+    });
+  }
+})();
