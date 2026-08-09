@@ -132,6 +132,11 @@
       if (dict[key] !== undefined) el.setAttribute("aria-label", dict[key]);
     });
 
+    document.querySelectorAll("[data-i18n-dynamic]").forEach(function (el) {
+      var value = el.getAttribute("data-i18n-" + lang);
+      if (value) el.textContent = value;
+    });
+
     document.documentElement.setAttribute("lang", lang === "zh" ? "zh-Hant" : lang);
 
     var select = document.getElementById("lang-select");

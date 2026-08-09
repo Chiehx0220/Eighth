@@ -6,9 +6,9 @@ permalink: /partners/
 <h1>合作廠商</h1>
 <p>以下為與本病房合作之廠商,如有需要可直接聯繫。</p>
 
-{% if partners.list.length %}
+{% if partnersI18n.list.length %}
 <div class="vendor-grid">
-  {% for partner in partners.list %}
+  {% for partner in partnersI18n.list %}
   <div class="info-card vendor-card">
     {% if partner.logo %}
     <img src="{{ partner.logo }}" alt="{{ partner.name }}標誌" class="vendor-card__logo" loading="lazy" decoding="async">
@@ -18,9 +18,21 @@ permalink: /partners/
 
     <div class="info-card__body">
       <p class="info-card__title">{{ partner.name }}</p>
-      {% if partner.category %}<span class="m3-chip vendor-card__category">{{ partner.category }}</span>{% endif %}
+      {% if partner.category %}
+      <span class="m3-chip vendor-card__category" data-i18n-dynamic
+        data-i18n-zh="{{ partner.category }}"
+        data-i18n-en="{{ partner.category_en }}"
+        data-i18n-id="{{ partner.category_id }}"
+        data-i18n-vi="{{ partner.category_vi }}">{{ partner.category }}</span>
+      {% endif %}
 
-      {% if partner.note %}<p class="info-card__desc vendor-card__note">{{ partner.note }}</p>{% endif %}
+      {% if partner.note %}
+      <p class="info-card__desc vendor-card__note" data-i18n-dynamic
+        data-i18n-zh="{{ partner.note }}"
+        data-i18n-en="{{ partner.note_en }}"
+        data-i18n-id="{{ partner.note_id }}"
+        data-i18n-vi="{{ partner.note_vi }}">{{ partner.note }}</p>
+      {% endif %}
 
       {% if partner.address %}
       <p class="vendor-card__address">
@@ -55,3 +67,4 @@ permalink: /partners/
 {% else %}
 <p>目前尚無合作廠商資料。</p>
 {% endif %}
+

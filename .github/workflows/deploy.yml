@@ -31,6 +31,8 @@ jobs:
         run: npm ci
 
       - name: Build site
+        env:
+          GOOGLE_TRANSLATE_API_KEY: ${{ secrets.GOOGLE_TRANSLATE_API_KEY }}
         run: npx eleventy --pathprefix=/Eighth/
 
       - name: Setup Pages
