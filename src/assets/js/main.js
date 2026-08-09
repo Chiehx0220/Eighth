@@ -280,7 +280,7 @@
       if (applications.length === 0) {
         var empty = document.createElement("p");
         empty.className = "applications-list__status";
-        empty.textContent = "目前沒有待排。";
+        empty.textContent = "暫無待排床位";
         applicationsList.appendChild(empty);
         return;
       }

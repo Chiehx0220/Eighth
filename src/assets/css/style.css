@@ -1640,6 +1640,7 @@ table.price-table tbody tr:hover {
   flex-direction: column;
   gap: 12px;
   margin-top: 12px;
+  margin-bottom: 28px;
 }
 
 .applications-list__status {
