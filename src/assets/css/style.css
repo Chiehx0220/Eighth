@@ -332,6 +332,10 @@ a {
   display: none;
 }
 
+.btn[hidden] {
+  display: none;
+}
+
 .font-toggle {
   display: flex;
   gap: 4px;
