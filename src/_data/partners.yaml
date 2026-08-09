@@ -9,7 +9,9 @@ list:
         number: 02-27788-9163
     email: ivy388366@gmail.com
     address: 台北市南港區東明街1巷23號
-    note: 聯絡人:高蓁翎(Ivy)，巡班督導主管。傳真:02-2783-4462。
+    note: |-
+      聯絡人:高蓁翎(巡班督導主管)
+      傳真:02-2783-4462
   - name: H專業剪髮
     category: 病床洗髮
     icon: spa
@@ -22,7 +24,7 @@ list:
     icon: self_improvement
     phones:
       - number: 0800-555-186
-    note: GOLD KIRIN Memorial Services。服務範圍:雙北、桃園、新竹、苗栗、台中、嘉義、台南、高雄。
+    note: 雙北｜桃園｜新竹｜苗栗｜台中｜嘉義｜台南｜高雄
   - name: 仁光救護車有限公司
     category: 救護車
     icon: local_shipping
