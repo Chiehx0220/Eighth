@@ -1004,14 +1004,18 @@ a {
   display: flex;
   align-items: center;
   gap: 6px;
-  font-size: var(--md-sys-typescale-body-medium-size);
+  font-size: var(--md-sys-typescale-label-small-size);
   color: var(--md-sys-color-on-surface-variant);
   margin: 10px 0 0;
 }
 
 .vendor-card__address .material-symbols-outlined {
-  font-size: 20px;
+  font-size: 18px;
   flex-shrink: 0;
+}
+
+.vendor-card__address-text {
+  white-space: nowrap;
 }
 
 .vendor-card__actions {
