@@ -37,11 +37,11 @@ permalink: /dining/
 {% if dining.otherShops.list.length %}
 <div class="ward-block">
   <h2>{{ dining.otherShops.name }}</h2>
-  <p>位置:{{ dining.otherShops.location }}</p>
   <ul class="shop-list">
     {% for shop in dining.otherShops.list %}
     <li class="shop-list__item">
       <p class="shop-list__name">{{ shop.name }}</p>
+      {% if shop.location %}<p class="shop-list__location">位置:{{ shop.location }}</p>{% endif %}
       <p class="shop-list__sells">{{ shop.sells }}</p>
     </li>
     {% endfor %}

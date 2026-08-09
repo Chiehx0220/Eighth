@@ -913,6 +913,12 @@ a {
   color: var(--md-sys-color-on-surface);
 }
 
+.shop-list__location {
+  margin: 4px 0 0;
+  font-size: var(--md-sys-typescale-label-small-size);
+  color: var(--md-sys-color-on-surface-variant);
+}
+
 .shop-list__sells {
   margin: 4px 0 0;
   font-size: var(--md-sys-typescale-body-medium-size);

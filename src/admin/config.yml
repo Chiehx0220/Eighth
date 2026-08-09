@@ -46,14 +46,13 @@ collections:
             widget: "object"
             fields:
               - { label: "名稱", name: "name", widget: "string" }
-              - { label: "位置", name: "location", widget: "string" }
-              - { label: "營業時間", name: "hours", widget: "string" }
               - label: "商店列表"
                 name: "list"
                 widget: "list"
                 allow_add: true
                 fields:
                   - { label: "店名", name: "name", widget: "string" }
+                  - { label: "位置", name: "location", widget: "string", required: false }
                   - { label: "這個店在賣什麼", name: "sells", widget: "string" }
 
   - name: "wards"

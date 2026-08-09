@@ -35,8 +35,7 @@ mealService:
 
 otherShops:
   name: 院內其他商店
-  location: 一樓
-  hours: 07:00-20:00
   list:
     - name: 便當
+      location: 一樓
       sells: 多種菜色可選
