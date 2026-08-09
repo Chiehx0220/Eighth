@@ -271,6 +271,7 @@ a {
   align-items: center;
   gap: 6px;
   border: none;
+  text-decoration: none;
 }
 
 /* MD3 state layer: a currentColor overlay that fades in on hover/focus/press,
@@ -314,13 +315,11 @@ a {
   background: var(--md-sys-color-primary);
   color: var(--md-sys-color-on-primary);
   padding: 12px 28px;
-  text-decoration: none;
 }
 
 .btn--text {
   background: transparent;
   color: var(--md-sys-color-primary);
-  text-decoration: none;
 }
 
 .font-toggle {
@@ -982,6 +981,19 @@ a {
   background: var(--md-sys-color-primary-container);
   color: var(--md-sys-color-on-primary-container);
   border: none;
+}
+
+.vendor-card__phone {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+}
+
+.vendor-card__phone-label {
+  font-size: var(--md-sys-typescale-label-small-size);
+  color: var(--md-sys-color-on-surface-variant);
+  padding: 0 4px;
 }
 
 .vendor-card__note {

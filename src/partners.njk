@@ -32,10 +32,13 @@ permalink: /partners/
       {% if partner.phones.length or partner.email %}
       <div class="vendor-card__actions">
         {% for phone in partner.phones %}
-        <a href="tel:{{ phone.number }}" class="btn btn--tonal">
-          <span class="material-symbols-outlined" aria-hidden="true">call</span>
-          {{ phone.number }}{% if phone.label %}({{ phone.label }}){% endif %}
-        </a>
+        <div class="vendor-card__phone">
+          {% if phone.label %}<span class="vendor-card__phone-label">{{ phone.label }}</span>{% endif %}
+          <a href="tel:{{ phone.number }}" class="btn btn--tonal">
+            <span class="material-symbols-outlined" aria-hidden="true">call</span>
+            {{ phone.number }}
+          </a>
+        </div>
         {% endfor %}
         {% if partner.email %}
         <a href="mailto:{{ partner.email }}" class="btn btn--outlined">
