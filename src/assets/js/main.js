@@ -365,6 +365,7 @@
       chip.disabled = !editable;
       chip.className = "m3-chip bed-status-chip " + (occupied ? "m3-chip--outline" : "m3-chip--success") +
         (pending ? " bed-status-chip--pending" : "") + (editable ? " bed-status-chip--editable" : "");
+      chip.setAttribute("aria-label", label + (occupied ? " 占用" : " 空床"));
       if (!occupied) {
         var icon = document.createElement("span");
         icon.className = "material-symbols-outlined";
@@ -373,7 +374,7 @@
         chip.appendChild(icon);
       }
       var text = document.createElement("span");
-      text.textContent = label + (occupied ? " 占用" : " 空床");
+      text.textContent = label;
       chip.appendChild(text);
       if (editable) chip.addEventListener("click", onToggle);
       return chip;
