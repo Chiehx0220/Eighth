@@ -336,10 +336,10 @@
     }
 
     var BED_CATEGORIES = [
-      { key: "single_room_beds", label: "單人房", kind: "flat" },
-      { key: "double_room_beds", label: "差價雙人房", kind: "grouped", bedCount: 2, suffixes: [1, 2] },
-      { key: "insured_quad_room_beds", label: "健保四人房", kind: "grouped", bedCount: 4, suffixes: [1, 2, 3, 5] },
-      { key: "insured_double_room_beds", label: "健保雙人房", kind: "grouped", bedCount: 2, suffixes: [1, 2] }
+      { key: "single_room_beds", label: "單人房", kind: "flat", icon: "bed" },
+      { key: "double_room_beds", label: "差價雙人房", kind: "grouped", bedCount: 2, suffixes: [1, 2], icon: "group" },
+      { key: "insured_quad_room_beds", label: "健保四人房", kind: "grouped", bedCount: 4, suffixes: [1, 2, 3, 5], icon: "groups" },
+      { key: "insured_double_room_beds", label: "健保雙人房", kind: "grouped", bedCount: 2, suffixes: [1, 2], icon: "group" }
     ];
 
     var bedStructureEl = document.getElementById("bed-structure-data");
@@ -366,13 +366,6 @@
       chip.className = "m3-chip bed-status-chip " + (occupied ? "m3-chip--outline" : "m3-chip--success") +
         (pending ? " bed-status-chip--pending" : "") + (editable ? " bed-status-chip--editable" : "");
       chip.setAttribute("aria-label", label + (occupied ? " 占用" : " 空床"));
-      if (!occupied) {
-        var icon = document.createElement("span");
-        icon.className = "material-symbols-outlined";
-        icon.setAttribute("aria-hidden", "true");
-        icon.textContent = "check";
-        chip.appendChild(icon);
-      }
       var text = document.createElement("span");
       text.textContent = label;
       chip.appendChild(text);
@@ -478,13 +471,21 @@
 
         var head = document.createElement("div");
         head.className = "bed-status-card__head";
+        var titleGroup = document.createElement("div");
+        titleGroup.className = "bed-status-card__title-group";
+        var titleIcon = document.createElement("span");
+        titleIcon.className = "material-symbols-outlined";
+        titleIcon.setAttribute("aria-hidden", "true");
+        titleIcon.textContent = cat.icon;
         var title = document.createElement("span");
         title.className = "bed-status-card__title";
         title.textContent = cat.label;
+        titleGroup.appendChild(titleIcon);
+        titleGroup.appendChild(title);
         var countChip = document.createElement("span");
         countChip.className = "m3-chip m3-chip--secondary";
         countChip.textContent = vacant === 0 ? "客滿" : "剩 " + vacant + "/" + total + " 床";
-        head.appendChild(title);
+        head.appendChild(titleGroup);
         head.appendChild(countChip);
         card.appendChild(head);
 
