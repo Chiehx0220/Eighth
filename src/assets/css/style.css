@@ -933,12 +933,34 @@ a {
   margin-top: 12px;
 }
 
-/* ---- Partner vendor cards (reuses .info-card for visual consistency with the rest of the site) ---- */
+/* ---- Partner vendor cards (elevated card: always-on shadow, primary-tinted badge/chip/actions) ---- */
 .vendor-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
   gap: 16px;
   margin-top: 12px;
+}
+
+.vendor-card {
+  box-shadow: var(--md-sys-elevation-level2);
+  transition:
+    box-shadow 0.2s var(--md-sys-motion-easing-standard),
+    transform 0.2s var(--md-sys-motion-easing-standard);
+}
+
+.vendor-card:hover {
+  box-shadow: var(--md-sys-elevation-level3);
+  transform: translateY(-2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .vendor-card { transition: none; }
+  .vendor-card:hover { transform: none; }
+}
+
+.vendor-card .info-card__icon {
+  background: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
 }
 
 .vendor-card__logo {
@@ -951,7 +973,15 @@ a {
 }
 
 .vendor-card__category {
+  background: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
   margin: 2px 0 0;
+}
+
+.vendor-card__actions .btn {
+  background: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
+  border: none;
 }
 
 .vendor-card__note {
