@@ -344,6 +344,7 @@
 
     var bedStructureEl = document.getElementById("bed-structure-data");
     var bedStatusSections = document.getElementById("bed-status-sections");
+    var bedStatusEditBtn = document.getElementById("bed-status-edit");
     var bedStatusSaveBtn = document.getElementById("bed-status-save");
     var bedStatusCancelBtn = document.getElementById("bed-status-cancel");
     var bedStatusSaveCount = document.getElementById("bed-status-save-count");
@@ -351,16 +352,19 @@
     var bedStructure = bedStructureEl ? JSON.parse(bedStructureEl.textContent) : {};
     var bedCommitted = {};
     var bedWorking = {};
+    var bedEditMode = false;
 
     function bedLabel(category, roomOrLabel, bedIdx) {
       if (category.kind === "flat") return roomOrLabel;
       return roomOrLabel + "-" + category.suffixes[bedIdx];
     }
 
-    function createBedChip(label, occupied, pending, onToggle) {
+    function createBedChip(label, occupied, pending, editable, onToggle) {
       var chip = document.createElement("button");
       chip.type = "button";
-      chip.className = "m3-chip bed-status-chip " + (occupied ? "m3-chip--outline" : "m3-chip--success") + (pending ? " bed-status-chip--pending" : "");
+      chip.disabled = !editable;
+      chip.className = "m3-chip bed-status-chip " + (occupied ? "m3-chip--outline" : "m3-chip--success") +
+        (pending ? " bed-status-chip--pending" : "") + (editable ? " bed-status-chip--editable" : "");
       if (!occupied) {
         var icon = document.createElement("span");
         icon.className = "material-symbols-outlined";
@@ -371,11 +375,18 @@
       var text = document.createElement("span");
       text.textContent = label + (occupied ? " 占用" : " 空床");
       chip.appendChild(text);
-      chip.addEventListener("click", onToggle);
+      if (editable) chip.addEventListener("click", onToggle);
       return chip;
     }
 
-    function createGenderSegmented(workingRoom, committedRoom) {
+    function createGenderControl(workingRoom, committedRoom, editable) {
+      if (!editable) {
+        var badge = document.createElement("span");
+        badge.className = "bed-status-gender-badge";
+        badge.textContent = workingRoom.gender || "未設定";
+        return badge;
+      }
+
       var group = document.createElement("div");
       group.className = "bed-status-segmented" + (workingRoom.gender !== committedRoom.gender ? " bed-status-segmented--pending" : "");
 
@@ -473,42 +484,59 @@
         head.appendChild(countChip);
         card.appendChild(head);
 
-        ids.forEach(function (id) {
-          var row = document.createElement("div");
-          row.className = "bed-status-room";
+        var grid = document.createElement("div");
+        grid.className = "bed-status-grid" + (cat.kind === "grouped" ? " bed-status-grid--rooms" : "");
 
+        ids.forEach(function (id) {
           if (cat.kind === "grouped") {
             var committedRoom = bedCommitted[cat.key][id];
             var workingRoom = bedWorking[cat.key][id];
 
-            row.appendChild(createGenderSegmented(workingRoom, committedRoom));
+            var tile = document.createElement("div");
+            tile.className = "bed-status-room-tile";
 
+            var tileHead = document.createElement("div");
+            tileHead.className = "bed-status-room-tile__head";
+            var number = document.createElement("span");
+            number.className = "bed-status-room-tile__number";
+            number.textContent = id;
+            tileHead.appendChild(number);
+            tileHead.appendChild(createGenderControl(workingRoom, committedRoom, bedEditMode));
+            tile.appendChild(tileHead);
+
+            var tileBeds = document.createElement("div");
+            tileBeds.className = "bed-status-room-tile__beds";
             workingRoom.beds.forEach(function (occupied, bIdx) {
               var pending = occupied !== committedRoom.beds[bIdx];
-              row.appendChild(createBedChip(bedLabel(cat, id, bIdx), occupied, pending, function () {
+              tileBeds.appendChild(createBedChip(bedLabel(cat, id, bIdx), occupied, pending, bedEditMode, function () {
                 workingRoom.beds[bIdx] = !workingRoom.beds[bIdx];
                 renderBedStatus();
               }));
             });
+            tile.appendChild(tileBeds);
+
+            grid.appendChild(tile);
           } else {
             var occupied = bedWorking[cat.key][id];
             var pending = occupied !== bedCommitted[cat.key][id];
-            row.appendChild(createBedChip(id, occupied, pending, function () {
+            grid.appendChild(createBedChip(id, occupied, pending, bedEditMode, function () {
               bedWorking[cat.key][id] = !bedWorking[cat.key][id];
               renderBedStatus();
             }));
           }
-
-          card.appendChild(row);
         });
 
+        card.appendChild(grid);
         bedStatusSections.appendChild(card);
       });
 
       var pendingCount = countBedChanges();
       bedStatusSaveCount.textContent = pendingCount > 0 ? "(" + pendingCount + ")" : "";
       bedStatusSaveBtn.disabled = pendingCount === 0;
-      bedStatusCancelBtn.disabled = pendingCount === 0;
+
+      bedStatusEditBtn.hidden = bedEditMode;
+      bedStatusSaveBtn.hidden = !bedEditMode;
+      bedStatusCancelBtn.hidden = !bedEditMode;
     }
 
     function loadBedStatus() {
@@ -533,6 +561,14 @@
         });
     }
 
+    if (bedStatusEditBtn) {
+      bedStatusEditBtn.addEventListener("click", function () {
+        bedEditMode = true;
+        bedStatusFlash.textContent = "";
+        renderBedStatus();
+      });
+    }
+
     if (bedStatusSaveBtn) {
       bedStatusSaveBtn.addEventListener("click", function () {
         var pendingCount = countBedChanges();
@@ -546,6 +582,7 @@
           .then(function (res) {
             if (!res.ok) throw new Error("request failed");
             bedCommitted = JSON.parse(JSON.stringify(bedWorking));
+            bedEditMode = false;
             renderBedStatus();
             bedStatusFlash.textContent = "已儲存 " + pendingCount + " 處變更。";
           })
@@ -559,6 +596,8 @@
     if (bedStatusCancelBtn) {
       bedStatusCancelBtn.addEventListener("click", function () {
         bedWorking = JSON.parse(JSON.stringify(bedCommitted));
+        bedEditMode = false;
+        bedStatusFlash.textContent = "";
         renderBedStatus();
       });
     }

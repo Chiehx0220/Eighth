@@ -1434,17 +1434,37 @@ table.price-table tbody tr:hover {
   }
 }
 
+.bed-status-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.bed-status-toolbar h2 {
+  margin: 0;
+}
+
+.bed-status-toolbar__actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
 .bed-status-sections {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 16px;
+  margin-top: 8px;
 }
 
 .bed-status-card {
   background: var(--md-sys-color-surface-container-lowest);
   border: 1px solid var(--md-sys-color-outline-variant);
-  border-radius: var(--md-sys-shape-corner-medium);
-  padding: 16px 20px;
+  border-radius: var(--md-sys-shape-corner-large);
+  padding: 18px 20px;
 }
 
 .bed-status-card__head {
@@ -1459,19 +1479,55 @@ table.price-table tbody tr:hover {
   font-size: var(--md-sys-typescale-title-medium-size);
 }
 
-.bed-status-room {
+/* Grid of individual bed chips (single-room, no grouping) */
+.bed-status-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+  gap: 8px;
+}
+
+/* Grid of room tiles (grouped: double/quad/insured-double rooms) */
+.bed-status-grid--rooms {
+  grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
+}
+
+.bed-status-room-tile {
+  background: var(--md-sys-color-surface-container-low);
+  border-radius: var(--md-sys-shape-corner-medium);
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.bed-status-room-tile__head {
   display: flex;
   align-items: center;
-  gap: 10px;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.bed-status-room-tile__number {
+  font-weight: 700;
+  font-size: var(--md-sys-typescale-title-small-size);
+}
+
+.bed-status-room-tile__beds {
+  display: flex;
   flex-wrap: wrap;
-  padding: 8px 0;
+  gap: 6px;
 }
 
-.bed-status-room:not(:last-child) {
-  border-bottom: 1px solid var(--md-sys-color-outline-variant);
+.bed-status-gender-badge {
+  font-size: var(--md-sys-typescale-label-medium-size);
+  font-weight: 500;
+  color: var(--md-sys-color-on-surface-variant);
+  padding: 3px 10px;
+  border-radius: var(--md-sys-shape-corner-full);
+  background: var(--md-sys-color-surface-container-high);
 }
 
-/* MD3 segmented button (single-select gender) */
+/* MD3 segmented button (single-select gender, edit mode only) */
 .bed-status-segmented {
   display: inline-flex;
   border: 1px solid var(--md-sys-color-outline);
@@ -1485,8 +1541,8 @@ table.price-table tbody tr:hover {
 }
 
 .bed-status-segment {
-  height: 32px;
-  padding: 0 14px;
+  height: 28px;
+  padding: 0 10px;
   display: inline-flex;
   align-items: center;
   gap: 4px;
@@ -1495,7 +1551,7 @@ table.price-table tbody tr:hover {
   background: transparent;
   color: var(--md-sys-color-on-surface);
   font-family: inherit;
-  font-size: var(--md-sys-typescale-label-large-size);
+  font-size: var(--md-sys-typescale-label-medium-size);
   font-weight: 500;
   cursor: pointer;
 }
@@ -1510,14 +1566,24 @@ table.price-table tbody tr:hover {
 }
 
 .bed-status-segment .material-symbols-outlined {
-  font-size: 18px;
+  font-size: 16px;
 }
 
 /* MD3 filter chip (bed vacant/occupied toggle) — reuses the site's .m3-chip */
 .bed-status-chip {
   border: none;
-  cursor: pointer;
   font-family: inherit;
+  width: 100%;
+  justify-content: center;
+  cursor: default;
+}
+
+.bed-status-chip--editable {
+  cursor: pointer;
+}
+
+.bed-status-chip--editable:hover {
+  filter: brightness(0.95);
 }
 
 .m3-chip--outline {

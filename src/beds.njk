@@ -30,16 +30,23 @@ permalink: /beds/
     }
   </script>
 
+  <div class="bed-status-toolbar">
+    <h2>床位狀態</h2>
+    <div class="bed-status-toolbar__actions">
+      <button type="button" class="btn btn--tonal" id="bed-status-edit">
+        <span class="material-symbols-outlined" aria-hidden="true">edit</span>
+        編輯床位
+      </button>
+      <button type="button" class="btn btn--filled" id="bed-status-save" hidden>
+        儲存<span id="bed-status-save-count"></span>
+      </button>
+      <button type="button" class="btn btn--text" id="bed-status-cancel" hidden>取消</button>
+    </div>
+  </div>
+  <p class="applications-list__status" id="bed-status-flash" role="status"></p>
+
   <div id="bed-status-sections" class="bed-status-sections">
     <p class="applications-list__status">載入中…</p>
-  </div>
-
-  <div class="bed-status-actions">
-    <button type="button" class="btn btn--filled" id="bed-status-save" disabled>
-      儲存<span id="bed-status-save-count"></span>
-    </button>
-    <button type="button" class="btn btn--text" id="bed-status-cancel" disabled>取消修改</button>
-    <span class="applications-list__status" id="bed-status-flash" role="status"></span>
   </div>
 
   <h2>候補申請</h2>
