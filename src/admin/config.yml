@@ -23,8 +23,6 @@ collections:
             widget: "object"
             fields:
               - { label: "名稱", name: "name", widget: "string" }
-              - { label: "位置", name: "location", widget: "string" }
-              - { label: "營業時間", name: "hours", widget: "string" }
               - { label: "說明文字(選填)", name: "note", widget: "text", required: false }
               - label: "分類(可分多個 section,例如普通伙食/治療餐)"
                 name: "groups"

@@ -1,7 +1,5 @@
 mealService:
   name: 院內餐
-  location: 病房供餐
-  hours: 07:00-19:00
   note: 營養室工作人員會將伙食送至您的床邊桌上;若超過供餐時間仍未收到餐點,請通知護理人員。
   groups:
     - name: 普通伙食

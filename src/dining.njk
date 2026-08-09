@@ -8,7 +8,6 @@ permalink: /dining/
 {% set place = dining.mealService %}
 <div class="ward-block">
   <h2>{{ place.name }}</h2>
-  <p>位置:{{ place.location }}</p>
   {% if place.note %}<p class="ward-block__note">{{ place.note }}</p>{% endif %}
   {% for group in place.groups %}
   {% if group.name %}<h3>{{ group.name }}</h3>{% endif %}
