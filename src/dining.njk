@@ -10,6 +10,18 @@ permalink: /dining/
   <h2>{{ place.name }}</h2>
   <p>位置:{{ place.location }}</p>
   {% if place.note %}<p class="ward-block__note">{{ place.note }}</p>{% endif %}
+
+  {% if place.shops.length %}
+  <ul class="shop-list">
+    {% for shop in place.shops %}
+    <li class="shop-list__item">
+      <p class="shop-list__name">{{ shop.name }}</p>
+      <p class="shop-list__sells">{{ shop.sells }}</p>
+    </li>
+    {% endfor %}
+  </ul>
+  {% endif %}
+
   {% for group in place.groups %}
   {% if group.name %}<h3>{{ group.name }}</h3>{% endif %}
   {% set hasTime = group.items[0].time %}

@@ -28,11 +28,20 @@ collections:
               - { label: "位置", name: "location", widget: "string" }
               - { label: "營業時間", name: "hours", widget: "string" }
               - { label: "說明文字(選填)", name: "note", widget: "text", required: false }
+              - label: "商店列表(單純店名+販售內容,例如「院內其他商店」用這個)"
+                name: "shops"
+                widget: "list"
+                allow_add: true
+                required: false
+                fields:
+                  - { label: "店名", name: "name", widget: "string" }
+                  - { label: "這個店在賣什麼", name: "sells", widget: "string" }
               - { label: "不顯示價格欄位", name: "hidePrice", widget: "boolean", required: false, default: false }
-              - label: "分類(可分多個 section,例如普通伙食/治療餐)"
+              - label: "分類(可分多個 section,例如普通伙食/治療餐,有填「商店列表」的話這裡留空)"
                 name: "groups"
                 widget: "list"
                 allow_add: true
+                required: false
                 fields:
                   - { label: "分類名稱(留空則不顯示標題)", name: "name", widget: "string", required: false }
                   - label: "品項"

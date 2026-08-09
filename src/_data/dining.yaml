@@ -35,10 +35,6 @@ list:
   - name: 院內其他商店
     location: 一樓
     hours: 07:00-20:00
-    hidePrice: true
-    groups:
-      - name: ""
-        items:
-          - name: 便當
-            price: 106
-            note: 多種菜色可選
+    shops:
+      - name: 便當
+        sells: 多種菜色可選

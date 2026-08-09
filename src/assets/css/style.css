@@ -890,6 +890,35 @@ a {
   margin-top: 16px;
 }
 
+.shop-list {
+  list-style: none;
+  margin: 20px 0 0;
+  padding: 0;
+}
+
+.shop-list__item {
+  padding: 16px 0;
+  border-top: 1px solid var(--md-sys-color-outline-variant);
+}
+
+.shop-list__item:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.shop-list__name {
+  margin: 0;
+  font-size: var(--md-sys-typescale-title-medium-size);
+  font-weight: 500;
+  color: var(--md-sys-color-on-surface);
+}
+
+.shop-list__sells {
+  margin: 4px 0 0;
+  font-size: var(--md-sys-typescale-body-medium-size);
+  color: var(--md-sys-color-on-surface-variant);
+}
+
 .room-card__request-btn {
   display: flex;
   width: 100%;
