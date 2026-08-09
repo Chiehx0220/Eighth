@@ -30,10 +30,12 @@ mealService:
           time: 16:30-17:00
           price: 115
           note: ""
-
 otherShops:
   name: 院內其他商店
   list:
-    - name: 便當
-      location: 一樓
-      sells: 多種菜色可選
+    - name: 維康醫療器材便利商店
+      location: 舊大樓1F
+      sells: 兼具販售醫療器材及便利商店之綜合服務
+    - name: 維康輕食吧
+      sells: 具販售簡易餐點及咖啡飲料之服務
+      location: 舊大樓1F
