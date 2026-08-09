@@ -380,11 +380,18 @@
       return chip;
     }
 
+    var GENDER_ICONS = { "": "remove", "男": "male", "女": "female" };
+
     function createGenderControl(workingRoom, committedRoom, editable) {
       if (!editable) {
         var badge = document.createElement("span");
         badge.className = "bed-status-gender-badge";
-        badge.textContent = workingRoom.gender || "未設定";
+        badge.setAttribute("aria-label", workingRoom.gender || "未設定");
+        var badgeIcon = document.createElement("span");
+        badgeIcon.className = "material-symbols-outlined";
+        badgeIcon.setAttribute("aria-hidden", "true");
+        badgeIcon.textContent = GENDER_ICONS[workingRoom.gender] || GENDER_ICONS[""];
+        badge.appendChild(badgeIcon);
         return badge;
       }
 
@@ -396,16 +403,12 @@
         var seg = document.createElement("button");
         seg.type = "button";
         seg.className = "bed-status-segment" + (selected ? " bed-status-segment--selected" : "");
-        if (selected) {
-          var icon = document.createElement("span");
-          icon.className = "material-symbols-outlined";
-          icon.setAttribute("aria-hidden", "true");
-          icon.textContent = "check";
-          seg.appendChild(icon);
-        }
-        var text = document.createElement("span");
-        text.textContent = pair[1];
-        seg.appendChild(text);
+        seg.setAttribute("aria-label", pair[1]);
+        var icon = document.createElement("span");
+        icon.className = "material-symbols-outlined";
+        icon.setAttribute("aria-hidden", "true");
+        icon.textContent = GENDER_ICONS[pair[0]];
+        seg.appendChild(icon);
         seg.addEventListener("click", function () {
           workingRoom.gender = pair[0];
           renderBedStatus();

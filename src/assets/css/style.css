@@ -1523,12 +1523,18 @@ table.price-table tbody tr:hover {
 }
 
 .bed-status-gender-badge {
-  font-size: var(--md-sys-typescale-label-medium-size);
-  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
   color: var(--md-sys-color-on-surface-variant);
-  padding: 3px 10px;
   border-radius: var(--md-sys-shape-corner-full);
   background: var(--md-sys-color-surface-container-high);
+}
+
+.bed-status-gender-badge .material-symbols-outlined {
+  font-size: 18px;
 }
 
 /* MD3 segmented button (single-select gender, edit mode only) */
@@ -1546,10 +1552,11 @@ table.price-table tbody tr:hover {
 
 .bed-status-segment {
   height: 28px;
-  padding: 0 10px;
+  width: 32px;
+  padding: 0;
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  justify-content: center;
   border: none;
   border-right: 1px solid var(--md-sys-color-outline);
   background: transparent;
