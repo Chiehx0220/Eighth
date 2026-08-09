@@ -24,7 +24,7 @@ list:
     icon: volunteer_activism
     phones:
       - number: 0800-555-186
-    note: 雙北｜桃園｜新竹｜苗栗｜台中｜嘉義｜台南｜高雄
+    note: \
   - name: 仁光救護車有限公司
     category: 救護車
     icon: local_hospital
