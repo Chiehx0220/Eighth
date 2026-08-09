@@ -479,7 +479,7 @@
         title.className = "bed-status-card__title";
         title.textContent = cat.label;
         var countChip = document.createElement("span");
-        countChip.className = "m3-chip " + (vacant === 0 ? "m3-chip--error" : vacant <= 2 ? "m3-chip--warning" : "m3-chip--success");
+        countChip.className = "m3-chip m3-chip--secondary";
         countChip.textContent = vacant === 0 ? "客滿" : "剩 " + vacant + "/" + total + " 床";
         head.appendChild(title);
         head.appendChild(countChip);
