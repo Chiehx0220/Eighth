@@ -357,6 +357,53 @@
       return roomOrLabel + "-" + category.suffixes[bedIdx];
     }
 
+    function createBedChip(label, occupied, pending, onToggle) {
+      var chip = document.createElement("button");
+      chip.type = "button";
+      chip.className = "m3-chip bed-status-chip " + (occupied ? "m3-chip--outline" : "m3-chip--success") + (pending ? " bed-status-chip--pending" : "");
+      if (!occupied) {
+        var icon = document.createElement("span");
+        icon.className = "material-symbols-outlined";
+        icon.setAttribute("aria-hidden", "true");
+        icon.textContent = "check";
+        chip.appendChild(icon);
+      }
+      var text = document.createElement("span");
+      text.textContent = label + (occupied ? " 占用" : " 空床");
+      chip.appendChild(text);
+      chip.addEventListener("click", onToggle);
+      return chip;
+    }
+
+    function createGenderSegmented(workingRoom, committedRoom) {
+      var group = document.createElement("div");
+      group.className = "bed-status-segmented" + (workingRoom.gender !== committedRoom.gender ? " bed-status-segmented--pending" : "");
+
+      [["", "未設定"], ["男", "男"], ["女", "女"]].forEach(function (pair) {
+        var selected = workingRoom.gender === pair[0];
+        var seg = document.createElement("button");
+        seg.type = "button";
+        seg.className = "bed-status-segment" + (selected ? " bed-status-segment--selected" : "");
+        if (selected) {
+          var icon = document.createElement("span");
+          icon.className = "material-symbols-outlined";
+          icon.setAttribute("aria-hidden", "true");
+          icon.textContent = "check";
+          seg.appendChild(icon);
+        }
+        var text = document.createElement("span");
+        text.textContent = pair[1];
+        seg.appendChild(text);
+        seg.addEventListener("click", function () {
+          workingRoom.gender = pair[0];
+          renderBedStatus();
+        });
+        group.appendChild(seg);
+      });
+
+      return group;
+    }
+
     function normalizeBedStatus(serverStatus) {
       var result = {};
       BED_CATEGORIES.forEach(function (cat) {
@@ -433,47 +480,23 @@
           if (cat.kind === "grouped") {
             var committedRoom = bedCommitted[cat.key][id];
             var workingRoom = bedWorking[cat.key][id];
-            var genderPending = workingRoom.gender !== committedRoom.gender;
 
-            var select = document.createElement("select");
-            select.className = "bed-status-gender" + (genderPending ? " bed-status-gender--pending" : "");
-            [["", "未設定"], ["男", "男"], ["女", "女"]].forEach(function (pair) {
-              var opt = document.createElement("option");
-              opt.value = pair[0];
-              opt.textContent = pair[1];
-              if (workingRoom.gender === pair[0]) opt.selected = true;
-              select.appendChild(opt);
-            });
-            select.addEventListener("change", function () {
-              workingRoom.gender = select.value;
-              renderBedStatus();
-            });
-            row.appendChild(select);
+            row.appendChild(createGenderSegmented(workingRoom, committedRoom));
 
             workingRoom.beds.forEach(function (occupied, bIdx) {
               var pending = occupied !== committedRoom.beds[bIdx];
-              var chip = document.createElement("button");
-              chip.type = "button";
-              chip.className = "bed-status-chip" + (occupied ? "" : " bed-status-chip--vacant") + (pending ? " bed-status-chip--pending" : "");
-              chip.textContent = bedLabel(cat, id, bIdx) + (occupied ? " 占用" : " 空床");
-              chip.addEventListener("click", function () {
+              row.appendChild(createBedChip(bedLabel(cat, id, bIdx), occupied, pending, function () {
                 workingRoom.beds[bIdx] = !workingRoom.beds[bIdx];
                 renderBedStatus();
-              });
-              row.appendChild(chip);
+              }));
             });
           } else {
             var occupied = bedWorking[cat.key][id];
             var pending = occupied !== bedCommitted[cat.key][id];
-            var chip = document.createElement("button");
-            chip.type = "button";
-            chip.className = "bed-status-chip" + (occupied ? "" : " bed-status-chip--vacant") + (pending ? " bed-status-chip--pending" : "");
-            chip.textContent = id + (occupied ? " 占用" : " 空床");
-            chip.addEventListener("click", function () {
+            row.appendChild(createBedChip(id, occupied, pending, function () {
               bedWorking[cat.key][id] = !bedWorking[cat.key][id];
               renderBedStatus();
-            });
-            row.appendChild(chip);
+            }));
           }
 
           card.appendChild(row);

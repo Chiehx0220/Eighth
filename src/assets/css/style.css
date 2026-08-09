@@ -322,6 +322,16 @@ a {
   color: var(--md-sys-color-primary);
 }
 
+.btn:disabled {
+  opacity: 0.38;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.btn:disabled::before {
+  display: none;
+}
+
 .font-toggle {
   display: flex;
   gap: 4px;
@@ -1431,71 +1441,98 @@ table.price-table tbody tr:hover {
 }
 
 .bed-status-card {
-  background: var(--md-sys-color-surface-container);
+  background: var(--md-sys-color-surface-container-lowest);
+  border: 1px solid var(--md-sys-color-outline-variant);
   border-radius: var(--md-sys-shape-corner-medium);
-  padding: 16px;
+  padding: 16px 20px;
 }
 
 .bed-status-card__head {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 12px;
+  margin-bottom: 16px;
 }
 
 .bed-status-card__title {
-  font-weight: 500;
+  font-weight: 700;
+  font-size: var(--md-sys-typescale-title-medium-size);
 }
 
 .bed-status-room {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   flex-wrap: wrap;
-  margin-bottom: 8px;
+  padding: 8px 0;
 }
 
-.bed-status-room:last-child {
-  margin-bottom: 0;
+.bed-status-room:not(:last-child) {
+  border-bottom: 1px solid var(--md-sys-color-outline-variant);
 }
 
-.bed-status-gender {
-  min-height: 36px;
-  min-width: 68px;
-  padding: 4px 8px;
-  font-size: var(--md-sys-typescale-label-large-size);
-  border-radius: var(--md-sys-shape-corner-small);
-  border: 1.5px solid var(--md-sys-color-outline);
-  background: var(--md-sys-color-surface-container-lowest);
-  color: var(--md-sys-color-on-surface);
-}
-
-.bed-status-gender--pending {
-  border-color: var(--md-sys-color-primary);
-  border-width: 2px;
-}
-
-.bed-status-chip {
-  min-height: 36px;
-  padding: 6px 14px;
+/* MD3 segmented button (single-select gender) */
+.bed-status-segmented {
+  display: inline-flex;
+  border: 1px solid var(--md-sys-color-outline);
   border-radius: var(--md-sys-shape-corner-full);
+  overflow: hidden;
+}
+
+.bed-status-segmented--pending {
+  outline: 2px solid var(--md-sys-color-primary);
+  outline-offset: 2px;
+}
+
+.bed-status-segment {
+  height: 32px;
+  padding: 0 14px;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  border: none;
+  border-right: 1px solid var(--md-sys-color-outline);
+  background: transparent;
+  color: var(--md-sys-color-on-surface);
+  font-family: inherit;
   font-size: var(--md-sys-typescale-label-large-size);
   font-weight: 500;
   cursor: pointer;
-  border: 1.5px solid var(--md-sys-color-outline);
-  background: var(--md-sys-color-surface-container-lowest);
-  color: var(--md-sys-color-on-surface-variant);
 }
 
-.bed-status-chip--vacant {
-  background: var(--md-sys-color-success-container);
-  color: var(--md-sys-color-on-success-container);
-  border-color: transparent;
+.bed-status-segment:last-child {
+  border-right: none;
+}
+
+.bed-status-segment--selected {
+  background: var(--md-sys-color-secondary-container);
+  color: var(--md-sys-color-on-secondary-container);
+}
+
+.bed-status-segment .material-symbols-outlined {
+  font-size: 18px;
+}
+
+/* MD3 filter chip (bed vacant/occupied toggle) — reuses the site's .m3-chip */
+.bed-status-chip {
+  border: none;
+  cursor: pointer;
+  font-family: inherit;
+}
+
+.m3-chip--outline {
+  background: transparent;
+  color: var(--md-sys-color-on-surface-variant);
+  border: 1px solid var(--md-sys-color-outline);
 }
 
 .bed-status-chip--pending {
-  border-color: var(--md-sys-color-primary);
-  border-width: 2px;
+  outline: 2px solid var(--md-sys-color-primary);
+  outline-offset: 2px;
+}
+
+.bed-status-chip .material-symbols-outlined {
+  font-size: 18px;
 }
 
 .bed-status-actions {
