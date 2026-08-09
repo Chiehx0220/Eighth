@@ -5,7 +5,7 @@ permalink: /dining/
 ---
 <h1>餐飲資訊</h1>
 
-{% for place in dining.mealService %}
+{% set place = dining.mealService %}
 <div class="ward-block">
   <h2>{{ place.name }}</h2>
   <p>位置:{{ place.location }}</p>
@@ -33,7 +33,6 @@ permalink: /dining/
   </table>
   {% endfor %}
 </div>
-{% endfor %}
 
 {% if dining.otherShops.list.length %}
 <div class="ward-block">

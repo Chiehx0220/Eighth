@@ -18,11 +18,9 @@ collections:
         label: "餐飲資訊"
         file: "src/_data/dining.yaml"
         fields:
-          - label: "院內餐(附價目表)"
+          - label: "院內餐"
             name: "mealService"
-            widget: "list"
-            allow_add: true
-            collapsed: true
+            widget: "object"
             fields:
               - { label: "名稱", name: "name", widget: "string" }
               - { label: "位置", name: "location", widget: "string" }

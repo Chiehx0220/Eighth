@@ -1,37 +1,37 @@
 mealService:
-  - name: 院內餐
-    location: 病房供餐
-    hours: 07:00-19:00
-    note: 營養室工作人員會將伙食送至您的床邊桌上;若超過供餐時間仍未收到餐點,請通知護理人員。
-    groups:
-      - name: 普通伙食
-        items:
-          - name: 早餐
-            time: 07:30-08:00
-            price: 60
-            note: ""
-          - name: 午餐
-            time: 11:30-12:00
-            price: 105
-            note: ""
-          - name: 晚餐
-            time: 16:30-17:00
-            price: 105
-            note: ""
-      - name: 治療餐
-        items:
-          - name: 早餐
-            time: 07:30-08:00
-            price: 70
-            note: ""
-          - name: 午餐
-            time: 11:30-12:00
-            price: 115
-            note: ""
-          - name: 晚餐
-            time: 16:30-17:00
-            price: 115
-            note: ""
+  name: 院內餐
+  location: 病房供餐
+  hours: 07:00-19:00
+  note: 營養室工作人員會將伙食送至您的床邊桌上;若超過供餐時間仍未收到餐點,請通知護理人員。
+  groups:
+    - name: 普通伙食
+      items:
+        - name: 早餐
+          time: 07:30-08:00
+          price: 60
+          note: ""
+        - name: 午餐
+          time: 11:30-12:00
+          price: 105
+          note: ""
+        - name: 晚餐
+          time: 16:30-17:00
+          price: 105
+          note: ""
+    - name: 治療餐
+      items:
+        - name: 早餐
+          time: 07:30-08:00
+          price: 70
+          note: ""
+        - name: 午餐
+          time: 11:30-12:00
+          price: 115
+          note: ""
+        - name: 晚餐
+          time: 16:30-17:00
+          price: 115
+          note: ""
 
 otherShops:
   name: 院內其他商店
