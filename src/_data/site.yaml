@@ -1,7 +1,9 @@
-site_title: "Eighth"
-tagline: "8樓住院期間的好幫手,免洽護理站,常見問題一次查"
-suggest_box_url: "https://wwwv.tsgh.ndmutsgh.edu.tw/Suggest/193/202372/26171"
-visitor_registration_url: "https://docs.google.com/forms/d/1x8fjT7ndDXaithb9l5C4hz6hWp54_5JK_00lW6xDxbo/viewform?edit_requested=true"
+site_title: Eighth
+tagline: 8樓住院期間的好幫手,免洽護理站,常見問題一次查
+suggest_box_url: https://wwwv.tsgh.ndmutsgh.edu.tw/Suggest/193/202372/26171
+visitor_registration_url: https://docs.google.com/forms/d/1x8fjT7ndDXaithb9l5C4hz6hWp54_5JK_00lW6xDxbo/viewform?edit_requested=true
 staff_access_codes:
   - "80808"
   - "120155"
+  - "120169"
+  - "120121"
