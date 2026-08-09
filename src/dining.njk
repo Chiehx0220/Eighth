@@ -18,7 +18,7 @@ permalink: /dining/
       <tr>
         <th></th>
         {% if hasTime %}<th>供餐時間</th>{% else %}<th>說明</th>{% endif %}
-        <th>價格</th>
+        {% if not place.hidePrice %}<th>價格</th>{% endif %}
       </tr>
     </thead>
     <tbody>
@@ -26,7 +26,7 @@ permalink: /dining/
       <tr>
         <td data-label="">{{ item.name }}</td>
         {% if hasTime %}<td data-label="供餐時間">{{ item.time }}</td>{% else %}<td data-label="說明">{{ item.note }}</td>{% endif %}
-        <td data-label="價格">NT$ {{ item.price }}</td>
+        {% if not place.hidePrice %}<td data-label="價格">NT$ {{ item.price }}</td>{% endif %}
       </tr>
       {% endfor %}
     </tbody>
