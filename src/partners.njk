@@ -29,14 +29,14 @@ permalink: /partners/
       </p>
       {% endif %}
 
-      {% if partner.phone or partner.email %}
+      {% if partner.phones.length or partner.email %}
       <div class="vendor-card__actions">
-        {% if partner.phone %}
-        <a href="tel:{{ partner.phone }}" class="btn btn--tonal">
+        {% for phone in partner.phones %}
+        <a href="tel:{{ phone.number }}" class="btn btn--tonal">
           <span class="material-symbols-outlined" aria-hidden="true">call</span>
-          {{ partner.phone }}
+          {{ phone.number }}{% if phone.label %}({{ phone.label }}){% endif %}
         </a>
-        {% endif %}
+        {% endfor %}
         {% if partner.email %}
         <a href="mailto:{{ partner.email }}" class="btn btn--outlined">
           <span class="material-symbols-outlined" aria-hidden="true">mail</span>
