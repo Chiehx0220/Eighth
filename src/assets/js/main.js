@@ -607,7 +607,7 @@
       });
     }
 
-    var APPLICATIONS_POLL_MS = 15000;
+    var APPLICATIONS_POLL_MS = 30000;
     var applicationsPollTimer = null;
 
     function startApplicationsPolling() {
