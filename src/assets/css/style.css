@@ -1530,9 +1530,9 @@ table.price-table tbody tr:hover {
 }
 
 .bed-status-room-tile__beds {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
 }
 
 .bed-status-gender-badge {
