@@ -1,7 +1,7 @@
 const ROOM_TYPES = ["單人房", "差價雙人房"];
 const CORS_HEADERS = {
   "Access-Control-Allow-Origin": "*",
-  "Access-Control-Allow-Methods": "GET,POST,DELETE,OPTIONS",
+  "Access-Control-Allow-Methods": "GET,POST,PUT,DELETE,OPTIONS",
   "Access-Control-Allow-Headers": "Content-Type",
 };
 
@@ -35,6 +35,18 @@ export default {
       }
       if (request.method === "DELETE") {
         return handleDeleteApplication(deleteMatch[1], env);
+      }
+    }
+
+    if (url.pathname === "/bed-status") {
+      if (request.method === "OPTIONS") {
+        return new Response(null, { headers: CORS_HEADERS });
+      }
+      if (request.method === "GET") {
+        return handleGetBedStatus(env);
+      }
+      if (request.method === "PUT") {
+        return handleSaveBedStatus(request, env);
       }
     }
 
@@ -99,6 +111,29 @@ async function handleDeleteApplication(id, env) {
   const applications = await readApplications(env);
   const remaining = applications.filter((app) => app.id !== id);
   await writeApplications(env, remaining);
+  return jsonResponse({ ok: true });
+}
+
+const BED_STATUS_KEY = "bed_status";
+
+async function handleGetBedStatus(env) {
+  const raw = await env.APPLICATIONS.get(BED_STATUS_KEY);
+  return jsonResponse(raw ? JSON.parse(raw) : {});
+}
+
+async function handleSaveBedStatus(request, env) {
+  let body;
+  try {
+    body = await request.json();
+  } catch (e) {
+    return jsonResponse({ error: "Invalid JSON" }, 400);
+  }
+
+  if (!body || typeof body !== "object" || Array.isArray(body)) {
+    return jsonResponse({ error: "Invalid body" }, 400);
+  }
+
+  await env.APPLICATIONS.put(BED_STATUS_KEY, JSON.stringify(body));
   return jsonResponse({ ok: true });
 }
 

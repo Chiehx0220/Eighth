@@ -49,12 +49,16 @@ module.exports = function (eleventyConfig) {
     return (list || []).find((item) => item.type === type);
   });
 
-  eleventyConfig.addFilter("availableBeds", function (beds) {
-    return (beds || []).filter((bed) => !bed.occupied).length;
+  eleventyConfig.addFilter("pluckLabel", function (beds) {
+    return (beds || []).map((bed) => bed.label);
   });
 
-  eleventyConfig.addFilter("vacantBedLabels", function (beds) {
-    return (beds || []).filter((bed) => !bed.occupied).map((bed) => bed.label).join("、");
+  eleventyConfig.addFilter("pluckRoom", function (rooms) {
+    return (rooms || []).map((room) => room.room);
+  });
+
+  eleventyConfig.addFilter("availableBeds", function (beds) {
+    return (beds || []).filter((bed) => !bed.occupied).length;
   });
 
   // Bed numbers skip 4 (unlucky number convention): a room's 4th bed is
@@ -88,27 +92,6 @@ module.exports = function (eleventyConfig) {
       { type: "健保雙人房", beds: (roomsData.insured_double_room_beds || []).flatMap((room) => roomBeds(room)).map((bed) => bed.label) },
     ];
     return groups.filter((group) => group.type !== excludeType).flatMap((group) => group.beds);
-  });
-
-  eleventyConfig.addFilter("vacantBedLabelsByRoomGender", function (rooms, gender) {
-    return (rooms || [])
-      .filter((room) => room.gender === gender)
-      .flatMap((room) => roomBeds(room).filter((bed) => !bed.occupied).map((bed) => bed.label))
-      .join("、");
-  });
-
-  eleventyConfig.addFilter("vacantBedLabelsRoomsNoGenderOccupied", function (rooms) {
-    return (rooms || [])
-      .filter((room) => !room.gender && roomBeds(room).some((bed) => bed.occupied))
-      .flatMap((room) => roomBeds(room).filter((bed) => !bed.occupied).map((bed) => bed.label))
-      .join("、");
-  });
-
-  eleventyConfig.addFilter("vacantBedLabelsRoomsEmpty", function (rooms) {
-    return (rooms || [])
-      .filter((room) => !room.gender && !roomBeds(room).some((bed) => bed.occupied))
-      .flatMap((room) => roomBeds(room).map((bed) => bed.label))
-      .join("、");
   });
 
   return {

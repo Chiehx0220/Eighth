@@ -21,64 +21,26 @@ permalink: /beds/
 </div>
 
 <div id="staff-content" hidden>
-  <table class="price-table price-table--beds">
-    <thead>
-      <tr>
-        <th>房型</th>
-        <th>狀態</th>
-        <th>空床號</th>
-      </tr>
-    </thead>
-    <tbody>
-      {% set categories = [
-        { label: "單人房", beds: rooms.single_room_beds, hasGender: false },
-        { label: "差價雙人房", rooms: rooms.double_room_beds, hasGender: true },
-        { label: "健保四人房", rooms: rooms.insured_quad_room_beds, hasGender: true },
-        { label: "健保雙人房", rooms: rooms.insured_double_room_beds, hasGender: true }
-      ] %}
-      {% for cat in categories %}
-      {% if cat.hasGender %}{% set beds = cat.rooms | flattenRoomBeds %}{% else %}{% set beds = cat.beds %}{% endif %}
-      {% set available = beds | availableBeds %}
-      <tr>
-        <td data-label="房型">{{ cat.label }}</td>
-        <td data-label="狀態">
-          {% if beds.length == 0 %}
-          <span class="m3-chip m3-chip--secondary">尚無床位資料</span>
-          {% elif available == 0 %}
-          <span class="m3-chip m3-chip--error">客滿(0/{{ beds.length }})</span>
-          {% elif available <= 2 %}
-          <span class="m3-chip m3-chip--warning">剩 {{ available }}/{{ beds.length }} 床</span>
-          {% else %}
-          <span class="m3-chip m3-chip--success">剩 {{ available }}/{{ beds.length }} 床</span>
-          {% endif %}
-        </td>
-        <td data-label="空床號" class="price-table__cell--wrap">
-          {% if cat.hasGender %}
-            {% set maleVacant = cat.rooms | vacantBedLabelsByRoomGender("男") %}
-            {% set femaleVacant = cat.rooms | vacantBedLabelsByRoomGender("女") %}
-            {% set unsetOccupiedVacant = cat.rooms | vacantBedLabelsRoomsNoGenderOccupied %}
-            {% set emptyVacant = cat.rooms | vacantBedLabelsRoomsEmpty %}
-            {% if not maleVacant and not femaleVacant and not unsetOccupiedVacant and not emptyVacant %}
-            -
-            {% else %}
-              {% if maleVacant %}<div>男:{{ maleVacant }}</div>{% endif %}
-              {% if femaleVacant %}<div>女:{{ femaleVacant }}</div>{% endif %}
-              {% if unsetOccupiedVacant %}<div class="vacant-beds__unset">未設性別:{{ unsetOccupiedVacant }}</div>{% endif %}
-              {% if emptyVacant %}<div class="vacant-beds__empty">尚未收治(不限性別):{{ emptyVacant }}</div>{% endif %}
-            {% endif %}
-          {% else %}
-            {{ beds | vacantBedLabels or "-" }}
-          {% endif %}
-        </td>
-      </tr>
-      {% endfor %}
-    </tbody>
-  </table>
+  <script type="application/json" id="bed-structure-data">
+    {
+      "single_room_beds": {{ rooms.single_room_beds | pluckLabel | dump | safe }},
+      "double_room_beds": {{ rooms.double_room_beds | pluckRoom | dump | safe }},
+      "insured_quad_room_beds": {{ rooms.insured_quad_room_beds | pluckRoom | dump | safe }},
+      "insured_double_room_beds": {{ rooms.insured_double_room_beds | pluckRoom | dump | safe }}
+    }
+  </script>
 
-  <a href="{{ '/admin/#/collections/rooms/entries/rooms' | url }}" class="btn btn--tonal staff-content__edit-btn">
-    <span class="material-symbols-outlined" aria-hidden="true">edit</span>
-    編輯床位
-  </a>
+  <div id="bed-status-sections" class="bed-status-sections">
+    <p class="applications-list__status">載入中…</p>
+  </div>
+
+  <div class="bed-status-actions">
+    <button type="button" class="btn btn--filled" id="bed-status-save" disabled>
+      儲存<span id="bed-status-save-count"></span>
+    </button>
+    <button type="button" class="btn btn--text" id="bed-status-cancel" disabled>取消修改</button>
+    <span class="applications-list__status" id="bed-status-flash" role="status"></span>
+  </div>
 
   <h2>候補申請</h2>
   <div id="applications-list" class="applications-list" aria-live="polite">
