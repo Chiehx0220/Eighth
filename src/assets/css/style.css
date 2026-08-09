@@ -933,7 +933,7 @@ a {
   margin-top: 12px;
 }
 
-/* ---- Partner vendor cards (styled like a business card: colored side panel + content) ---- */
+/* ---- Partner vendor cards (reuses .info-card for visual consistency with the rest of the site) ---- */
 .vendor-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -941,94 +941,21 @@ a {
   margin-top: 12px;
 }
 
-.vendor-card {
-  display: grid;
-  grid-template-columns: 84px 1fr;
-  background: var(--md-sys-color-surface-container-low);
-  border: 1px solid var(--md-sys-color-outline-variant);
-  border-radius: var(--md-sys-shape-corner-large);
-  overflow: hidden;
-  transition:
-    box-shadow 0.2s var(--md-sys-motion-easing-standard),
-    transform 0.2s var(--md-sys-motion-easing-standard);
-}
-
-.vendor-card:hover {
-  box-shadow: var(--md-sys-elevation-level2);
-  transform: translateY(-3px);
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .vendor-card { transition: none; }
-  .vendor-card:hover { transform: none; }
-}
-
-@media (max-width: 480px) {
-  .vendor-card {
-    grid-template-columns: 1fr;
-  }
-}
-
-.vendor-card__accent {
-  display: flex !important;
-  align-items: center;
-  justify-content: center;
-  padding: 16px 8px;
-}
-
-.vendor-card--primary .vendor-card__accent { background: var(--md-sys-color-primary-container); }
-.vendor-card--tertiary .vendor-card__accent { background: var(--md-sys-color-tertiary-container); }
-.vendor-card--warning .vendor-card__accent { background: var(--md-sys-color-warning-container); }
-.vendor-card--secondary .vendor-card__accent { background: var(--md-sys-color-purple-container); }
-.vendor-card--success .vendor-card__accent { background: var(--md-sys-color-success-container); }
-
 .vendor-card__logo {
-  width: 56px;
-  height: 56px;
+  width: 44px;
+  height: 44px;
   border-radius: var(--md-sys-shape-corner-full);
   object-fit: contain;
   background: var(--md-sys-color-surface);
-}
-
-.vendor-card__icon {
-  font-size: 30px !important;
-}
-
-.vendor-card--primary .vendor-card__icon { color: var(--md-sys-color-on-primary-container); }
-.vendor-card--tertiary .vendor-card__icon { color: var(--md-sys-color-on-tertiary-container); }
-.vendor-card--warning .vendor-card__icon { color: var(--md-sys-color-on-warning-container); }
-.vendor-card--secondary .vendor-card__icon { color: var(--md-sys-color-on-purple-container); }
-.vendor-card--success .vendor-card__icon { color: var(--md-sys-color-on-success-container); }
-
-.vendor-card__content {
-  min-width: 0;
-  padding: 18px 20px;
-}
-
-.vendor-card__name {
-  font: var(--md-sys-typescale-title-large);
-  font-weight: 700;
-  margin: 0;
-  color: var(--md-sys-color-on-surface);
+  flex-shrink: 0;
 }
 
 .vendor-card__category {
-  font-size: var(--md-sys-typescale-label-large-size);
-  font-weight: 700;
-  letter-spacing: 0.04em;
   margin: 2px 0 0;
 }
 
-.vendor-card--primary .vendor-card__category { color: var(--md-sys-color-primary); }
-.vendor-card--tertiary .vendor-card__category { color: var(--md-sys-color-tertiary); }
-.vendor-card--warning .vendor-card__category { color: var(--md-sys-color-warning); }
-.vendor-card--secondary .vendor-card__category { color: var(--md-sys-color-purple); }
-.vendor-card--success .vendor-card__category { color: var(--md-sys-color-success); }
-
 .vendor-card__note {
-  font-size: var(--md-sys-typescale-body-medium-size);
-  color: var(--md-sys-color-on-surface-variant);
-  margin: 12px 0 0;
+  margin-top: 8px;
 }
 
 .vendor-card__address {
