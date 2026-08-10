@@ -270,18 +270,19 @@
     var staffSubmit = document.getElementById("staff-gate-submit");
     var staffContent = document.getElementById("staff-content");
 
-    var staffCodes = staffGate.dataset.codes.split(",");
-    var applicationsList = document.getElementById("applications-list");
+    var staffCodes = staffGate.dataset.codes.split(",").map(function (code) { return code.trim(); });
+    var applicationsListSingle = document.getElementById("applications-list-single");
+    var applicationsListDouble = document.getElementById("applications-list-double");
 
-    function renderApplications(applications) {
-      if (!applicationsList) return;
-      applicationsList.innerHTML = "";
+    function renderApplicationGroup(container, applications) {
+      if (!container) return;
+      container.innerHTML = "";
 
       if (applications.length === 0) {
         var empty = document.createElement("p");
         empty.className = "applications-list__status";
         empty.textContent = "暫無待排床位";
-        applicationsList.appendChild(empty);
+        container.appendChild(empty);
         return;
       }
 
@@ -293,7 +294,7 @@
         info.className = "applications-list__info";
 
         var title = document.createElement("span");
-        title.textContent = app.roomType + "・" + app.bedNumber + "・" + app.patientName;
+        title.textContent = app.bedNumber + "・" + app.patientName;
 
         var meta = document.createElement("span");
         meta.className = "applications-list__meta";
@@ -305,19 +306,24 @@
         var doneBtn = document.createElement("button");
         doneBtn.type = "button";
         doneBtn.className = "btn btn--text";
-        doneBtn.textContent = "已給床";
+        doneBtn.textContent = "給床";
         doneBtn.addEventListener("click", function () {
           openMarkDoneDialog(app);
         });
 
         item.appendChild(info);
         item.appendChild(doneBtn);
-        applicationsList.appendChild(item);
+        container.appendChild(item);
       });
     }
 
+    function renderApplications(applications) {
+      renderApplicationGroup(applicationsListSingle, applications.filter(function (app) { return app.roomType === "單人房"; }));
+      renderApplicationGroup(applicationsListDouble, applications.filter(function (app) { return app.roomType === "雙人房"; }));
+    }
+
     function loadApplications() {
-      if (!applicationsList) return;
+      if (!applicationsListSingle && !applicationsListDouble) return;
       fetch(APPLICATIONS_API_BASE + "/applications")
         .then(function (res) {
           if (!res.ok) throw new Error("request failed");
@@ -327,11 +333,14 @@
           renderApplications(data.applications || []);
         })
         .catch(function () {
-          applicationsList.innerHTML = "";
-          var errEl = document.createElement("p");
-          errEl.className = "applications-list__status";
-          errEl.textContent = "待排清單載入失敗,請重新整理再試。";
-          applicationsList.appendChild(errEl);
+          [applicationsListSingle, applicationsListDouble].forEach(function (container) {
+            if (!container) return;
+            container.innerHTML = "";
+            var errEl = document.createElement("p");
+            errEl.className = "applications-list__status";
+            errEl.textContent = "待排清單載入失敗,請重新整理再試。";
+            container.appendChild(errEl);
+          });
         });
     }
 

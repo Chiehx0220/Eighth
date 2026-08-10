@@ -5,7 +5,7 @@ permalink: /beds/
 ---
 <h1>床位系統</h1>
 
-<div class="staff-gate" id="staff-gate" data-codes="{{ site.staff_access_codes | join(',') }}">
+<div class="staff-gate" id="staff-gate" data-codes="{{ site.staff_access_codes }}">
   <span class="staff-gate__icon material-symbols-outlined" aria-hidden="true">admin_panel_settings</span>
   <h2 class="staff-gate__title">員工登入</h2>
   <p class="staff-gate__body">請輸入員工號以查看目前床位狀態。</p>
@@ -31,7 +31,12 @@ permalink: /beds/
   </script>
 
   <h2>待排單/雙人</h2>
-  <div id="applications-list" class="applications-list" aria-live="polite">
+  <h3>單人房</h3>
+  <div id="applications-list-single" class="applications-list" aria-live="polite">
+    <p class="applications-list__status">載入中…</p>
+  </div>
+  <h3>雙人房</h3>
+  <div id="applications-list-double" class="applications-list" aria-live="polite">
     <p class="applications-list__status">載入中…</p>
   </div>
 
