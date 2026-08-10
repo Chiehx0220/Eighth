@@ -1143,8 +1143,9 @@ a {
   border-radius: var(--md-sys-shape-corner-extra-large);
   background: var(--md-sys-color-surface-container-high);
   color: var(--md-sys-color-on-surface);
-  padding: 28px 28px 24px;
+  padding: 24px 28px;
   width: min(420px, calc(100vw - 48px));
+  max-height: calc(100vh - 48px);
   box-shadow: var(--md-sys-elevation-level3);
 }
 
@@ -1161,26 +1162,27 @@ a {
   to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-.m3-dialog__icon.material-symbols-outlined {
+.m3-dialog__header {
   display: flex;
   align-items: center;
-  justify-content: center;
-  width: 48px;
-  height: 48px;
-  margin-bottom: 12px;
-  border-radius: var(--md-sys-shape-corner-full);
-  background: var(--md-sys-color-primary-container);
-  color: var(--md-sys-color-on-primary-container);
-  font-size: 26px;
+  gap: 10px;
+  margin: 0 0 6px;
+}
+
+.m3-dialog__icon.material-symbols-outlined {
+  display: flex;
+  flex-shrink: 0;
+  font-size: 22px;
+  color: var(--md-sys-color-secondary);
 }
 
 .m3-dialog__title {
-  margin: 0 0 4px;
+  margin: 0;
   font-size: var(--md-sys-typescale-headline-small-size);
 }
 
 .m3-dialog__subtitle {
-  margin: 0 0 20px;
+  margin: 0 0 16px;
   color: var(--md-sys-color-on-surface-variant);
   font-size: var(--md-sys-typescale-body-medium-size);
 }
