@@ -64,7 +64,9 @@ permalink: /rooms/
 
 <dialog id="room-request-dialog" class="m3-dialog">
   <form id="room-request-form" class="m3-dialog__form" novalidate>
+    <span class="m3-dialog__icon material-symbols-outlined" id="dialog-icon" aria-hidden="true">bed</span>
     <h2 class="m3-dialog__title">申請<span id="dialog-room-type"></span></h2>
+    <p class="m3-dialog__subtitle">請填寫目前床號與病患姓名,送出後護理站將盡快為您安排。</p>
 
     <div class="m3-field">
       <label for="dialog-bed">目前床號</label>
@@ -75,7 +77,10 @@ permalink: /rooms/
       <input type="text" id="dialog-name" name="patient-name" class="m3-field__input" required>
     </div>
 
-    <p class="m3-dialog__status" role="status" hidden></p>
+    <p class="m3-dialog__status" role="status" hidden>
+      <span class="material-symbols-outlined" aria-hidden="true"></span>
+      <span class="m3-dialog__status-text"></span>
+    </p>
 
     <div class="m3-dialog__actions">
       <button type="button" class="btn btn--text" id="dialog-cancel">取消</button>

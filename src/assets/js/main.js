@@ -77,11 +77,21 @@
   var dialog = document.getElementById("room-request-dialog");
   if (dialog) {
     var dialogForm = document.getElementById("room-request-form");
+    var dialogIcon = document.getElementById("dialog-icon");
     var dialogRoomType = document.getElementById("dialog-room-type");
     var dialogBedSelect = document.getElementById("dialog-bed");
     var dialogStatus = dialogForm.querySelector(".m3-dialog__status");
+    var dialogStatusIcon = dialogStatus.querySelector(".material-symbols-outlined");
+    var dialogStatusText = dialogStatus.querySelector(".m3-dialog__status-text");
     var dialogFields = dialogForm.querySelectorAll(".m3-field__input");
     var dialogCancel = document.getElementById("dialog-cancel");
+
+    function setDialogStatus(variant, icon, text) {
+      dialogStatus.className = "m3-dialog__status m3-dialog__status--" + variant;
+      dialogStatusIcon.textContent = icon;
+      dialogStatusText.textContent = text;
+      dialogStatus.hidden = false;
+    }
 
     function resetDialog() {
       dialogForm.reset();
@@ -110,8 +120,10 @@
     document.querySelectorAll(".room-card__request-btn[data-room-type]").forEach(function (btn) {
       btn.addEventListener("click", function () {
         resetDialog();
-        dialogRoomType.textContent = btn.getAttribute("data-room-type");
-        dialogForm.dataset.roomType = btn.getAttribute("data-room-type");
+        var roomType = btn.getAttribute("data-room-type");
+        dialogRoomType.textContent = roomType;
+        dialogForm.dataset.roomType = roomType;
+        if (dialogIcon) dialogIcon.textContent = roomType === "雙人房" ? "group" : "bed";
         var beds = [];
         try {
           beds = JSON.parse(btn.getAttribute("data-beds") || "[]");
@@ -159,8 +171,7 @@
       });
 
       if (!allValid) {
-        dialogStatus.textContent = "請完整填寫目前床號與病患姓名。";
-        dialogStatus.hidden = false;
+        setDialogStatus("warning", "warning", "請完整填寫目前床號與病患姓名。");
         return;
       }
 
@@ -179,16 +190,14 @@
       })
         .then(function (res) {
           if (!res.ok) throw new Error("request failed");
-          dialogStatus.textContent = "申請已送出,護理站將盡快為您安排。";
-          dialogStatus.hidden = false;
+          setDialogStatus("success", "check_circle", "申請已送出,護理站將盡快為您安排。");
           setTimeout(function () {
             dialog.close();
             resetDialog();
           }, 1500);
         })
         .catch(function () {
-          dialogStatus.textContent = "送出失敗,請稍後再試或洽護理站。";
-          dialogStatus.hidden = false;
+          setDialogStatus("error", "error", "送出失敗,請稍後再試或洽護理站。");
         })
         .finally(function () {
           dialogSubmitBtn.disabled = false;

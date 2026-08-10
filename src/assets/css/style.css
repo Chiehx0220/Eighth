@@ -1161,6 +1161,19 @@ a {
   to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
+.m3-dialog__icon.material-symbols-outlined {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  margin-bottom: 12px;
+  border-radius: var(--md-sys-shape-corner-full);
+  background: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
+  font-size: 26px;
+}
+
 .m3-dialog__title {
   margin: 0 0 4px;
   font-size: var(--md-sys-typescale-headline-small-size);
@@ -1231,12 +1244,30 @@ a {
 }
 
 .m3-dialog__status {
+  display: flex;
+  align-items: center;
+  gap: 8px;
   padding: 10px 14px;
   border-radius: var(--md-sys-shape-corner-medium);
   background: var(--md-sys-color-warning-container);
   color: var(--md-sys-color-on-warning-container);
   font-size: var(--md-sys-typescale-body-medium-size);
   margin-bottom: 16px;
+}
+
+.m3-dialog__status .material-symbols-outlined {
+  flex-shrink: 0;
+  font-size: 20px;
+}
+
+.m3-dialog__status--success {
+  background: var(--md-sys-color-tertiary-container);
+  color: var(--md-sys-color-on-tertiary-container);
+}
+
+.m3-dialog__status--error {
+  background: var(--md-sys-color-error-container);
+  color: var(--md-sys-color-on-error-container);
 }
 
 .m3-dialog__actions {
