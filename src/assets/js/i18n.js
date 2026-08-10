@@ -15,7 +15,7 @@
       tagline: "8樓住院期間的好幫手,免洽護理站,常見問題一次查",
       footerDisclaimer: "如頁面資訊與現場公告不一致,請以護理站現場說明為準。",
       "nav.dining.title": "餐飲資訊",
-      "nav.dining.desc": "員工餐廳/美食街菜單與價格",
+      "nav.dining.desc": "院內餐價格及本院商店介紹",
       "nav.wards.title": "病房單位介紹",
       "nav.wards.desc": "各單位護理人員配置與護病比",
       "nav.rooms.title": "單人房/雙人房",
