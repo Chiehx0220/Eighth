@@ -1593,6 +1593,7 @@ table.price-table tbody tr:hover {
 }
 
 .bed-status-room-tile {
+  min-width: 0;
   background: var(--md-sys-color-surface-container-low);
   border-radius: var(--md-sys-shape-corner-medium);
   padding: 10px 12px;
@@ -1605,7 +1606,8 @@ table.price-table tbody tr:hover {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 8px;
+  flex-wrap: wrap;
+  gap: 4px 8px;
 }
 
 .bed-status-room-tile__number {
