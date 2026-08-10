@@ -1448,7 +1448,7 @@ table.price-table tbody tr:hover {
   border-radius: var(--md-sys-shape-corner-full);
 }
 
-.staff-greeting__icon {
+.staff-greeting__icon.material-symbols-outlined {
   flex-shrink: 0;
   display: flex;
   align-items: center;
