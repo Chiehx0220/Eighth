@@ -270,7 +270,14 @@
     var staffSubmit = document.getElementById("staff-gate-submit");
     var staffContent = document.getElementById("staff-content");
 
-    var staffCodes = staffGate.dataset.codes.split(",").map(function (code) { return code.trim(); });
+    var staffCodes = staffGate.dataset.codes.split(",").map(function (entry) {
+      var parts = entry.trim().split(":");
+      return { code: parts[0].trim(), name: parts[1] ? parts[1].trim() : "" };
+    });
+
+    function findStaffByCode(value) {
+      return staffCodes.filter(function (s) { return s.code === value; })[0];
+    }
     var applicationsListSingle = document.getElementById("applications-list-single");
     var applicationsListDouble = document.getElementById("applications-list-double");
 
@@ -639,10 +646,17 @@
       }
     });
 
+    var staffGreeting = document.getElementById("staff-greeting");
+
     function trySubmitStaffCode() {
-      if (staffCodes.indexOf(staffInput.value.trim()) !== -1) {
+      var matched = findStaffByCode(staffInput.value.trim());
+      if (matched) {
         staffGate.hidden = true;
         staffContent.hidden = false;
+        if (staffGreeting) {
+          staffGreeting.textContent = matched.name ? "你好" + matched.name + ",歡迎回來" : "";
+          staffGreeting.hidden = !matched.name;
+        }
         loadBedStatus();
         loadApplications();
         startApplicationsPolling();
@@ -695,7 +709,7 @@
 
       markDoneForm.addEventListener("submit", function (e) {
         e.preventDefault();
-        if (staffCodes.indexOf(markDoneInput.value.trim()) === -1) {
+        if (!findStaffByCode(markDoneInput.value.trim())) {
           markDoneError.hidden = false;
           return;
         }

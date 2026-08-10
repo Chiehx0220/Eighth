@@ -1438,6 +1438,13 @@ table.price-table tbody tr:hover {
   }
 }
 
+#staff-greeting {
+  font-size: var(--md-sys-typescale-title-medium-size);
+  font-weight: 500;
+  color: var(--md-sys-color-primary);
+  margin: 0 0 16px;
+}
+
 .bed-status-toolbar {
   display: flex;
   align-items: center;

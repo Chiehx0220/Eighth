@@ -21,6 +21,7 @@ permalink: /beds/
 </div>
 
 <div id="staff-content" hidden>
+  <p id="staff-greeting" hidden></p>
   <script type="application/json" id="bed-structure-data">
     {
       "single_room_beds": {{ rooms.single_room_beds | pluckLabel | dump | safe }},
