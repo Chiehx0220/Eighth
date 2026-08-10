@@ -38,13 +38,25 @@ permalink: /beds/
   </script>
 
   <h2>待排單/雙人</h2>
-  <h3>單人房</h3>
-  <div id="applications-list-single" class="applications-list" aria-live="polite">
-    <p class="applications-list__status">載入中…</p>
-  </div>
-  <h3>雙人房</h3>
-  <div id="applications-list-double" class="applications-list" aria-live="polite">
-    <p class="applications-list__status">載入中…</p>
+  <div class="applications-groups">
+    <div class="applications-group">
+      <h3 class="applications-group__title">
+        <span class="material-symbols-outlined" aria-hidden="true">bed</span>
+        單人房
+      </h3>
+      <div id="applications-list-single" class="applications-list" aria-live="polite">
+        <p class="applications-list__status">載入中…</p>
+      </div>
+    </div>
+    <div class="applications-group">
+      <h3 class="applications-group__title">
+        <span class="material-symbols-outlined" aria-hidden="true">group</span>
+        雙人房
+      </h3>
+      <div id="applications-list-double" class="applications-list" aria-live="polite">
+        <p class="applications-list__status">載入中…</p>
+      </div>
+    </div>
   </div>
 
   <div class="bed-status-toolbar">
