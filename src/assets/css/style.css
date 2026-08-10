@@ -1245,6 +1245,10 @@ a {
   color: var(--md-sys-color-on-surface-variant);
 }
 
+.m3-dialog__status[hidden] {
+  display: none;
+}
+
 .m3-dialog__status {
   display: flex;
   align-items: center;
