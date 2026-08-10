@@ -1582,17 +1582,23 @@ table.price-table tbody tr:hover {
 
 /* Grid of room tiles (grouped: double/quad/insured-double rooms) */
 .bed-status-grid--rooms {
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 14px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 10px;
+}
+
+@media (min-width: 480px) {
+  .bed-status-grid--rooms {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  }
 }
 
 .bed-status-room-tile {
   background: var(--md-sys-color-surface-container-low);
   border-radius: var(--md-sys-shape-corner-medium);
-  padding: 14px 16px;
+  padding: 10px 12px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 8px;
 }
 
 .bed-status-room-tile__head {
@@ -1610,7 +1616,12 @@ table.price-table tbody tr:hover {
 .bed-status-room-tile__beds {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 8px;
+  gap: 6px;
+}
+
+.bed-status-room-tile__beds .bed-status-chip {
+  padding: 0 4px;
+  min-width: 0;
 }
 
 .bed-status-gender-badge {

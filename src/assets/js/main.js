@@ -384,7 +384,7 @@
       return roomOrLabel + "-" + category.suffixes[bedIdx];
     }
 
-    function createBedChip(label, occupied, pending, editable, onToggle) {
+    function createBedChip(label, occupied, pending, editable, onToggle, displayLabel) {
       var chip = document.createElement("button");
       chip.type = "button";
       chip.disabled = !editable;
@@ -392,7 +392,7 @@
         (pending ? " bed-status-chip--pending" : "") + (editable ? " bed-status-chip--editable" : "");
       chip.setAttribute("aria-label", label + (occupied ? " 占用" : " 空床"));
       var text = document.createElement("span");
-      text.textContent = label;
+      text.textContent = displayLabel || label;
       chip.appendChild(text);
       if (editable) chip.addEventListener("click", onToggle);
       return chip;
@@ -541,7 +541,7 @@
               tileBeds.appendChild(createBedChip(bedLabel(cat, id, bIdx), occupied, pending, bedEditMode, function () {
                 workingRoom.beds[bIdx] = !workingRoom.beds[bIdx];
                 renderBedStatus();
-              }));
+              }, String(cat.suffixes[bIdx])));
             });
             tile.appendChild(tileBeds);
 
