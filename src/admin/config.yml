@@ -25,7 +25,7 @@ collections:
           - label: "員工號(用於登入 /beds/ 床位系統)"
             name: "staff_access_codes"
             widget: "text"
-            hint: "多組員工號請用逗號分隔,例如:80808,120155"
+            hint: "多組員工號請用逗號分隔"
             pattern: ["^[0-9]+(,\\s*[0-9]+)*$", "請輸入數字,多組用逗號分隔"]
 
   - name: "dining"
