@@ -647,6 +647,7 @@
     });
 
     var staffGreeting = document.getElementById("staff-greeting");
+    var staffGreetingName = document.getElementById("staff-greeting-name");
 
     function trySubmitStaffCode() {
       var matched = findStaffByCode(staffInput.value.trim());
@@ -654,7 +655,9 @@
         staffGate.hidden = true;
         staffContent.hidden = false;
         if (staffGreeting) {
-          staffGreeting.textContent = matched.name ? "你好" + matched.name + ",歡迎回來" : "";
+          if (matched.name && staffGreetingName) {
+            staffGreetingName.textContent = matched.name;
+          }
           staffGreeting.hidden = !matched.name;
         }
         loadBedStatus();

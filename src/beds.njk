@@ -21,7 +21,13 @@ permalink: /beds/
 </div>
 
 <div id="staff-content" hidden>
-  <p id="staff-greeting" hidden></p>
+  <div id="staff-greeting" class="staff-greeting" hidden>
+    <span class="staff-greeting__icon material-symbols-outlined" aria-hidden="true">waving_hand</span>
+    <p class="staff-greeting__text">
+      <span class="staff-greeting__name" id="staff-greeting-name"></span>
+      <span class="staff-greeting__sub">歡迎回來</span>
+    </p>
+  </div>
   <script type="application/json" id="bed-structure-data">
     {
       "single_room_beds": {{ rooms.single_room_beds | pluckLabel | dump | safe }},

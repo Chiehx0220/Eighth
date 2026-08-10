@@ -1438,11 +1438,45 @@ table.price-table tbody tr:hover {
   }
 }
 
-#staff-greeting {
+.staff-greeting {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 8px 20px 8px 8px;
+  margin: 0 0 20px;
+  background: var(--md-sys-color-surface-container-low);
+  border-radius: var(--md-sys-shape-corner-full);
+}
+
+.staff-greeting__icon {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: var(--md-sys-shape-corner-full);
+  background: var(--md-sys-color-primary-container);
+  color: var(--md-sys-color-on-primary-container);
+  font-size: 22px;
+}
+
+.staff-greeting__text {
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.staff-greeting__name {
   font-size: var(--md-sys-typescale-title-medium-size);
   font-weight: 500;
-  color: var(--md-sys-color-primary);
-  margin: 0 0 16px;
+  color: var(--md-sys-color-on-surface);
+}
+
+.staff-greeting__sub {
+  font-size: var(--md-sys-typescale-body-small-size);
+  color: var(--md-sys-color-on-surface-variant);
 }
 
 .bed-status-toolbar {
