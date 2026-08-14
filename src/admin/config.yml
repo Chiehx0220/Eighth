@@ -29,10 +29,10 @@ collections:
             pattern: ["^[0-9]+(:[^,:]+)?(,\\s*[0-9]+(:[^,:]+)?)*$", "格式錯誤,請用「員工號:姓名」並以逗號分隔,姓名可省略"]
 
   - name: "dining"
-    label: "餐飲資訊"
+    label: "飲食相關"
     files:
       - name: "dining"
-        label: "餐飲資訊"
+        label: "飲食相關"
         file: "src/_data/dining.yaml"
         fields:
           - label: "院內餐"

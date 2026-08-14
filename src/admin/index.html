@@ -7,6 +7,25 @@
   <link rel="icon" href="../assets/icons/favicon.svg" type="image/svg+xml">
   <link rel="icon" href="../assets/icons/favicon-48.png" type="image/png">
   <link rel="apple-touch-icon" href="../assets/icons/apple-touch-icon.png">
+  <style>
+    /* Decap CMS's entry editor hardcodes an 800px split-pane layout (form + live
+       preview side by side), which forces horizontal zoom/scroll on phones.
+       Below that width, drop the preview pane and let the form fill the screen. */
+    @media (max-width: 800px) {
+      [class*="EditorContainer"],
+      [class*="ToolbarContainer"] {
+        min-width: 0 !important;
+        width: 100% !important;
+      }
+      .Pane1 {
+        width: 100% !important;
+      }
+      .Pane2,
+      .Resizer {
+        display: none !important;
+      }
+    }
+  </style>
 </head>
 <body>
   <script src="https://unpkg.com/decap-cms@^3/dist/decap-cms.js"></script>
