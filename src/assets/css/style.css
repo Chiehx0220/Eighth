@@ -2,11 +2,11 @@
   --font-scale: 1;
   --md-ref-base-font: 18px;
 
-  /* ---- MD3 color tokens (light) — seeded from a light blue ---- */
-  --md-sys-color-primary: #0061a4;
+  /* ---- MD3 color tokens (light) — seeded from a warm gold ---- */
+  --md-sys-color-primary: #705a00;
   --md-sys-color-on-primary: #ffffff;
-  --md-sys-color-primary-container: #d1e4ff;
-  --md-sys-color-on-primary-container: #001d36;
+  --md-sys-color-primary-container: #fff3c2;
+  --md-sys-color-on-primary-container: #3d3100;
 
   --md-sys-color-secondary: #535f70;
   --md-sys-color-on-secondary: #ffffff;
@@ -89,10 +89,10 @@
 /* dark scheme: follows system preference, unless the user explicitly picked light via the theme toggle */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --md-sys-color-primary: #9ecaff;
-    --md-sys-color-on-primary: #003258;
-    --md-sys-color-primary-container: #00497d;
-    --md-sys-color-on-primary-container: #d1e4ff;
+    --md-sys-color-primary: #dfcb90;
+    --md-sys-color-on-primary: #3d3100;
+    --md-sys-color-primary-container: #776222;
+    --md-sys-color-on-primary-container: #fff3c2;
 
     --md-sys-color-secondary: #bbc7db;
     --md-sys-color-on-secondary: #253140;
@@ -144,10 +144,10 @@
 
 /* explicit override via the theme toggle button, regardless of system preference */
 :root[data-theme="dark"] {
-  --md-sys-color-primary: #9ecaff;
-  --md-sys-color-on-primary: #003258;
-  --md-sys-color-primary-container: #00497d;
-  --md-sys-color-on-primary-container: #d1e4ff;
+  --md-sys-color-primary: #dfcb90;
+  --md-sys-color-on-primary: #3d3100;
+  --md-sys-color-primary-container: #776222;
+  --md-sys-color-on-primary-container: #fff3c2;
 
   --md-sys-color-secondary: #bbc7db;
   --md-sys-color-on-secondary: #253140;
