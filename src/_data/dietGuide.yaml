@@ -41,7 +41,7 @@ stages:
       - 打散蒸蛋
   - id: stage-3
     tag: 03・介於液體與固體之間
-    icon: ramen_dining
+    icon: soup_kitchen
     title: 半流質飲食
     subtitle: Soft / Semi-Liquid Diet
     desc: 質地綿密、好咀嚼好吞嚥,介於液體和固體之間,像是煮得綿密的稀飯,或搗成泥狀的食物。這是全流質過渡到一般飲食很重要的中間站。
