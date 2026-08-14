@@ -1,0 +1,46 @@
+---
+layout: layouts/base.njk
+title: "飲食衛教"
+permalink: /dining/diet-guide/
+---
+<h1>飲食衛教</h1>
+<p>{{ dietGuide.intro }}</p>
+<p class="diet-guide__disclaimer">{{ dietGuide.disclaimer }}</p>
+
+<nav class="diet-guide__jump" aria-label="快速跳到階段">
+  {% for stage in dietGuide.stages %}
+  <a href="#{{ stage.id }}" class="m3-chip m3-chip--outline">{{ stage.title }}</a>
+  {% endfor %}
+</nav>
+
+{% for stage in dietGuide.stages %}
+<section class="diet-stage" id="{{ stage.id }}">
+  <div class="diet-stage__head">
+    <span class="diet-stage__icon material-symbols-outlined" aria-hidden="true">{{ stage.icon }}</span>
+    <div class="diet-stage__heading">
+      <span class="diet-stage__tag">{{ stage.tag }}</span>
+      <h2 class="diet-stage__title">{{ stage.title }}</h2>
+      <p class="diet-stage__subtitle">{{ stage.subtitle }}</p>
+    </div>
+  </div>
+  <p class="diet-stage__desc">{{ stage.desc }}</p>
+  <div class="diet-info-grid">
+    {% for block in stage.info %}
+    <div class="diet-info-block">
+      <h3>{{ block.title }}</h3>
+      <p>{{ block.desc }}</p>
+    </div>
+    {% endfor %}
+  </div>
+  <div class="diet-stage__foods">
+    {% for food in stage.foods %}
+    <span class="m3-chip m3-chip--outline">{{ food }}</span>
+    {% endfor %}
+  </div>
+</section>
+{% endfor %}
+
+<div class="diet-guide__note">
+  <span class="material-symbols-outlined" aria-hidden="true">info</span>
+  <p>{{ dietGuide.final_note }}</p>
+</div>

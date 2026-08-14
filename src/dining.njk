@@ -5,6 +5,15 @@ permalink: /dining/
 ---
 <h1>餐飲資訊</h1>
 
+<a href="{{ '/dining/diet-guide/' | url }}" class="content-link-card">
+  <span class="content-link-card__icon material-symbols-outlined" aria-hidden="true">restaurant_menu</span>
+  <span class="content-link-card__text">
+    <span class="content-link-card__title">飲食衛教</span>
+    <span class="content-link-card__desc">手術恢復、腸胃檢查、牙口調整——依身體狀況分階段調整的飲食質地說明</span>
+  </span>
+  <span class="content-link-card__arrow material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+</a>
+
 {% set place = dining.mealService %}
 <div class="ward-block">
   <h2>{{ place.name }}</h2>
