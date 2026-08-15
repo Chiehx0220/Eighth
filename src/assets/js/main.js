@@ -268,7 +268,7 @@
 
     function goTo(i) {
       var clamped = (i + imgs.length) % imgs.length;
-      imgs[clamped].scrollIntoView({ behavior: reducedMotionScroll, inline: "start", block: "nearest" });
+      carousel.scrollTo({ left: imgs[clamped].offsetLeft, behavior: reducedMotionScroll });
       setActive(clamped);
     }
 
