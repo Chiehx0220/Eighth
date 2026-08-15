@@ -2130,6 +2130,20 @@ table.price-table tbody tr:hover {
   flex-shrink: 0;
 }
 
+/* On narrow screens, a long meta line (doctor/unit/time) competing with the
+   action buttons for the same row squeezes both. Stack instead. */
+@media (max-width: 480px) {
+  .applications-list__item {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .applications-list__item-actions {
+    justify-content: flex-end;
+  }
+}
+
 /* ---- rules list ---- */
 ul.rules-list {
   padding-left: 0;
