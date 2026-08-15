@@ -250,7 +250,7 @@
       .catch(function () {});
   }
 
-  var AUTOPLAY_INTERVAL = 2000;
+  var AUTOPLAY_INTERVAL = 4000;
   var reducedMotionScroll = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
 
   document.querySelectorAll(".room-card__carousel--peek").forEach(function (carousel) {
