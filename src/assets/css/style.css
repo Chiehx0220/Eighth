@@ -1224,9 +1224,8 @@ a {
   overflow: hidden;
 }
 
-/* MD3 carousel: items are the primary affordance — a sliver of the next
-   item peeks past the trailing edge to signal "more", driven entirely by
-   scroll-snap. No dots or arrow buttons; that's an MD2/gallery pattern. */
+/* MD3-style peeking carousel: a sliver of the next item shows past the
+   trailing edge to signal "more". Auto-advances with dot indicators. */
 .room-card__carousel {
   position: absolute;
   inset: 0;
@@ -1251,6 +1250,32 @@ a {
 
 .room-card__carousel--peek .room-card__carousel-img {
   flex-basis: 88%;
+}
+
+.room-card__carousel-dots {
+  position: absolute;
+  bottom: 8px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 6px;
+  z-index: 1;
+}
+
+.room-card__carousel-dot {
+  width: 6px;
+  height: 6px;
+  padding: 0;
+  border: none;
+  border-radius: var(--md-sys-shape-corner-full);
+  background: rgba(255, 255, 255, 0.55);
+  cursor: pointer;
+  transition: width 0.2s ease, background 0.2s ease;
+}
+
+.room-card__carousel-dot.is-active {
+  width: 16px;
+  background: #fff;
 }
 
 .room-card__body {

@@ -250,6 +250,65 @@
       .catch(function () {});
   }
 
+  var AUTOPLAY_INTERVAL = 4000;
+  var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  document.querySelectorAll(".room-card__carousel--peek").forEach(function (carousel) {
+    var imgs = carousel.querySelectorAll(".room-card__carousel-img");
+    var dots = carousel.parentElement.querySelectorAll(".room-card__carousel-dot");
+    if (imgs.length < 2) return;
+
+    var index = 0;
+    var timer = null;
+
+    function setActive(i) {
+      index = i;
+      dots.forEach(function (dot, di) { dot.classList.toggle("is-active", di === i); });
+    }
+
+    function goTo(i) {
+      var clamped = (i + imgs.length) % imgs.length;
+      imgs[clamped].scrollIntoView({ behavior: "smooth", inline: "start", block: "nearest" });
+      setActive(clamped);
+    }
+
+    function stop() {
+      clearInterval(timer);
+      timer = null;
+    }
+
+    function play() {
+      if (prefersReducedMotion || document.hidden) return;
+      stop();
+      timer = setInterval(function () { goTo(index + 1); }, AUTOPLAY_INTERVAL);
+    }
+
+    dots.forEach(function (dot, i) {
+      dot.addEventListener("click", function () {
+        goTo(i);
+        play();
+      });
+    });
+
+    carousel.addEventListener("pointerenter", stop);
+    carousel.addEventListener("pointerleave", play);
+
+    var scrollTimer;
+    carousel.addEventListener("scroll", function () {
+      clearTimeout(scrollTimer);
+      scrollTimer = setTimeout(function () {
+        var i = Math.round(carousel.scrollLeft / imgs[0].getBoundingClientRect().width);
+        setActive(Math.max(0, Math.min(imgs.length - 1, i)));
+      }, 120);
+    });
+
+    document.addEventListener("visibilitychange", function () {
+      if (document.hidden) stop(); else play();
+    });
+
+    play();
+  });
+
   var brandLogo = document.querySelector(".brand[data-staff-url]");
   if (brandLogo) {
     var brandTapCount = 0;
