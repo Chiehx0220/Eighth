@@ -106,7 +106,11 @@ collections:
             collapsed: true
             fields:
               - { label: "房型名稱", name: "type", widget: "string" }
-              - { label: "照片", name: "image", widget: "image", required: false }
+              - label: "照片(可新增多張,會以左右滑動輪播顯示)"
+                name: "images"
+                widget: "list"
+                required: false
+                field: { label: "照片", name: "src", widget: "image" }
               - { label: "說明", name: "description", widget: "text" }
           - label: "單人房床位"
             name: "single_room_beds"
