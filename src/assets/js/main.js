@@ -331,14 +331,17 @@
     });
   }
 
-  var staffGate = document.getElementById("staff-gate");
-  if (staffGate) {
+  var staffContent = document.getElementById("staff-content");
+  if (staffContent) {
+    // The login gate only lives on /staff/ now. Pages like /beds/ and
+    // /beds/pre-admit/ have no gate of their own — they trust a prior
+    // /staff/ login (sessionStorage) or bounce back there to get one.
+    var staffGate = document.getElementById("staff-gate");
     var staffInput = document.getElementById("staff-gate-input");
     var staffError = document.getElementById("staff-gate-error");
     var staffSubmit = document.getElementById("staff-gate-submit");
-    var staffContent = document.getElementById("staff-content");
 
-    var staffCodes = staffGate.dataset.codes.split(",").map(function (entry) {
+    var staffCodes = staffContent.dataset.codes.split(",").map(function (entry) {
       var parts = entry.trim().split(":");
       return { code: parts[0].trim(), name: parts[1] ? parts[1].trim() : "" };
     });
@@ -739,24 +742,54 @@
     var staffGreeting = document.getElementById("staff-greeting");
     var staffGreetingName = document.getElementById("staff-greeting-name");
 
+    var STAFF_AUTH_KEY = "eighth-staff-auth";
+
+    function getStoredStaffAuth() {
+      try {
+        var raw = sessionStorage.getItem(STAFF_AUTH_KEY);
+        return raw ? JSON.parse(raw) : null;
+      } catch (e) {
+        return null;
+      }
+    }
+
+    function setStoredStaffAuth(staff) {
+      try {
+        sessionStorage.setItem(STAFF_AUTH_KEY, JSON.stringify(staff));
+      } catch (e) {}
+    }
+
+    function revealStaffContent(matched) {
+      if (staffGate) staffGate.hidden = true;
+      staffContent.hidden = false;
+      if (staffGreeting) {
+        if (matched && matched.name && staffGreetingName) {
+          staffGreetingName.textContent = matched.name;
+        }
+        staffGreeting.hidden = !(matched && matched.name);
+      }
+      loadBedStatus();
+      loadApplications();
+      loadBedHolds();
+      startApplicationsPolling();
+    }
+
     function trySubmitStaffCode() {
       var matched = findStaffByCode(staffInput.value.trim());
       if (matched) {
-        staffGate.hidden = true;
-        staffContent.hidden = false;
-        if (staffGreeting) {
-          if (matched.name && staffGreetingName) {
-            staffGreetingName.textContent = matched.name;
-          }
-          staffGreeting.hidden = !matched.name;
-        }
-        loadBedStatus();
-        loadApplications();
-        loadBedHolds();
-        startApplicationsPolling();
+        setStoredStaffAuth(matched);
+        revealStaffContent(matched);
       } else {
         staffError.hidden = false;
       }
+    }
+
+    var storedStaffAuth = getStoredStaffAuth();
+    if (storedStaffAuth) {
+      revealStaffContent(storedStaffAuth);
+    } else if (!staffGate) {
+      var hubUrl = staffContent.dataset.hubUrl;
+      if (hubUrl) window.location.href = hubUrl;
     }
 
     var markDoneDialog = document.getElementById("mark-done-dialog");
@@ -1284,13 +1317,15 @@
       });
     }
 
-    staffSubmit.addEventListener("click", trySubmitStaffCode);
-    staffInput.addEventListener("keydown", function (e) {
-      if (e.key === "Enter") trySubmitStaffCode();
-    });
-    staffInput.addEventListener("input", function () {
-      staffError.hidden = true;
-    });
+    if (staffGate) {
+      staffSubmit.addEventListener("click", trySubmitStaffCode);
+      staffInput.addEventListener("keydown", function (e) {
+        if (e.key === "Enter") trySubmitStaffCode();
+      });
+      staffInput.addEventListener("input", function () {
+        staffError.hidden = true;
+      });
+    }
   }
 
   var visitorDialog = document.getElementById("visitor-registration-dialog");

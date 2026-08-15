@@ -4,17 +4,43 @@ title: "員工專區"
 permalink: /staff/
 ---
 <h1>員工專區</h1>
-<p>以下功能僅供病房同仁使用,需輸入員工號登入。</p>
 
-<div class="category-grid">
-  <a href="{{ '/beds/' | url }}" class="m3-card m3-card--success">
-    <span class="m3-card__icon material-symbols-outlined" aria-hidden="true">bed</span>
-    <p class="m3-card__title">床位一覽</p>
-    <p class="m3-card__desc">目前床位占用狀態、待排床位申請</p>
-  </a>
-  <a href="{{ '/beds/pre-admit/' | url }}" class="m3-card m3-card--tertiary">
-    <span class="m3-card__icon material-symbols-outlined" aria-hidden="true">bookmark_add</span>
-    <p class="m3-card__title">預入病患卡床</p>
-    <p class="m3-card__desc">給醫師或其他病房單位預先保留床位</p>
-  </a>
+<div class="staff-gate" id="staff-gate">
+  <span class="staff-gate__icon material-symbols-outlined" aria-hidden="true">admin_panel_settings</span>
+  <h2 class="staff-gate__title">員工登入</h2>
+  <p class="staff-gate__body">請輸入員工號以進入員工專區。</p>
+  <p class="staff-gate__note">住院醫師及專科護理師登錄請填主治醫師之員工號</p>
+  <div class="m3-field">
+    <label for="staff-gate-input">員工號</label>
+    <input type="text" id="staff-gate-input" class="m3-field__input" inputmode="numeric" autocomplete="off">
+  </div>
+  <p class="staff-gate__error" id="staff-gate-error" hidden>員工號錯誤,請重新輸入。</p>
+  <button type="button" class="btn btn--filled staff-gate__submit" id="staff-gate-submit">
+    確認
+    <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+  </button>
+</div>
+
+<div id="staff-content" hidden data-codes="{{ site.staff_access_codes }}">
+  <div id="staff-greeting" class="staff-greeting" hidden>
+    <span class="staff-greeting__icon material-symbols-outlined" aria-hidden="true">waving_hand</span>
+    <p class="staff-greeting__text">
+      <span class="staff-greeting__name" id="staff-greeting-name"></span>
+      <span class="staff-greeting__sub">歡迎回來</span>
+    </p>
+  </div>
+  <p>以下功能僅供病房同仁使用。</p>
+
+  <div class="category-grid">
+    <a href="{{ '/beds/' | url }}" class="m3-card m3-card--success">
+      <span class="m3-card__icon material-symbols-outlined" aria-hidden="true">bed</span>
+      <p class="m3-card__title">床位一覽</p>
+      <p class="m3-card__desc">目前床位占用狀態、待排床位申請</p>
+    </a>
+    <a href="{{ '/beds/pre-admit/' | url }}" class="m3-card m3-card--tertiary">
+      <span class="m3-card__icon material-symbols-outlined" aria-hidden="true">bookmark_add</span>
+      <p class="m3-card__title">預入病患卡床</p>
+      <p class="m3-card__desc">給醫師或其他病房單位預先保留床位</p>
+    </a>
+  </div>
 </div>
