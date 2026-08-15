@@ -22,7 +22,7 @@ collections:
           - { label: "首頁標語", name: "tagline", widget: "string" }
           - { label: "意見信箱連結", name: "suggest_box_url", widget: "string" }
           - { label: "訪客登記表單連結", name: "visitor_registration_url", widget: "string" }
-          - label: "員工號(用於登入 /beds/ 床位系統)"
+          - label: "員工號(用於登入員工專區,連續點擊 3 下首頁 Logo 進入)"
             name: "staff_access_codes"
             widget: "text"
             hint: "多組員工號請用逗號分隔,姓名為選填,格式:員工號:姓名,例如 112120:王小明,118886"

@@ -1,0 +1,20 @@
+---
+layout: layouts/base.njk
+title: "員工專區"
+permalink: /staff/
+---
+<h1>員工專區</h1>
+<p>以下功能僅供病房同仁使用,需輸入員工號登入。</p>
+
+<div class="category-grid">
+  <a href="{{ '/beds/' | url }}" class="m3-card m3-card--success">
+    <span class="m3-card__icon material-symbols-outlined" aria-hidden="true">bed</span>
+    <p class="m3-card__title">床位一覽</p>
+    <p class="m3-card__desc">目前床位占用狀態、待排床位申請</p>
+  </a>
+  <a href="{{ '/beds/pre-admit/' | url }}" class="m3-card m3-card--tertiary">
+    <span class="m3-card__icon material-symbols-outlined" aria-hidden="true">bookmark_add</span>
+    <p class="m3-card__title">預入病患卡床</p>
+    <p class="m3-card__desc">給醫師或其他病房單位預先保留床位</p>
+  </a>
+</div>

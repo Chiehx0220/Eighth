@@ -898,7 +898,9 @@
     }
 
     function loadBedHolds() {
-      if (!bedHoldsListEl) return;
+      // Fetches even on pages without the hold-list UI (e.g. the bed-status
+      // grid page) so held-bed badges stay in sync with holds created elsewhere.
+      if (!bedHoldsListEl && !bedStatusSections) return;
       fetch(APPLICATIONS_API_BASE + "/bed-holds")
         .then(function (res) {
           if (!res.ok) throw new Error("request failed");
@@ -912,6 +914,7 @@
           if (Object.keys(bedWorking).length) renderBedStatus();
         })
         .catch(function () {
+          if (!bedHoldsListEl) return;
           bedHoldsListEl.innerHTML = "";
           var errEl = document.createElement("p");
           errEl.className = "applications-list__status";
