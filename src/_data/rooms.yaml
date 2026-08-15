@@ -1,9 +1,9 @@
 photos:
   - type: 單人房
-    image: /assets/uploads/pxl_20260803_231630501.jpg
+    image: ""
     description: 獨立衛浴、備有陪病椅,健保不給付差額由病人自付。
   - type: 雙人房
-    image: /assets/uploads/file_00000000dc80820680345bea9050e0d9.jpg
+    image: /assets/uploads/病房_校正潤飾.jpg
     description: 共用衛浴、每床各附陪病椅,兩床以布簾區隔。
 single_room_beds:
   - label: "0811"
