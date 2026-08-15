@@ -895,12 +895,13 @@
         }
         metaParts.push("預卡時間:" + new Date(hold.submittedAt).toLocaleString("zh-TW"));
 
-        var meta = document.createElement("span");
-        meta.className = "applications-list__meta";
-        meta.textContent = metaParts.join("・");
-
         info.appendChild(title);
-        info.appendChild(meta);
+        metaParts.forEach(function (part) {
+          var meta = document.createElement("span");
+          meta.className = "applications-list__meta";
+          meta.textContent = part;
+          info.appendChild(meta);
+        });
 
         var actions = document.createElement("div");
         actions.className = "applications-list__item-actions";
