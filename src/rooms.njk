@@ -15,25 +15,10 @@ permalink: /rooms/
   <div class="room-card" data-room-type="{{ photo.type }}">
     <div class="room-card__image">
       {% if photo.images and photo.images.length %}
-      <div class="room-card__carousel">
-        <div class="room-card__carousel-track">
-          {% for img in photo.images %}
-          <img src="{{ img | url }}" alt="{{ photo.type }}照片{{ loop.index }}" loading="lazy" decoding="async" class="room-card__carousel-img">
-          {% endfor %}
-        </div>
-        {% if photo.images.length > 1 %}
-        <button type="button" class="room-card__carousel-nav room-card__carousel-nav--prev" aria-label="上一張照片">
-          <span class="material-symbols-outlined" aria-hidden="true">chevron_left</span>
-        </button>
-        <button type="button" class="room-card__carousel-nav room-card__carousel-nav--next" aria-label="下一張照片">
-          <span class="material-symbols-outlined" aria-hidden="true">chevron_right</span>
-        </button>
-        <div class="room-card__carousel-dots">
-          {% for img in photo.images %}
-          <button type="button" class="room-card__carousel-dot{% if loop.index0 == 0 %} is-active{% endif %}" aria-label="第{{ loop.index }}張照片"></button>
-          {% endfor %}
-        </div>
-        {% endif %}
+      <div class="room-card__carousel{% if photo.images.length > 1 %} room-card__carousel--peek{% endif %}">
+        {% for img in photo.images %}
+        <img src="{{ img | url }}" alt="{{ photo.type }}照片{{ loop.index }}" loading="lazy" decoding="async" class="room-card__carousel-img">
+        {% endfor %}
       </div>
       {% else %}尚無照片{% endif %}
     </div>

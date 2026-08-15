@@ -250,46 +250,6 @@
       .catch(function () {});
   }
 
-  document.querySelectorAll(".room-card__carousel").forEach(function (carousel) {
-    var track = carousel.querySelector(".room-card__carousel-track");
-    var dots = carousel.querySelectorAll(".room-card__carousel-dot");
-    var prevBtn = carousel.querySelector(".room-card__carousel-nav--prev");
-    var nextBtn = carousel.querySelector(".room-card__carousel-nav--next");
-    if (!track) return;
-
-    function setActive(index) {
-      dots.forEach(function (dot, i) {
-        dot.classList.toggle("is-active", i === index);
-      });
-    }
-
-    function goTo(index) {
-      var imgs = track.children;
-      var clamped = Math.max(0, Math.min(imgs.length - 1, index));
-      if (imgs[clamped]) imgs[clamped].scrollIntoView({ behavior: "smooth", inline: "start", block: "nearest" });
-      setActive(clamped);
-    }
-
-    function currentIndex() {
-      return Math.round(track.scrollLeft / track.clientWidth);
-    }
-
-    dots.forEach(function (dot, i) {
-      dot.addEventListener("click", function () { goTo(i); });
-    });
-
-    if (prevBtn) prevBtn.addEventListener("click", function () { goTo(currentIndex() - 1); });
-    if (nextBtn) nextBtn.addEventListener("click", function () { goTo(currentIndex() + 1); });
-
-    var scrollTimer;
-    track.addEventListener("scroll", function () {
-      clearTimeout(scrollTimer);
-      scrollTimer = setTimeout(function () {
-        setActive(currentIndex());
-      }, 100);
-    });
-  });
-
   var brandLogo = document.querySelector(".brand[data-staff-url]");
   if (brandLogo) {
     var brandTapCount = 0;
