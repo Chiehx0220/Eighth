@@ -36,6 +36,9 @@ permalink: /beds/
       "insured_double_room_beds": {{ rooms.insured_double_room_beds | pluckRoom | dump | safe }}
     }
   </script>
+  <script type="application/json" id="doctors-data">
+    {{ doctors.departments | dump | safe }}
+  </script>
 
   <h2>待排單/雙人</h2>
   <div class="applications-groups">
@@ -129,7 +132,11 @@ permalink: /beds/
     </div>
     <div class="m3-field">
       <label for="bed-hold-doctor">主治醫師(選填)</label>
-      <input type="text" id="bed-hold-doctor" class="m3-field__input" maxlength="50" autocomplete="off">
+      <select id="bed-hold-doctor" class="m3-field__input"></select>
+    </div>
+    <div class="m3-field" id="bed-hold-doctor-other-field" hidden>
+      <label for="bed-hold-doctor-other">請輸入醫師姓名</label>
+      <input type="text" id="bed-hold-doctor-other" class="m3-field__input" maxlength="50" autocomplete="off">
     </div>
     <div class="m3-field">
       <label for="bed-hold-unit">轉入單位(選填)</label>

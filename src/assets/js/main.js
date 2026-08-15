@@ -911,6 +911,9 @@
     if (bedHoldAddBtn && bedHoldDialog) {
       var bedHoldForm = document.getElementById("bed-hold-form");
       var bedHoldBedSelect = document.getElementById("bed-hold-bed");
+      var bedHoldDoctorSelect = document.getElementById("bed-hold-doctor");
+      var bedHoldDoctorOtherField = document.getElementById("bed-hold-doctor-other-field");
+      var bedHoldDoctorOtherInput = document.getElementById("bed-hold-doctor-other");
       var bedHoldStatus = bedHoldForm.querySelector(".m3-dialog__status");
       var bedHoldStatusIcon = bedHoldStatus.querySelector(".material-symbols-outlined");
       var bedHoldStatusText = bedHoldStatus.querySelector(".m3-dialog__status-text");
@@ -939,6 +942,44 @@
         bedHoldBedSelect.appendChild(group);
       });
 
+      var doctorsDataEl = document.getElementById("doctors-data");
+      var doctorDepartments = [];
+      try {
+        doctorDepartments = doctorsDataEl ? JSON.parse(doctorsDataEl.textContent) : [];
+      } catch (e) {
+        doctorDepartments = [];
+      }
+
+      var unspecifiedOption = document.createElement("option");
+      unspecifiedOption.value = "";
+      unspecifiedOption.textContent = "未指定(選填)";
+      bedHoldDoctorSelect.appendChild(unspecifiedOption);
+
+      doctorDepartments.forEach(function (dept) {
+        var group = document.createElement("optgroup");
+        group.label = dept.name;
+        (dept.specialties || []).forEach(function (specialty) {
+          (specialty.doctors || []).forEach(function (name) {
+            var option = document.createElement("option");
+            option.value = name;
+            option.textContent = name + "(" + specialty.code + ")";
+            group.appendChild(option);
+          });
+        });
+        bedHoldDoctorSelect.appendChild(group);
+      });
+
+      var otherDoctorOption = document.createElement("option");
+      otherDoctorOption.value = "__other__";
+      otherDoctorOption.textContent = "其他(手動輸入)";
+      bedHoldDoctorSelect.appendChild(otherDoctorOption);
+
+      bedHoldDoctorSelect.addEventListener("change", function () {
+        var isOther = bedHoldDoctorSelect.value === "__other__";
+        bedHoldDoctorOtherField.hidden = !isOther;
+        if (isOther) bedHoldDoctorOtherInput.focus();
+      });
+
       function setBedHoldStatus(variant, icon, text) {
         bedHoldStatus.className = "m3-dialog__status m3-dialog__status--" + variant;
         bedHoldStatusIcon.textContent = icon;
@@ -948,6 +989,7 @@
 
       function resetBedHoldDialog() {
         bedHoldForm.reset();
+        bedHoldDoctorOtherField.hidden = true;
         bedHoldStatus.hidden = true;
       }
 
@@ -981,6 +1023,10 @@
           return;
         }
 
+        var doctorValue = bedHoldDoctorSelect.value === "__other__"
+          ? bedHoldDoctorOtherInput.value.trim()
+          : bedHoldDoctorSelect.value;
+
         bedHoldSubmitBtn.disabled = true;
         fetch(APPLICATIONS_API_BASE + "/bed-holds", {
           method: "POST",
@@ -988,7 +1034,7 @@
           body: JSON.stringify({
             bedLabel: bedHoldBedSelect.value,
             patientName: document.getElementById("bed-hold-patient").value.trim(),
-            doctor: document.getElementById("bed-hold-doctor").value.trim(),
+            doctor: doctorValue,
             transferUnit: document.getElementById("bed-hold-unit").value.trim(),
             expectedTime: document.getElementById("bed-hold-time").value,
           }),

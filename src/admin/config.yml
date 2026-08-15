@@ -92,6 +92,35 @@ collections:
               - { label: "小夜上班人數", name: "shift_evening_count", widget: "number" }
               - { label: "大夜上班人數", name: "shift_night_count", widget: "number" }
 
+  - name: "doctors"
+    label: "主治醫師名單"
+    files:
+      - name: "doctors"
+        label: "主治醫師名單"
+        file: "src/_data/doctors.yaml"
+        fields:
+          - label: "科別"
+            name: "departments"
+            widget: "list"
+            allow_add: true
+            collapsed: true
+            summary: "{{fields.name}}"
+            fields:
+              - { label: "科別名稱", name: "name", widget: "string" }
+              - label: "次專科"
+                name: "specialties"
+                widget: "list"
+                allow_add: true
+                collapsed: true
+                summary: "{{fields.code}}"
+                fields:
+                  - { label: "代碼", name: "code", widget: "string" }
+                  - label: "醫師"
+                    name: "doctors"
+                    widget: "list"
+                    allow_add: true
+                    field: { label: "姓名", name: "name", widget: "string" }
+
   - name: "rooms"
     label: "房型"
     files:

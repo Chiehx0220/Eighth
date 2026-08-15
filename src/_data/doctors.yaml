@@ -1,0 +1,66 @@
+departments:
+  - name: 內科
+    specialties:
+      - code: INF
+        doctors:
+          - 林信安
+          - 紀鴻偉
+      - code: CM
+        doctors:
+          - 李建中
+          - 彭士軒
+          - 蔡昊忠
+      - code: CV
+        doctors:
+          - 郭金和
+          - 曾今坤
+          - 張偉政
+      - code: NEPHRO
+        doctors:
+          - 魏廷恩
+          - 陳建州
+      - code: GI
+        doctors:
+          - 江崇良
+          - 林容安
+          - 莊淯全
+      - code: META
+        doctors:
+          - 陳瑞鴻
+      - code: ONC
+        doctors:
+          - 張智宇
+  - name: 外科
+    specialties:
+      - code: GO
+        doctors:
+          - 林需比
+          - 簡嘉良
+          - 彭鼎原
+          - 蔡佳宏
+          - 陳昱任
+          - 廖啟揚
+      - code: GU
+        doctors:
+          - 李俊德
+          - 顏敬恒
+          - 羅華成
+          - 賴姿君
+      - code: GS
+        doctors:
+          - 楊千毅
+          - 曾彥雅
+      - code: CRS
+        doctors:
+          - 牟致遠
+          - 浦大維
+      - code: NS
+        doctors:
+          - 沈仕傑
+      - code: CVS
+        doctors:
+          - 陳偉祺
+          - 黃懿範
+      - code: CS
+        doctors:
+          - 楊丞熹
