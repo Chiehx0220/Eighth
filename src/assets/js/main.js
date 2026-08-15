@@ -250,8 +250,8 @@
       .catch(function () {});
   }
 
-  var AUTOPLAY_INTERVAL = 4000;
-  var prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var AUTOPLAY_INTERVAL = 2000;
+  var reducedMotionScroll = window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth";
 
   document.querySelectorAll(".room-card__carousel--peek").forEach(function (carousel) {
     var imgs = carousel.querySelectorAll(".room-card__carousel-img");
@@ -268,7 +268,7 @@
 
     function goTo(i) {
       var clamped = (i + imgs.length) % imgs.length;
-      imgs[clamped].scrollIntoView({ behavior: "smooth", inline: "start", block: "nearest" });
+      imgs[clamped].scrollIntoView({ behavior: reducedMotionScroll, inline: "start", block: "nearest" });
       setActive(clamped);
     }
 
@@ -278,7 +278,7 @@
     }
 
     function play() {
-      if (prefersReducedMotion || document.hidden) return;
+      if (document.hidden) return;
       stop();
       timer = setInterval(function () { goTo(index + 1); }, AUTOPLAY_INTERVAL);
     }
