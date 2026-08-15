@@ -1477,6 +1477,15 @@ a {
   margin: 0 0 24px;
 }
 
+.staff-gate__note {
+  font-size: var(--md-sys-typescale-body-small-size);
+  color: var(--md-sys-color-on-tertiary-container);
+  background: var(--md-sys-color-tertiary-container);
+  border-radius: var(--md-sys-shape-corner-medium);
+  padding: 8px 12px;
+  margin: -14px 0 24px;
+}
+
 .staff-gate .m3-field {
   text-align: left;
 }
