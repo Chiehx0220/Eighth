@@ -71,7 +71,7 @@ permalink: /beds/
       </button>
     </div>
   </div>
-  <p class="applications-list__status">給醫師或其他病房單位(如 ICU)預先保留床位。已預卡的床會在下方床位狀態標示,若該床目前仍有病人在住,標示會疊加顯示,不會蓋掉現有占用狀態。</p>
+  <p class="applications-list__status">給醫師或其他病房單位(如 ICU)預先保留床位。</p>
   <div id="bed-holds-list" class="applications-list" aria-live="polite">
     <p class="applications-list__status">載入中…</p>
   </div>
@@ -88,6 +88,18 @@ permalink: /beds/
       </button>
       <button type="button" class="btn btn--text" id="bed-status-cancel" hidden>取消</button>
     </div>
+  </div>
+  <div class="bed-status-legend">
+    <span class="bed-status-legend__item">
+      <span class="bed-status-legend__swatch bed-status-legend__swatch--vacant"></span>
+      亮綠燈為空床
+    </span>
+    <span class="bed-status-legend__item">
+      <span class="bed-status-legend__swatch bed-status-legend__swatch--held">
+        <span class="material-symbols-outlined" aria-hidden="true">bookmark</span>
+      </span>
+      藍邊書籤圖示為預訂床
+    </span>
   </div>
   <p class="applications-list__status" id="bed-status-flash" role="status"></p>
 

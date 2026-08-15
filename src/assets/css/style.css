@@ -1984,6 +1984,45 @@ table.price-table tbody tr:hover {
   font-size: 16px !important;
 }
 
+.bed-status-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+  margin: 4px 0 2px;
+  color: var(--md-sys-color-on-surface-variant);
+  font-size: var(--md-sys-typescale-body-small-size);
+}
+
+.bed-status-legend__item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.bed-status-legend__swatch {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: var(--md-sys-shape-corner-full);
+  flex-shrink: 0;
+}
+
+.bed-status-legend__swatch--vacant {
+  background: var(--md-sys-color-success-container);
+}
+
+.bed-status-legend__swatch--held {
+  background: var(--md-sys-color-surface-container-high);
+  box-shadow: inset 0 0 0 2px var(--md-sys-color-tertiary);
+}
+
+.bed-status-legend__swatch--held .material-symbols-outlined {
+  font-size: 13px;
+  color: var(--md-sys-color-tertiary);
+}
+
 .bed-status-actions {
   display: flex;
   align-items: center;
