@@ -4,9 +4,9 @@ photos:
     description: 獨立衛浴、備有陪病椅,健保不給付差額由病人自付。
   - type: 雙人房
     images:
-      - /Eighth/assets/uploads/double-room.jpg
-      - /Eighth/assets/uploads/double-room-sink.jpg
-      - /Eighth/assets/uploads/double-room-bathroom.jpg
+      - /assets/uploads/double-room.jpg
+      - /assets/uploads/double-room-sink.jpg
+      - /assets/uploads/double-room-bathroom.jpg
     description: 共用衛浴、每床各附陪病椅,兩床以布簾區隔。
 single_room_beds:
   - label: "0811"
