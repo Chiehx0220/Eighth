@@ -2059,6 +2059,12 @@ table.price-table tbody tr:hover {
   font-size: 18px;
 }
 
+.applications-group__desc {
+  margin: 0 0 8px;
+  font-size: var(--md-sys-typescale-body-small-size);
+  color: var(--md-sys-color-on-surface-variant);
+}
+
 .applications-list {
   display: flex;
   flex-direction: column;
@@ -2101,6 +2107,13 @@ table.price-table tbody tr:hover {
   min-height: 32px;
   padding: 4px 12px;
   font-size: var(--md-sys-typescale-body-small-size);
+}
+
+.applications-list__item-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
 }
 
 /* ---- rules list ---- */

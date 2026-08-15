@@ -869,16 +869,30 @@
         info.appendChild(title);
         info.appendChild(meta);
 
+        var actions = document.createElement("div");
+        actions.className = "applications-list__item-actions";
+
+        var checkinBtn = document.createElement("button");
+        checkinBtn.type = "button";
+        checkinBtn.className = "btn btn--tonal";
+        checkinBtn.textContent = "入住";
+        checkinBtn.addEventListener("click", function () {
+          openCheckinHoldDialog(hold);
+        });
+
         var cancelBtn = document.createElement("button");
         cancelBtn.type = "button";
         cancelBtn.className = "btn btn--text";
-        cancelBtn.textContent = "取消預卡";
+        cancelBtn.textContent = "取消";
         cancelBtn.addEventListener("click", function () {
           openCancelHoldDialog(hold);
         });
 
+        actions.appendChild(checkinBtn);
+        actions.appendChild(cancelBtn);
+
         item.appendChild(info);
-        item.appendChild(cancelBtn);
+        item.appendChild(actions);
         bedHoldsListEl.appendChild(item);
       });
     }
@@ -1053,6 +1067,121 @@
           })
           .finally(function () {
             bedHoldSubmitBtn.disabled = false;
+          });
+      });
+    }
+
+    function findBedLocation(label) {
+      var found = null;
+      BED_CATEGORIES.forEach(function (cat) {
+        if (found) return;
+        var ids = bedStructure[cat.key] || [];
+        if (cat.kind === "flat") {
+          if (ids.indexOf(label) !== -1) found = { cat: cat, id: label, bIdx: null };
+        } else {
+          ids.forEach(function (id) {
+            if (found) return;
+            cat.suffixes.forEach(function (suffix, bIdx) {
+              if (id + "-" + suffix === label) found = { cat: cat, id: id, bIdx: bIdx };
+            });
+          });
+        }
+      });
+      return found;
+    }
+
+    var checkinHoldDialog = document.getElementById("checkin-hold-dialog");
+    if (checkinHoldDialog) {
+      var checkinHoldForm = document.getElementById("checkin-hold-form");
+      var checkinHoldSummary = document.getElementById("checkin-hold-summary");
+      var checkinHoldInput = document.getElementById("checkin-hold-input");
+      var checkinHoldError = document.getElementById("checkin-hold-error");
+      var checkinHoldCancelBtn = document.getElementById("checkin-hold-cancel");
+      var pendingCheckinHold = null;
+
+      function resetCheckinHoldDialog() {
+        checkinHoldForm.reset();
+        checkinHoldError.hidden = true;
+        pendingCheckinHold = null;
+      }
+
+      var openCheckinHoldDialog = function (hold) {
+        pendingCheckinHold = hold;
+        var summaryParts = [hold.bedLabel];
+        if (hold.patientName) summaryParts.push(hold.patientName);
+        checkinHoldSummary.textContent = "確定「" + summaryParts.join("・") + "」已入住嗎?此操作會將該床標記為占用,並移除預卡。請輸入員工號確認。";
+        checkinHoldError.hidden = true;
+        checkinHoldInput.value = "";
+        checkinHoldDialog.showModal();
+        checkinHoldInput.focus();
+      };
+
+      checkinHoldCancelBtn.addEventListener("click", function () {
+        checkinHoldDialog.close();
+        resetCheckinHoldDialog();
+      });
+
+      checkinHoldDialog.addEventListener("click", function (e) {
+        if (e.target === checkinHoldDialog) {
+          checkinHoldDialog.close();
+          resetCheckinHoldDialog();
+        }
+      });
+
+      checkinHoldDialog.addEventListener("close", resetCheckinHoldDialog);
+
+      checkinHoldInput.addEventListener("input", function () {
+        checkinHoldError.hidden = true;
+      });
+
+      checkinHoldForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        if (!findStaffByCode(checkinHoldInput.value.trim())) {
+          checkinHoldError.hidden = false;
+          return;
+        }
+
+        var hold = pendingCheckinHold;
+        var submitBtn = checkinHoldForm.querySelector("button[type=submit]");
+        submitBtn.disabled = true;
+
+        fetch(APPLICATIONS_API_BASE + "/bed-status")
+          .then(function (res) {
+            if (!res.ok) throw new Error("request failed");
+            return res.json();
+          })
+          .then(function (serverStatus) {
+            var normalized = normalizeBedStatus(serverStatus);
+            var loc = findBedLocation(hold.bedLabel);
+            if (loc) {
+              if (loc.cat.kind === "flat") {
+                normalized[loc.cat.key][loc.id] = true;
+              } else {
+                normalized[loc.cat.key][loc.id].beds[loc.bIdx] = true;
+              }
+            }
+            return fetch(APPLICATIONS_API_BASE + "/bed-status", {
+              method: "PUT",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify(normalized),
+            });
+          })
+          .then(function (res) {
+            if (!res.ok) throw new Error("request failed");
+            return fetch(APPLICATIONS_API_BASE + "/bed-holds/" + hold.id, { method: "DELETE" });
+          })
+          .then(function () {
+            checkinHoldDialog.close();
+            resetCheckinHoldDialog();
+            loadBedStatus();
+            loadBedHolds();
+          })
+          .catch(function () {
+            checkinHoldError.textContent = "操作失敗,請稍後再試。";
+            checkinHoldError.hidden = false;
+          })
+          .finally(function () {
+            submitBtn.disabled = false;
           });
       });
     }
