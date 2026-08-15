@@ -1974,6 +1974,16 @@ table.price-table tbody tr:hover {
   font-size: 18px;
 }
 
+/* Pre-booked bed: overlays occupied/vacant state, doesn't replace it */
+.bed-status-chip--held {
+  box-shadow: inset 0 0 0 2px var(--md-sys-color-tertiary);
+}
+
+.bed-status-chip__held-icon {
+  color: var(--md-sys-color-tertiary);
+  font-size: 16px !important;
+}
+
 .bed-status-actions {
   display: flex;
   align-items: center;

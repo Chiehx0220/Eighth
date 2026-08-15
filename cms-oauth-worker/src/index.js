@@ -50,6 +50,28 @@ export default {
       }
     }
 
+    if (url.pathname === "/bed-holds") {
+      if (request.method === "OPTIONS") {
+        return new Response(null, { headers: CORS_HEADERS });
+      }
+      if (request.method === "POST") {
+        return handleCreateBedHold(request, env);
+      }
+      if (request.method === "GET") {
+        return handleListBedHolds(env);
+      }
+    }
+
+    var holdDeleteMatch = url.pathname.match(/^\/bed-holds\/([^/]+)$/);
+    if (holdDeleteMatch) {
+      if (request.method === "OPTIONS") {
+        return new Response(null, { headers: CORS_HEADERS });
+      }
+      if (request.method === "DELETE") {
+        return handleDeleteBedHold(holdDeleteMatch[1], env);
+      }
+    }
+
     return new Response("Not found", { status: 404, headers: CORS_HEADERS });
   },
 };
@@ -111,6 +133,62 @@ async function handleDeleteApplication(id, env) {
   const applications = await readApplications(env);
   const remaining = applications.filter((app) => app.id !== id);
   await writeApplications(env, remaining);
+  return jsonResponse({ ok: true });
+}
+
+const BED_HOLDS_KEY = "bed_holds";
+
+async function readBedHolds(env) {
+  const raw = await env.APPLICATIONS.get(BED_HOLDS_KEY);
+  return raw ? JSON.parse(raw) : [];
+}
+
+async function writeBedHolds(env, holds) {
+  await env.APPLICATIONS.put(BED_HOLDS_KEY, JSON.stringify(holds));
+}
+
+function cleanString(value, maxLen) {
+  return typeof value === "string" ? value.trim().slice(0, maxLen) : "";
+}
+
+async function handleCreateBedHold(request, env) {
+  let body;
+  try {
+    body = await request.json();
+  } catch (e) {
+    return jsonResponse({ error: "Invalid JSON" }, 400);
+  }
+
+  const bedLabel = cleanString(body.bedLabel, 50);
+  if (!bedLabel) {
+    return jsonResponse({ error: "Missing or invalid fields" }, 400);
+  }
+
+  const entry = {
+    id: crypto.randomUUID(),
+    bedLabel,
+    patientName: cleanString(body.patientName, 50),
+    doctor: cleanString(body.doctor, 50),
+    transferUnit: cleanString(body.transferUnit, 50),
+    expectedTime: cleanString(body.expectedTime, 30),
+    submittedAt: new Date().toISOString(),
+  };
+
+  const holds = await readBedHolds(env);
+  holds.push(entry);
+  await writeBedHolds(env, holds);
+  return jsonResponse(entry, 201);
+}
+
+async function handleListBedHolds(env) {
+  const holds = await readBedHolds(env);
+  return jsonResponse({ holds });
+}
+
+async function handleDeleteBedHold(id, env) {
+  const holds = await readBedHolds(env);
+  const remaining = holds.filter((hold) => hold.id !== id);
+  await writeBedHolds(env, remaining);
   return jsonResponse({ ok: true });
 }
 
