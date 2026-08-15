@@ -887,8 +887,10 @@
         title.textContent = titleParts.join("・");
 
         var metaParts = [];
-        if (hold.doctor) metaParts.push("醫師:" + hold.doctor);
-        if (hold.transferUnit) metaParts.push("轉入:" + hold.transferUnit);
+        var shortParts = [];
+        if (hold.doctor) shortParts.push("醫師:" + hold.doctor);
+        if (hold.transferUnit) shortParts.push("轉入:" + hold.transferUnit);
+        if (shortParts.length) metaParts.push(shortParts.join("・"));
         if (hold.expectedTime) {
           var expected = new Date(hold.expectedTime);
           metaParts.push("預計入住:" + (isNaN(expected.getTime()) ? hold.expectedTime : expected.toLocaleString("zh-TW")));
