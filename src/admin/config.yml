@@ -8,7 +8,7 @@ backend:
 local_backend: true
 
 media_folder: "src/assets/uploads"
-public_folder: "/assets/uploads"
+public_folder: "/Eighth/assets/uploads"
 
 collections:
   - name: "site"
