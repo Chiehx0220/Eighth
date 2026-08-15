@@ -36,6 +36,9 @@ permalink: /beds/
       "insured_double_room_beds": {{ rooms.insured_double_room_beds | pluckRoom | dump | safe }}
     }
   </script>
+  <script type="application/json" id="doctors-data">
+    {{ doctors.departments | dump | safe }}
+  </script>
 
   <h2>待排單/雙人</h2>
   <div class="applications-groups">
@@ -54,6 +57,28 @@ permalink: /beds/
         雙人房
       </h3>
       <div id="applications-list-double" class="applications-list" aria-live="polite">
+        <p class="applications-list__status">載入中…</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="bed-status-toolbar">
+    <h2>預卡床位</h2>
+    <div class="bed-status-toolbar__actions">
+      <button type="button" class="btn btn--filled" id="bed-hold-add">
+        <span class="material-symbols-outlined" aria-hidden="true">bookmark_add</span>
+        新增預卡
+      </button>
+    </div>
+  </div>
+  <div class="applications-groups">
+    <div class="applications-group">
+      <h3 class="applications-group__title">
+        <span class="material-symbols-outlined" aria-hidden="true">bookmark</span>
+        預卡清單
+      </h3>
+      <p class="applications-group__desc">給醫師或其他病房單位(如 ICU)預先保留床位。</p>
+      <div id="bed-holds-list" class="applications-list" aria-live="polite">
         <p class="applications-list__status">載入中…</p>
       </div>
     </div>
@@ -105,6 +130,90 @@ permalink: /beds/
     <div class="m3-dialog__actions">
       <button type="button" class="btn btn--text" id="mark-done-cancel">取消</button>
       <button type="submit" class="btn btn--filled">確認</button>
+    </div>
+  </form>
+</dialog>
+
+<dialog id="bed-hold-dialog" class="m3-dialog">
+  <form id="bed-hold-form" class="m3-dialog__form" novalidate>
+    <div class="m3-dialog__header">
+      <span class="m3-dialog__icon material-symbols-outlined" aria-hidden="true">bookmark_add</span>
+      <h2 class="m3-dialog__title">預卡床位</h2>
+    </div>
+    <p class="m3-dialog__subtitle">選擇要保留的床位,其餘欄位皆為選填。</p>
+
+    <div class="m3-field">
+      <label for="bed-hold-bed">預卡床位</label>
+      <select id="bed-hold-bed" name="bed-label" class="m3-field__input" required></select>
+    </div>
+    <div class="m3-field">
+      <label for="bed-hold-patient">病患姓名(選填)</label>
+      <input type="text" id="bed-hold-patient" class="m3-field__input" maxlength="50" autocomplete="off">
+    </div>
+    <div class="m3-field">
+      <label for="bed-hold-doctor">主治醫師(選填)</label>
+      <select id="bed-hold-doctor" class="m3-field__input"></select>
+    </div>
+    <div class="m3-field" id="bed-hold-doctor-other-field" hidden>
+      <label for="bed-hold-doctor-other">請輸入醫師姓名</label>
+      <input type="text" id="bed-hold-doctor-other" class="m3-field__input" maxlength="50" autocomplete="off">
+    </div>
+    <div class="m3-field">
+      <label for="bed-hold-unit">轉入單位(選填)</label>
+      <input type="text" id="bed-hold-unit" class="m3-field__input" maxlength="50" autocomplete="off" placeholder="例如:ICU">
+    </div>
+    <div class="m3-field">
+      <label for="bed-hold-time">預計入住時間(選填)</label>
+      <input type="datetime-local" id="bed-hold-time" class="m3-field__input">
+    </div>
+
+    <p class="m3-dialog__status" role="status" hidden>
+      <span class="material-symbols-outlined" aria-hidden="true"></span>
+      <span class="m3-dialog__status-text"></span>
+    </p>
+
+    <div class="m3-dialog__actions">
+      <button type="button" class="btn btn--text" id="bed-hold-cancel">取消</button>
+      <button type="submit" class="btn btn--filled">
+        送出預卡
+        <span class="material-symbols-outlined" aria-hidden="true">send</span>
+      </button>
+    </div>
+  </form>
+</dialog>
+
+<dialog id="checkin-hold-dialog" class="m3-dialog">
+  <form id="checkin-hold-form" class="m3-dialog__form" novalidate>
+    <h2 class="m3-dialog__title">確認入住</h2>
+    <p class="m3-dialog__subtitle" id="checkin-hold-summary"></p>
+
+    <div class="m3-field">
+      <label for="checkin-hold-input">員工號</label>
+      <input type="text" id="checkin-hold-input" class="m3-field__input" inputmode="numeric" autocomplete="off" required>
+    </div>
+    <p class="staff-gate__error" id="checkin-hold-error" hidden>員工號錯誤,請重新輸入。</p>
+
+    <div class="m3-dialog__actions">
+      <button type="button" class="btn btn--text" id="checkin-hold-cancel">取消</button>
+      <button type="submit" class="btn btn--filled">確認入住</button>
+    </div>
+  </form>
+</dialog>
+
+<dialog id="cancel-hold-dialog" class="m3-dialog">
+  <form id="cancel-hold-form" class="m3-dialog__form" novalidate>
+    <h2 class="m3-dialog__title">取消預卡</h2>
+    <p class="m3-dialog__subtitle" id="cancel-hold-summary"></p>
+
+    <div class="m3-field">
+      <label for="cancel-hold-input">員工號</label>
+      <input type="text" id="cancel-hold-input" class="m3-field__input" inputmode="numeric" autocomplete="off" required>
+    </div>
+    <p class="staff-gate__error" id="cancel-hold-error" hidden>員工號錯誤,請重新輸入。</p>
+
+    <div class="m3-dialog__actions">
+      <button type="button" class="btn btn--text" id="cancel-hold-cancel">取消</button>
+      <button type="submit" class="btn btn--filled">確認取消預卡</button>
     </div>
   </form>
 </dialog>
