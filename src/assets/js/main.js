@@ -872,13 +872,18 @@
         var actions = document.createElement("div");
         actions.className = "applications-list__item-actions";
 
-        var checkinBtn = document.createElement("button");
-        checkinBtn.type = "button";
-        checkinBtn.className = "btn btn--tonal";
-        checkinBtn.textContent = "入住";
-        checkinBtn.addEventListener("click", function () {
-          openCheckinHoldDialog(hold);
-        });
+        // Doctor-facing pages (e.g. 預入病患卡床) omit the checkin dialog —
+        // only show 入住 where that dialog exists (e.g. 床位一覽).
+        if (checkinHoldDialog) {
+          var checkinBtn = document.createElement("button");
+          checkinBtn.type = "button";
+          checkinBtn.className = "btn btn--tonal";
+          checkinBtn.textContent = "入住";
+          checkinBtn.addEventListener("click", function () {
+            openCheckinHoldDialog(hold);
+          });
+          actions.appendChild(checkinBtn);
+        }
 
         var cancelBtn = document.createElement("button");
         cancelBtn.type = "button";
@@ -888,7 +893,6 @@
           openCancelHoldDialog(hold);
         });
 
-        actions.appendChild(checkinBtn);
         actions.appendChild(cancelBtn);
 
         item.appendChild(info);
@@ -923,10 +927,13 @@
         });
     }
 
-    var bedHoldAddBtn = document.getElementById("bed-hold-add");
-    var bedHoldDialog = document.getElementById("bed-hold-dialog");
-    if (bedHoldAddBtn && bedHoldDialog) {
-      var bedHoldForm = document.getElementById("bed-hold-form");
+    var bedHoldForm = document.getElementById("bed-hold-form");
+    if (bedHoldForm) {
+      // On 床位一覽 this form lives inside a <dialog> opened via #bed-hold-add.
+      // On 預入病患卡床 (doctor-facing) it's shown inline instead, so both may be absent.
+      var bedHoldAddBtn = document.getElementById("bed-hold-add");
+      var bedHoldDialog = document.getElementById("bed-hold-dialog");
+      var bedHoldIsModal = !!(bedHoldAddBtn && bedHoldDialog && typeof bedHoldDialog.showModal === "function");
       var bedHoldBedSelect = document.getElementById("bed-hold-bed");
       var bedHoldDoctorSelect = document.getElementById("bed-hold-doctor");
       var bedHoldDoctorOtherField = document.getElementById("bed-hold-doctor-other-field");
@@ -1010,25 +1017,29 @@
         bedHoldStatus.hidden = true;
       }
 
-      bedHoldAddBtn.addEventListener("click", function () {
-        resetBedHoldDialog();
-        bedHoldDialog.showModal();
-        bedHoldBedSelect.focus();
-      });
-
-      bedHoldCancelBtn.addEventListener("click", function () {
-        bedHoldDialog.close();
-        resetBedHoldDialog();
-      });
-
-      bedHoldDialog.addEventListener("click", function (e) {
-        if (e.target === bedHoldDialog) {
-          bedHoldDialog.close();
+      if (bedHoldIsModal) {
+        bedHoldAddBtn.addEventListener("click", function () {
           resetBedHoldDialog();
-        }
-      });
+          bedHoldDialog.showModal();
+          bedHoldBedSelect.focus();
+        });
 
-      bedHoldDialog.addEventListener("close", resetBedHoldDialog);
+        if (bedHoldCancelBtn) {
+          bedHoldCancelBtn.addEventListener("click", function () {
+            bedHoldDialog.close();
+            resetBedHoldDialog();
+          });
+        }
+
+        bedHoldDialog.addEventListener("click", function (e) {
+          if (e.target === bedHoldDialog) {
+            bedHoldDialog.close();
+            resetBedHoldDialog();
+          }
+        });
+
+        bedHoldDialog.addEventListener("close", resetBedHoldDialog);
+      }
 
       var bedHoldSubmitBtn = bedHoldForm.querySelector("button[type=submit]");
 
@@ -1061,7 +1072,7 @@
             setBedHoldStatus("success", "check_circle", "預卡成功。");
             loadBedHolds();
             setTimeout(function () {
-              bedHoldDialog.close();
+              if (bedHoldIsModal) bedHoldDialog.close();
               resetBedHoldDialog();
             }, 1200);
           })

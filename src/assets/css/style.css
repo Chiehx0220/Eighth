@@ -2065,6 +2065,11 @@ table.price-table tbody tr:hover {
   color: var(--md-sys-color-on-surface-variant);
 }
 
+.bed-hold-form__submit {
+  width: 100%;
+  justify-content: center;
+}
+
 .applications-list {
   display: flex;
   flex-direction: column;
