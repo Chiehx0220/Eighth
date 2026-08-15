@@ -160,7 +160,17 @@ permalink: /beds/
     </div>
     <div class="m3-field">
       <label for="bed-hold-unit">轉入單位(選填)</label>
-      <input type="text" id="bed-hold-unit" class="m3-field__input" maxlength="50" autocomplete="off" placeholder="例如:ICU">
+      <select id="bed-hold-unit" class="m3-field__input">
+        <option value="">未指定(選填)</option>
+        <option value="ICU">ICU</option>
+        <option value="ER">ER</option>
+        <option value="總院">總院</option>
+        <option value="__other__">其他(手動輸入)</option>
+      </select>
+    </div>
+    <div class="m3-field" id="bed-hold-unit-other-field" hidden>
+      <label for="bed-hold-unit-other">請輸入轉入單位</label>
+      <input type="text" id="bed-hold-unit-other" class="m3-field__input" maxlength="50" autocomplete="off">
     </div>
     <div class="m3-field">
       <label for="bed-hold-time">預計入住時間(選填)</label>

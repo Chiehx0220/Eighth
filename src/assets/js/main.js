@@ -938,6 +938,9 @@
       var bedHoldDoctorSelect = document.getElementById("bed-hold-doctor");
       var bedHoldDoctorOtherField = document.getElementById("bed-hold-doctor-other-field");
       var bedHoldDoctorOtherInput = document.getElementById("bed-hold-doctor-other");
+      var bedHoldUnitSelect = document.getElementById("bed-hold-unit");
+      var bedHoldUnitOtherField = document.getElementById("bed-hold-unit-other-field");
+      var bedHoldUnitOtherInput = document.getElementById("bed-hold-unit-other");
       var bedHoldStatus = bedHoldForm.querySelector(".m3-dialog__status");
       var bedHoldStatusIcon = bedHoldStatus.querySelector(".material-symbols-outlined");
       var bedHoldStatusText = bedHoldStatus.querySelector(".m3-dialog__status-text");
@@ -1004,6 +1007,12 @@
         if (isOther) bedHoldDoctorOtherInput.focus();
       });
 
+      bedHoldUnitSelect.addEventListener("change", function () {
+        var isOther = bedHoldUnitSelect.value === "__other__";
+        bedHoldUnitOtherField.hidden = !isOther;
+        if (isOther) bedHoldUnitOtherInput.focus();
+      });
+
       function setBedHoldStatus(variant, icon, text) {
         bedHoldStatus.className = "m3-dialog__status m3-dialog__status--" + variant;
         bedHoldStatusIcon.textContent = icon;
@@ -1014,6 +1023,7 @@
       function resetBedHoldDialog() {
         bedHoldForm.reset();
         bedHoldDoctorOtherField.hidden = true;
+        bedHoldUnitOtherField.hidden = true;
         bedHoldStatus.hidden = true;
       }
 
@@ -1055,6 +1065,10 @@
           ? bedHoldDoctorOtherInput.value.trim()
           : bedHoldDoctorSelect.value;
 
+        var unitValue = bedHoldUnitSelect.value === "__other__"
+          ? bedHoldUnitOtherInput.value.trim()
+          : bedHoldUnitSelect.value;
+
         bedHoldSubmitBtn.disabled = true;
         fetch(APPLICATIONS_API_BASE + "/bed-holds", {
           method: "POST",
@@ -1063,7 +1077,7 @@
             bedLabel: bedHoldBedSelect.value,
             patientName: document.getElementById("bed-hold-patient").value.trim(),
             doctor: doctorValue,
-            transferUnit: document.getElementById("bed-hold-unit").value.trim(),
+            transferUnit: unitValue,
             expectedTime: document.getElementById("bed-hold-time").value,
           }),
         })
