@@ -1587,6 +1587,32 @@ a {
   border-color: var(--md-sys-color-error);
 }
 
+/* ---- self-pay category header ---- */
+.price-section__head {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 12px;
+}
+
+.price-section__icon.material-symbols-outlined {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  width: 48px;
+  height: 48px;
+  border-radius: var(--md-sys-shape-corner-full);
+  background: var(--md-sys-color-tertiary-container);
+  color: var(--md-sys-color-on-tertiary-container);
+  font-size: 24px;
+}
+
+.price-section__title {
+  margin: 0;
+  font-size: var(--md-sys-typescale-headline-small-size);
+}
+
 /* ---- MD3 data table ---- */
 table.price-table {
   width: 100%;
@@ -1617,6 +1643,12 @@ table.price-table td {
 
 table.price-table tbody tr:last-child td {
   border-bottom: none;
+}
+
+table.price-table th.price-table__price-col,
+table.price-table td.price-table__price-cell {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
 }
 
 table.price-table tbody tr {

@@ -209,6 +209,7 @@ collections:
             summary: "{{fields.category}}"
             fields:
               - { label: "分類名稱", name: "category", widget: "string" }
+              - { label: "圖示(Material Symbols 名稱)", name: "icon", widget: "string", required: false }
               - label: "項目列表"
                 name: "items"
                 widget: "list"

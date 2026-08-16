@@ -1,6 +1,7 @@
 disclaimer: "※品項費用會變動,僅供參考※"
 groups:
   - category: 敷料類
+    icon: healing
     items:
       - { name: "人工皮 10×10", price: "53.0", unit: 片 }
       - { name: "銀離子敷料 15×15", price: "459.2", unit: 片 }
@@ -13,18 +14,21 @@ groups:
       - { name: "POLA 10×10", price: "25.7", unit: 片 }
       - { name: "3M 無痛保膚膜", price: "520.0", unit: 片 }
   - category: 管路/輸液相關
+    icon: water_drop
     items:
       - { name: "Ambu bag", price: "221.0", unit: 個 }
       - { name: "IV Set", price: "10.4", unit: 個 }
       - { name: "PICC 底座", price: "338.0", unit: 個 }
       - { name: "沖PICC用10ML生理食鹽水", price: "381.0", unit: "盒(30支)" }
   - category: 膠布/清潔用品
+    icon: cleaning_services
     items:
       - { name: "康威 除膠噴霧", price: "378.3", unit: 瓶 }
       - { name: "3M 抗敏膠布", price: "48.8", unit: 卷 }
       - { name: "3M 剝離膠布", price: "195.0", unit: 卷 }
       - { name: "蘆薈清潔泡沫", price: "390.0", unit: 瓶 }
   - category: 照護輔具
+    icon: accessible
     items:
       - { name: "尿壺", price: "18.2", unit: 個 }
       - { name: "便盆", price: "117.0", unit: 個 }
@@ -34,5 +38,6 @@ groups:
       - { name: "四肢約束帶", price: "65.0", unit: 個 }
       - { name: "乒乓球拍手套", price: "416.0", unit: "付(2個)" }
   - category: 其他
+    icon: category
     items:
       - { name: "洗滌費", price: "100.0", unit: 次 }
