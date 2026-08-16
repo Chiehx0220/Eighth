@@ -942,7 +942,8 @@ a {
 }
 
 /* ---- diet guide: progressive-texture stages (clear liquid → soft diet) ---- */
-.diet-guide__disclaimer {
+.diet-guide__disclaimer,
+.price-table-disclaimer {
   margin: 16px 0 24px;
   padding-left: 14px;
   border-left: 2px solid var(--md-sys-color-outline-variant);

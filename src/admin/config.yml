@@ -200,15 +200,25 @@ collections:
         label: "自費項目"
         file: "src/_data/selfpay.yaml"
         fields:
-          - label: "項目列表"
-            name: "list"
+          - { label: "免責聲明", name: "disclaimer", widget: "string", required: false }
+          - label: "分類"
+            name: "groups"
             widget: "list"
             allow_add: true
+            collapsed: true
+            summary: "{{fields.category}}"
             fields:
-              - { label: "項目名稱", name: "name", widget: "string" }
-              - { label: "價格", name: "price", widget: "string" }
-              - { label: "單位", name: "unit", widget: "string", required: false }
-              - { label: "說明", name: "note", widget: "text", required: false }
+              - { label: "分類名稱", name: "category", widget: "string" }
+              - label: "項目列表"
+                name: "items"
+                widget: "list"
+                allow_add: true
+                collapsed: true
+                summary: "{{fields.name}}"
+                fields:
+                  - { label: "項目名稱", name: "name", widget: "string" }
+                  - { label: "價格", name: "price", widget: "string" }
+                  - { label: "單位", name: "unit", widget: "string", required: false }
 
   - name: "visiting"
     label: "探病/會客規定"
