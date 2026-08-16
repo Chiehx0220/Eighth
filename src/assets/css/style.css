@@ -952,23 +952,27 @@ a {
   max-width: 60ch;
 }
 
-.diet-guide__jump {
+.diet-guide__jump,
+.section-jump {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
   margin-bottom: 32px;
 }
 
-.diet-guide__jump .m3-chip {
+.diet-guide__jump .m3-chip,
+.section-jump .m3-chip {
   text-decoration: none;
 }
 
-.diet-stage {
+.diet-stage,
+.price-section {
   padding: 28px 0;
   border-top: 1px solid var(--md-sys-color-outline-variant);
 }
 
-.diet-stage:first-of-type {
+.diet-stage:first-of-type,
+.price-section:first-of-type {
   border-top: none;
   padding-top: 0;
 }

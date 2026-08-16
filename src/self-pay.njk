@@ -8,20 +8,28 @@ permalink: /self-pay/
 <p class="price-table-disclaimer">{{ selfpay.disclaimer }}</p>
 {% endif %}
 
+<nav class="section-jump" aria-label="快速跳到分類">
+  {% for group in selfpay.groups %}
+  <a href="#cat-{{ loop.index0 }}" class="m3-chip m3-chip--outline">{{ group.category }}</a>
+  {% endfor %}
+</nav>
+
 {% for group in selfpay.groups %}
-<h2>{{ group.category }}</h2>
-<table class="price-table">
-  <thead>
-    <tr><th>項目</th><th>價格</th><th>單位</th></tr>
-  </thead>
-  <tbody>
-    {% for item in group.items %}
-    <tr>
-      <td data-label="項目">{{ item.name }}</td>
-      <td data-label="價格">NT$ {{ item.price }}</td>
-      <td data-label="單位">{{ item.unit }}</td>
-    </tr>
-    {% endfor %}
-  </tbody>
-</table>
+<section class="price-section" id="cat-{{ loop.index0 }}">
+  <h2>{{ group.category }}</h2>
+  <table class="price-table">
+    <thead>
+      <tr><th>項目</th><th>價格</th><th>單位</th></tr>
+    </thead>
+    <tbody>
+      {% for item in group.items %}
+      <tr>
+        <td data-label="項目">{{ item.name }}</td>
+        <td data-label="價格">NT$ {{ item.price }}</td>
+        <td data-label="單位">{{ item.unit }}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</section>
 {% endfor %}
