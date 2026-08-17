@@ -37,9 +37,18 @@ permalink: /self-pay/
             <span class="material-symbols-outlined" aria-hidden="true">image</span>
           </button>
           <template id="item-images-{{ groupIndex }}-{{ loop.index0 }}">
-            {% for src in item.images %}
-            <img src="{{ src | url }}" alt="{{ item.name }}參考圖片{{ loop.index }}" class="item-image-dialog__photo">
-            {% endfor %}
+            <div class="item-image-dialog__track">
+              {% for src in item.images %}
+              <img src="{{ src | url }}" alt="{{ item.name }}參考圖片{{ loop.index }}" class="item-image-dialog__photo">
+              {% endfor %}
+            </div>
+            {% if item.images.length > 1 %}
+            <div class="item-image-dialog__dots">
+              {% for src in item.images %}
+              <button type="button" class="item-image-dialog__dot{% if loop.first %} is-active{% endif %}" aria-label="第 {{ loop.index }} 張圖片"></button>
+              {% endfor %}
+            </div>
+            {% endif %}
           </template>
           {% endif %}
         </td>

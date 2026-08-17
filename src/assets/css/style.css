@@ -1636,23 +1636,52 @@ a {
 }
 
 .item-image-dialog__body {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
   margin-top: 12px;
 }
 
-.item-image-dialog__photo {
-  display: block;
-  width: 100%;
-  max-height: 45vh;
-  object-fit: contain;
+.item-image-dialog__track {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
   border-radius: var(--md-sys-shape-corner-medium);
-  background: var(--md-sys-color-surface-container-low);
 }
 
-.item-image-dialog__photo:only-child {
+.item-image-dialog__track::-webkit-scrollbar {
+  display: none;
+}
+
+.item-image-dialog__photo {
+  flex: 0 0 100%;
+  width: 100%;
   max-height: 60vh;
+  object-fit: contain;
+  scroll-snap-align: start;
+  background: var(--md-sys-color-surface-container-low);
+  display: block;
+}
+
+.item-image-dialog__dots {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 10px;
+}
+
+.item-image-dialog__dot {
+  width: 6px;
+  height: 6px;
+  padding: 0;
+  border: none;
+  border-radius: var(--md-sys-shape-corner-full);
+  background: var(--md-sys-color-outline-variant);
+  cursor: pointer;
+  transition: width 0.2s ease, background 0.2s ease;
+}
+
+.item-image-dialog__dot.is-active {
+  width: 16px;
+  background: var(--md-sys-color-primary);
 }
 
 /* ---- MD3 data table ---- */

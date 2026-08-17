@@ -1342,12 +1342,43 @@
       itemImageBody.innerHTML = "";
     }
 
+    function initItemImageCarousel() {
+      var track = itemImageBody.querySelector(".item-image-dialog__track");
+      var imgs = track ? track.querySelectorAll(".item-image-dialog__photo") : [];
+      var dots = itemImageBody.querySelectorAll(".item-image-dialog__dot");
+      if (!track || imgs.length < 2) return;
+
+      function setActive(i) {
+        dots.forEach(function (dot, di) { dot.classList.toggle("is-active", di === i); });
+      }
+
+      function goTo(i) {
+        var clamped = Math.max(0, Math.min(imgs.length - 1, i));
+        track.scrollTo({ left: imgs[clamped].offsetLeft, behavior: reducedMotionScroll });
+        setActive(clamped);
+      }
+
+      dots.forEach(function (dot, i) {
+        dot.addEventListener("click", function () { goTo(i); });
+      });
+
+      var scrollTimer;
+      track.addEventListener("scroll", function () {
+        clearTimeout(scrollTimer);
+        scrollTimer = setTimeout(function () {
+          var i = Math.round(track.scrollLeft / imgs[0].getBoundingClientRect().width);
+          setActive(Math.max(0, Math.min(imgs.length - 1, i)));
+        }, 120);
+      });
+    }
+
     document.querySelectorAll(".price-table__image-btn").forEach(function (btn) {
       btn.addEventListener("click", function () {
         var tpl = document.getElementById(btn.dataset.target);
         itemImageTitle.textContent = btn.dataset.name || "";
         itemImageBody.innerHTML = "";
         if (tpl) itemImageBody.appendChild(tpl.content.cloneNode(true));
+        initItemImageCarousel();
         itemImageDialog.showModal();
       });
     });
