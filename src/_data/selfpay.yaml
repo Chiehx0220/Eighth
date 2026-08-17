@@ -57,6 +57,8 @@ groups:
       - name: 康威 除膠噴霧
         price: "378.3"
         unit: 瓶
+        images:
+          - /assets/uploads/康威無痛脫膠噴霧.jpg
       - name: 3M 抗敏膠布
         price: "48.8"
         unit: 卷
