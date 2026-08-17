@@ -220,6 +220,7 @@ collections:
                   - { label: "項目名稱", name: "name", widget: "string" }
                   - { label: "價格", name: "price", widget: "string" }
                   - { label: "單位", name: "unit", widget: "string", required: false }
+                  - { label: "參考圖片", name: "image", widget: "image", required: false }
 
   - name: "visiting"
     label: "探病/會客規定"

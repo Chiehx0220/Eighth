@@ -1613,6 +1613,38 @@ a {
   font-size: var(--md-sys-typescale-headline-small-size);
 }
 
+.price-table__image-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 28px;
+  min-width: 28px;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  margin-left: 6px;
+  vertical-align: middle;
+  border: none;
+  border-radius: var(--md-sys-shape-corner-full);
+  background: var(--md-sys-color-secondary-container);
+  color: var(--md-sys-color-on-secondary-container);
+  cursor: pointer;
+}
+
+.price-table__image-btn .material-symbols-outlined {
+  font-size: 16px;
+}
+
+.item-image-dialog__photo {
+  display: block;
+  width: 100%;
+  max-height: 60vh;
+  object-fit: contain;
+  border-radius: var(--md-sys-shape-corner-medium);
+  background: var(--md-sys-color-surface-container-low);
+  margin: 12px 0 0;
+}
+
 /* ---- MD3 data table ---- */
 table.price-table {
   width: 100%;

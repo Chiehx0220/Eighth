@@ -29,7 +29,14 @@ permalink: /self-pay/
     <tbody>
       {% for item in group.items %}
       <tr>
-        <td data-label="項目">{{ item.name }}</td>
+        <td data-label="項目">
+          {{ item.name }}
+          {% if item.image %}
+          <button type="button" class="price-table__image-btn" data-image="{{ item.image | url }}" data-name="{{ item.name }}" aria-label="查看「{{ item.name }}」參考圖片">
+            <span class="material-symbols-outlined" aria-hidden="true">image</span>
+          </button>
+          {% endif %}
+        </td>
         <td data-label="價格" class="price-table__price-cell">NT$ {{ item.price }}</td>
         <td data-label="單位">{{ item.unit }}</td>
       </tr>
@@ -38,3 +45,13 @@ permalink: /self-pay/
   </table>
 </section>
 {% endfor %}
+
+<dialog id="item-image-dialog" class="m3-dialog">
+  <div class="m3-dialog__form">
+    <h2 class="m3-dialog__title" id="item-image-title"></h2>
+    <img id="item-image-photo" class="item-image-dialog__photo" alt="">
+    <div class="m3-dialog__actions">
+      <button type="button" class="btn btn--text" id="item-image-close">關閉</button>
+    </div>
+  </div>
+</dialog>

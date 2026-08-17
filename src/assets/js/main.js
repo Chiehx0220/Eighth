@@ -1331,6 +1331,35 @@
     }
   }
 
+  var itemImageDialog = document.getElementById("item-image-dialog");
+  if (itemImageDialog) {
+    var itemImageTitle = document.getElementById("item-image-title");
+    var itemImagePhoto = document.getElementById("item-image-photo");
+    var itemImageClose = document.getElementById("item-image-close");
+
+    function closeItemImageDialog() {
+      itemImageDialog.close();
+      itemImagePhoto.src = "";
+    }
+
+    document.querySelectorAll(".price-table__image-btn").forEach(function (btn) {
+      btn.addEventListener("click", function () {
+        itemImageTitle.textContent = btn.dataset.name || "";
+        itemImagePhoto.src = btn.dataset.image;
+        itemImagePhoto.alt = btn.dataset.name || "";
+        itemImageDialog.showModal();
+      });
+    });
+
+    itemImageClose.addEventListener("click", closeItemImageDialog);
+    itemImageDialog.addEventListener("click", function (e) {
+      if (e.target === itemImageDialog) closeItemImageDialog();
+    });
+    itemImageDialog.addEventListener("close", function () {
+      itemImagePhoto.src = "";
+    });
+  }
+
   var visitorDialog = document.getElementById("visitor-registration-dialog");
   if (visitorDialog) {
     var visitorDismiss = document.getElementById("visitor-registration-dismiss");
