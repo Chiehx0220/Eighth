@@ -30,6 +30,9 @@ groups:
       - name: POLA石蠟紗布 10×10
         price: "25.7"
         unit: 片
+        images:
+          - /assets/uploads/pola正.webp
+          - /assets/uploads/pola反.webp
       - name: 3M 無痛保膚膜
         price: "520.0"
         unit: 片
