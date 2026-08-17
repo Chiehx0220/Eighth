@@ -80,12 +80,18 @@ groups:
       - name: 骨科便盆
         price: "137.8"
         unit: 個
+        images:
+          - /assets/uploads/骨科便盆.jpg
       - name: 沖洗壺
         price: "19.5"
         unit: 個
+        images:
+          - /assets/uploads/沖洗瓶.jpg
       - name: 拍痰背心
         price: 3,835.0
         unit: 個
+        images:
+          - /assets/uploads/拍痰背心.webp
       - name: 四肢約束帶
         price: "65.0"
         unit: 個
