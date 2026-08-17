@@ -15,7 +15,8 @@ permalink: /self-pay/
 </nav>
 
 {% for group in selfpay.groups %}
-<section class="price-section" id="cat-{{ loop.index0 }}">
+{% set groupIndex = loop.index0 %}
+<section class="price-section" id="cat-{{ groupIndex }}">
   <div class="price-section__head">
     {% if group.icon %}
     <span class="price-section__icon material-symbols-outlined" aria-hidden="true">{{ group.icon }}</span>
@@ -31,10 +32,15 @@ permalink: /self-pay/
       <tr>
         <td data-label="項目">
           {{ item.name }}
-          {% if item.image %}
-          <button type="button" class="price-table__image-btn" data-image="{{ item.image | url }}" data-name="{{ item.name }}" aria-label="查看「{{ item.name }}」參考圖片">
+          {% if item.images and item.images.length %}
+          <button type="button" class="price-table__image-btn" data-name="{{ item.name }}" data-target="item-images-{{ groupIndex }}-{{ loop.index0 }}" aria-label="查看「{{ item.name }}」參考圖片">
             <span class="material-symbols-outlined" aria-hidden="true">image</span>
           </button>
+          <template id="item-images-{{ groupIndex }}-{{ loop.index0 }}">
+            {% for src in item.images %}
+            <img src="{{ src | url }}" alt="{{ item.name }}參考圖片{{ loop.index }}" class="item-image-dialog__photo">
+            {% endfor %}
+          </template>
           {% endif %}
         </td>
         <td data-label="價格" class="price-table__price-cell">NT$ {{ item.price }}</td>
@@ -49,7 +55,7 @@ permalink: /self-pay/
 <dialog id="item-image-dialog" class="m3-dialog">
   <div class="m3-dialog__form">
     <h2 class="m3-dialog__title" id="item-image-title"></h2>
-    <img id="item-image-photo" class="item-image-dialog__photo" alt="">
+    <div id="item-image-body" class="item-image-dialog__body"></div>
     <div class="m3-dialog__actions">
       <button type="button" class="btn btn--text" id="item-image-close">關閉</button>
     </div>

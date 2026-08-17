@@ -1334,19 +1334,20 @@
   var itemImageDialog = document.getElementById("item-image-dialog");
   if (itemImageDialog) {
     var itemImageTitle = document.getElementById("item-image-title");
-    var itemImagePhoto = document.getElementById("item-image-photo");
+    var itemImageBody = document.getElementById("item-image-body");
     var itemImageClose = document.getElementById("item-image-close");
 
     function closeItemImageDialog() {
       itemImageDialog.close();
-      itemImagePhoto.src = "";
+      itemImageBody.innerHTML = "";
     }
 
     document.querySelectorAll(".price-table__image-btn").forEach(function (btn) {
       btn.addEventListener("click", function () {
+        var tpl = document.getElementById(btn.dataset.target);
         itemImageTitle.textContent = btn.dataset.name || "";
-        itemImagePhoto.src = btn.dataset.image;
-        itemImagePhoto.alt = btn.dataset.name || "";
+        itemImageBody.innerHTML = "";
+        if (tpl) itemImageBody.appendChild(tpl.content.cloneNode(true));
         itemImageDialog.showModal();
       });
     });
@@ -1356,7 +1357,7 @@
       if (e.target === itemImageDialog) closeItemImageDialog();
     });
     itemImageDialog.addEventListener("close", function () {
-      itemImagePhoto.src = "";
+      itemImageBody.innerHTML = "";
     });
   }
 
